@@ -1,17 +1,22 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
-import tailwindcss from '@tailwindcss/vite'
 
 export default defineConfig({
-  plugins: [react(), tailwindcss()],
+  plugins: [react()],
 
   server: {
     host: '0.0.0.0',
-    allowedHosts: ['orionsat-frontend.9uo8j1.easypanel.host']
+    allowedHosts: [
+      'orionsatgestao.com.br',
+      'www.orionsatgestao.com.br'
+    ]
   },
 
   preview: {
     host: '0.0.0.0',
-    allowedHosts: ['orionsat-frontend.9uo8j1.easypanel.host']
+    allowedHosts: [
+      'orionsatgestao.com.br',
+      'www.orionsatgestao.com.br'
+    ]
   }
 })
