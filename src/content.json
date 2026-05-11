@@ -1,0 +1,20 @@
+{
+  "heroTitle": "Tecnologia que conecta.",
+  "heroSubtitle": "Inteligência que entrega resultados.",
+  "description": "Plataforma inteligente para gestão operacional e monitoramento em tempo real.",
+  "whatsapp": "5511999999999",
+  "metrics": [
+    {
+      "number": "99.9%",
+      "label": "Disponibilidade"
+    },
+    {
+      "number": "+2M",
+      "label": "Eventos processados"
+    },
+    {
+      "number": "24/7",
+      "label": "Monitoramento"
+    }
+  ]
+}
