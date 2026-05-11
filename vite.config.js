@@ -9,8 +9,8 @@ export default defineConfig({
     allowedHosts: [
       'orionsatgestao.com.br',
       'www.orionsatgestao.com.br',
-      'orionsat-frontend.9uo8j1.easypanel.host'
-    ]
+      'orionsat-frontend.9uo8j1.easypanel.host',
+    ],
   },
 
   preview: {
@@ -18,7 +18,7 @@ export default defineConfig({
     allowedHosts: [
       'orionsatgestao.com.br',
       'www.orionsatgestao.com.br',
-      'orionsat-frontend.9uo8j1.easypanel.host'
-    ]
-  }
+      'orionsat-frontend.9uo8j1.easypanel.host',
+    ],
+  },
 })
