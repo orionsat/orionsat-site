@@ -1,134 +1,93 @@
 export default function PrivacyPolicy() {
   return (
-    <div className="min-h-screen bg-black text-white">
-      <div className="max-w-5xl mx-auto px-6 py-20">
+    <div
+      style={{
+        backgroundColor: "#050816",
+        color: "#ffffff",
+        minHeight: "100vh",
+        padding: "60px 20px",
+        fontFamily: "Arial, sans-serif",
+        lineHeight: "1.7",
+      }}
+    >
+      <div
+        style={{
+          maxWidth: "900px",
+          margin: "0 auto",
+        }}
+      >
+        <h1 style={{ fontSize: "42px", marginBottom: "10px" }}>
+          Política de Privacidade
+        </h1>
 
-        <div className="mb-16">
-          <h1 className="text-5xl font-bold mb-4">
-            Política de Privacidade
-          </h1>
+        <p style={{ opacity: 0.7, marginBottom: "40px" }}>
+          Última atualização: Maio de 2026
+        </p>
 
-          <p className="text-zinc-400 text-lg">
-            Transparência, proteção de dados e governança digital da Orion Sat.
-          </p>
+        <h2>1. Sobre a Orion Sat</h2>
+        <p>
+          A Orion Sat é uma plataforma de gestão operacional, telemetria e
+          monitoramento inteligente, oferecendo soluções tecnológicas para
+          empresas e usuários que necessitam de controle operacional e
+          rastreamento em tempo real.
+        </p>
 
-          <p className="text-zinc-500 text-sm mt-4">
-            Última atualização: Maio de 2026
-          </p>
-        </div>
+        <h2>2. Coleta de Informações</h2>
+        <p>
+          Podemos coletar informações fornecidas diretamente pelo usuário,
+          incluindo:
+        </p>
 
-        <div className="space-y-14">
+        <ul>
+          <li>Nome</li>
+          <li>E-mail</li>
+          <li>Telefone</li>
+          <li>Dados de localização</li>
+          <li>Informações operacionais do dispositivo rastreado</li>
+        </ul>
 
-          <section>
-            <h2 className="text-2xl font-semibold mb-4 text-cyan-400">
-              1. Introdução
-            </h2>
+        <h2>3. Uso das Informações</h2>
+        <p>As informações coletadas são utilizadas para:</p>
 
-            <p className="text-zinc-300 leading-8">
-              A ORION SAT LTDA ("Orion Sat") é uma empresa de tecnologia
-              especializada em inteligência operacional, telemetria,
-              conectividade e gestão inteligente de frotas.
-            </p>
-          </section>
+        <ul>
+          <li>Operação da plataforma</li>
+          <li>Monitoramento em tempo real</li>
+          <li>Suporte técnico</li>
+          <li>Melhoria dos serviços</li>
+          <li>Segurança operacional</li>
+        </ul>
 
-          <section>
-            <h2 className="text-2xl font-semibold mb-6 text-cyan-400">
-              2. Dados Tratados
-            </h2>
+        <h2>4. Compartilhamento de Dados</h2>
+        <p>
+          A Orion Sat não comercializa dados pessoais. As informações podem ser
+          compartilhadas apenas quando necessário para cumprimento legal,
+          operacional ou mediante solicitação das autoridades competentes.
+        </p>
 
-            <div className="grid md:grid-cols-2 gap-6">
+        <h2>5. Segurança</h2>
+        <p>
+          Utilizamos medidas técnicas e organizacionais para proteger os dados
+          contra acesso não autorizado, alteração, divulgação ou destruição.
+        </p>
 
-              <div className="bg-zinc-900 border border-zinc-800 rounded-2xl p-6">
-                <h3 className="text-xl font-semibold mb-3">
-                  Dados Cadastrais
-                </h3>
+        <h2>6. Direitos do Usuário</h2>
+        <p>
+          O usuário pode solicitar atualização, correção ou exclusão de dados
+          pessoais através dos canais oficiais de atendimento.
+        </p>
 
-                <p className="text-zinc-400">
-                  Nome, telefone, e-mail e informações corporativas.
-                </p>
-              </div>
+        <h2>7. Contato</h2>
+        <p>
+          Em caso de dúvidas sobre esta Política de Privacidade:
+        </p>
 
-              <div className="bg-zinc-900 border border-zinc-800 rounded-2xl p-6">
-                <h3 className="text-xl font-semibold mb-3">
-                  Geolocalização
-                </h3>
-
-                <p className="text-zinc-400">
-                  Posicionamento em tempo real e análise logística.
-                </p>
-              </div>
-
-              <div className="bg-zinc-900 border border-zinc-800 rounded-2xl p-6">
-                <h3 className="text-xl font-semibold mb-3">
-                  Telemetria
-                </h3>
-
-                <p className="text-zinc-400">
-                  Velocidade, frenagens, consumo e métricas operacionais.
-                </p>
-              </div>
-
-              <div className="bg-zinc-900 border border-zinc-800 rounded-2xl p-6">
-                <h3 className="text-xl font-semibold mb-3">
-                  Dados Técnicos
-                </h3>
-
-                <p className="text-zinc-400">
-                  Logs, IP, navegador e identificadores técnicos.
-                </p>
-              </div>
-
-            </div>
-          </section>
-
-          <section className="bg-cyan-500/10 border border-cyan-500/30 rounded-2xl p-8">
-            <h2 className="text-2xl font-semibold mb-4 text-cyan-300">
-              Compartilhamento de Dados
-            </h2>
-
-            <p className="text-white text-lg font-medium mb-4">
-              A Orion Sat NÃO comercializa dados pessoais ou operacionais.
-            </p>
-
-            <p className="text-zinc-300">
-              As informações podem ser processadas apenas por provedores
-              tecnológicos necessários para o funcionamento da plataforma.
-            </p>
-          </section>
-
-          <section>
-            <h2 className="text-2xl font-semibold mb-4 text-cyan-400">
-              5. Geolocalização em Segundo Plano
-            </h2>
-
-            <p className="text-zinc-300 leading-8">
-              Os aplicativos da Orion Sat podem utilizar acesso contínuo à
-              localização para monitoramento operacional, atualização logística,
-              roteirização inteligente e funcionamento adequado da telemetria.
-            </p>
-
-            <p className="text-zinc-400 mt-4">
-              A desativação das permissões pode comprometer funcionalidades da
-              plataforma.
-            </p>
-          </section>
-
-          <section className="bg-zinc-900 border border-zinc-800 rounded-2xl p-8">
-            <h2 className="text-2xl font-semibold mb-6 text-cyan-400">
-              Contato e Governança
-            </h2>
-
-            <div className="space-y-2 text-zinc-300">
-              <p>Orion Sat LTDA</p>
-              <p>CNPJ: 66.620.074/0001-39</p>
-              <p>Itaquaquecetuba/SP</p>
-              <p>privacidade@orionsatgestao.com.br</p>
-              <p>juridico@orionsatgestao.com.br</p>
-            </div>
-          </section>
-
-        </div>
-
+        <p>
+          <strong>Orion Sat</strong>
+          <br />
+          E-mail: juridico@orionsatgestao.com.br
+          <br />
+          Site: https://orionsatgestao.com.br
+        </p>
       </div>
     </div>
   )
