@@ -32,7 +32,7 @@ export default function App() {
     return null;
   });
 
-  // Função inteligente que muda a tela e atualiza a barra de endereço do navegador
+  // Função que muda a tela e atualiza a barra de endereço do navegador
   const alternarDocumento = (tipo) => {
     setDocAtivo(tipo);
     if (typeof window !== "undefined") {
@@ -144,167 +144,167 @@ export default function App() {
             Voltar para o site
           </button>
 
-          {/* DOCUMENTO 1: POLÍTICA DE PRIVACIDADE [cite: 21] */}
+          {/* DOCUMENTO 1: POLÍTICA DE PRIVACIDADE */}
           {docAtivo === "privacidade" && (
             <div>
-              <p className="text-zinc-500 uppercase tracking-widest text-xs mb-2">GOVERNANÇA CORPORATIVA E TI [cite: 20]</p>
-              <h1 className="text-4xl font-black tracking-tight mb-2">Política de Privacidade [cite: 21]</h1>
-              <p className="text-zinc-500 mb-12">Versão Premium Final | Atualização: Maio de 2026 [cite: 22]</p>
+              <p className="text-zinc-500 uppercase tracking-widest text-xs mb-2">GOVERNANÇA CORPORATIVA E TI</p>
+              <h1 className="text-4xl font-black tracking-tight mb-2">Política de Privacidade</h1>
+              <p className="text-zinc-500 mb-12">Versão Premium Final | Atualização: Maio de 2026</p>
 
               <div className="space-y-8 text-zinc-400 text-lg leading-relaxed">
                 <section>
-                  <h2 className="text-2xl font-bold text-cyan-400 mb-3">1. Introdução [cite: 23]</h2>
+                  <h2 className="text-2xl font-bold text-cyan-400 mb-3">1. Introdução</h2>
                   <p>
-                    A ORION SAT LTDA ("Orion Sat") é uma corporação de tecnologia dedicada exclusivamente ao desenvolvimento de inteligência operacional, conectividade avançada, telemetria analítica e soluções para a gestão inteligente de frotas, motoristas independentes, operações individuais e usuários autônomos[cite: 24]. Nossos sistemas atuam sob as estritas diretrizes da Lei Geral de Proteção de Dados Pessoais (LGPD - Lei nº 13.709/2018) and do Marco Civil da Internet (Lei nº 12.965/2014)[cite: 26].
+                    A ORION SAT LTDA ("Orion Sat") é uma corporação de tecnologia dedicada exclusivamente ao desenvolvimento de inteligência operacional, conectividade avançada, telemetria analítica e soluções para a gestão inteligente de frotas, motoristas independentes, operações individuais e usuários autônomos. Nossos sistemas atuam sob as estritas diretrizes da Lei Geral de Proteção de Dados Pessoais (LGPD - Lei nº 13.709/2018) e do Marco Civil da Internet (Lei nº 12.965/2014).
                   </p>
                 </section>
 
                 <section>
-                  <h2 className="text-2xl font-bold text-cyan-400 mb-3">2. Categorias de Dados Tratados [cite: 27]</h2>
+                  <h2 className="text-2xl font-bold text-cyan-400 mb-3">2. Categorias de Dados Tratados</h2>
                   <ul className="list-disc list-inside space-y-3 text-zinc-300 pl-2">
-                    <li><strong>Dados Cadastrais Corporativos e Individuais:</strong> Nome do gestor ou usuário, e-mail comercial ou pessoal, telefone, celular e dados cadastrais (CPF/CNPJ)[cite: 29].</li>
-                    <li><strong>Dados de Telemetria Avançada:</strong> Indicadores técnicos do veículo como velocidade de rodagem, rotação do motor (RPM), consumo estimado de combustível, frenagens abruptas e curvas acentuadas[cite: 30].</li>
-                    <li><strong>Dados de Posicionamento Logístico:</strong> Coordenadas de geolocalização coletadas em primeiro e segundo plano para roteirização automatizada e alimentação dos painéis operacionais[cite: 31].</li>
-                    <li><strong>Dados de Sessão Técnica:</strong> Registros obrigatórios de conexão (logs contendo data, horário e endereço IP), especificações de navegadores e identificadores de hardware[cite: 32].</li>
+                    <li><strong>Dados Cadastrais Corporativos e Individuais:</strong> Nome do gestor ou usuário, e-mail comercial ou pessoal, telefone, celular e dados cadastrais (CPF/CNPJ).</li>
+                    <li><strong>Dados de Telemetria Avançada:</strong> Indicadores técnicos do veículo como velocidade de rodagem, rotação do motor (RPM), consumo estimado de combustível, frenagens abruptas e curvas acentuadas.</li>
+                    <li><strong>Dados de Posicionamento Logístico:</strong> Coordenadas de geolocalização coletadas em primeiro e segundo plano para roteirização automatizada e alimentação dos painéis operacionais.</li>
+                    <li><strong>Dados de Sessão Técnica:</strong> Registros obrigatórios de conexão (logs contendo data, horário e endereço IP), especificações de navegadores e identificadores de hardware.</li>
                   </ul>
                 </section>
 
                 <section>
-                  <h2 className="text-2xl font-bold text-cyan-400 mb-3">3. Finalidade e Justificativas Jurídicas [cite: 35]</h2>
-                  <p>O tratamento estrutura-se nas bases legais de: Execução de Contrato (operação estável do software de gestão) [cite: 37], Cumprimento de Obrigação Legal (guarda obrigatória de logs por 6 meses nos termos do Art. 15 do Marco Civil da Internet) [cite: 38, 39] e Legítimo Interesse (segurança cibernética e prevenção contra inconsistências sistêmicas)[cite: 40].</p>
+                  <h2 className="text-2xl font-bold text-cyan-400 mb-3">3. Finalidade e Justificativas Jurídicas</h2>
+                  <p>O tratamento estrutura-se nas bases legais de: Execução de Contrato (operação estável do software de gestão), Cumprimento de Obrigação Legal (guarda obrigatória de logs por 6 meses nos termos do Art. 15 do Marco Civil da Internet) e Legítimo Interesse (segurança cibernética e prevenção contra inconsistências sistêmicas).</p>
                 </section>
 
                 <section>
-                  <h2 className="text-2xl font-bold text-cyan-400 mb-3">4. Diretrizes de Compartilhamento e Não Comercialização [cite: 41]</h2>
+                  <h2 className="text-2xl font-bold text-cyan-400 mb-3">4. Diretrizes de Compartilhamento e Não Comercialização</h2>
                   <p>
-                    A Orion Sat adota uma política corporativa inflexível de não comercialização de dados[cite: 42]. As informações operacionais de rodagem nunca serão vendidas ou compartilhadas com terceiros para fins comerciais ou publicitários[cite: 43]. O fluxo limita-se ao armazenamento criptografado em nuvem global e fornecimento direto para a empresa contratante ou usuário controlador legítimo do ativo[cite: 44].
+                    A Orion Sat adota uma política corporativa inflexível de não comercialização de dados. As informações operacionais de rodagem nunca serão vendidas ou compartilhadas com terceiros para fins comerciais ou publicitários. O fluxo limita-se ao armazenamento criptografado em nuvem global e fornecimento direto para a empresa contratante ou usuário controlador legítimo do ativo.
                   </p>
                 </section>
 
                 <section>
-                  <h2 className="text-2xl font-bold text-cyan-400 mb-3">5. Operação de Geolocalização em Segundo Plano [cite: 45]</h2>
+                  <h2 className="text-2xl font-bold text-cyan-400 mb-3">5. Operação de Geolocalização em Segundo Plano</h2>
                   <p>
-                    Para assegurar a continuidade dos indicadores logísticos e o cálculo preciso das rotas comerciais programadas, o aplicativo móvel requer autorização para processar dados de localização de forma ininterrupta, inclusive em segundo plano (com o aplicativo minimizado ou com a tela bloqueada)[cite: 46]. A desativação manual interrompe o fornecimento de dados para análise de frotas[cite: 47].
+                    Para assegurar a continuidade dos indicadores logísticos e o cálculo preciso das rotas comerciais programadas, o aplicativo móvel requer autorização para processar dados de localização de forma ininterrupta, inclusive em segundo plano (com o aplicativo minimizado ou com a tela bloqueada). A desativação manual interrompe o fornecimento de dados para análise de frotas.
                   </p>
                 </section>
 
                 <section>
-                  <h2 className="text-2xl font-bold text-cyan-400 mb-3">6. Direitos do Titular [cite: 49]</h2>
-                  <p>Asseguramos todos os direitos previstos no Art. 18 da LGPD, viabilizando o acesso facilitado, retificação de inconsistências, confirmação de tratamento e exclusão definitiva, observados os prazos fiscais e cíveis obrigatórios pela legislação brasileira[cite: 50, 51].</p>
+                  <h2 className="text-2xl font-bold text-cyan-400 mb-3">6. Direitos do Titular</h2>
+                  <p>Asseguramos todos os direitos previstos no Art. 18 da LGPD, viabilizando o acesso facilitado, retificação de inconsistências, confirmation de tratamento e exclusão definitiva, observados os prazos fiscais e cíveis obrigatórios pela legislação brasileira.</p>
                 </section>
 
                 <section className="border-t border-white/10 pt-8">
-                  <h2 className="text-2xl font-bold text-cyan-400 mb-3">7. Governança e Contato [cite: 52]</h2>
-                  <p>Para dúvidas operacionais ou requisições técnicas de dados, entre em contato diretamente com o Setor de Governança de Privacidade[cite: 54]:</p>
+                  <h2 className="text-2xl font-bold text-cyan-400 mb-3">7. Governança e Contato</h2>
+                  <p>Para dúvidas operacionais ou requisições técnicas de dados, entre em contato diretamente com o Setor de Governança de Privacidade:</p>
                   <p className="mt-3 text-zinc-300 font-medium bg-white/5 p-4 rounded-xl border border-white/10">
                     <strong>ORION SAT LTDA</strong><br />
                     CNPJ: 66.620.074/0001-39<br />
-                    Sede: Itaquaquecetuba/SP [cite: 57]<br />
-                    E-mail Oficial: <span className="text-cyan-400">privacidade@orionsatgestao.com.br</span> [cite: 54]
+                    Sede: Itaquaquecetuba/SP<br />
+                    E-mail Oficial: <span className="text-cyan-400">privacidade@orionsatgestao.com.br</span>
                   </p>
                 </section>
               </div>
             </div>
           )}
 
-          {/* DOCUMENTO 2: POLÍTICA DE COOKIES [cite: 2] */}
+          {/* DOCUMENTO 2: POLÍTICA DE COOKIES */}
           {docAtivo === "cookies" && (
             <div>
-              <p className="text-zinc-500 uppercase tracking-widest text-xs mb-2">TRANSPARÊNCIA E EXPERIÊNCIA DIGITAL [cite: 1]</p>
-              <h1 className="text-4xl font-black tracking-tight mb-2">Política de Cookies [cite: 2]</h1>
-              <p className="text-zinc-500 mb-12">Versão Premium Final | Atualização: Maio de 2026 [cite: 3]</p>
+              <p className="text-zinc-500 uppercase tracking-widest text-xs mb-2">TRANSPARÊNCIA E EXPERIÊNCIA DIGITAL</p>
+              <h1 className="text-4xl font-black tracking-tight mb-2">Política de Cookies</h1>
+              <p className="text-zinc-500 mb-12">Versão Premium Final | Atualização: Maio de 2026</p>
 
               <div className="space-y-8 text-zinc-400 text-lg leading-relaxed">
                 <section>
-                  <h2 className="text-2xl font-bold text-cyan-400 mb-3">1. Escopo e Conceito [cite: 4]</h2>
-                  <p>Cookies são pequenos arquivos temporários inseridos no navegador do usuário para viabilizar logins estáveis, guardar preferências de exibição de relatórios e coletar métricas básicas de uso das páginas da Orion Sat[cite: 6].</p>
+                  <h2 className="text-2xl font-bold text-cyan-400 mb-3">1. Escopo e Conceito</h2>
+                  <p>Cookies são pequenos arquivos temporários inseridos no navegador do usuário para viabilizar logins estáveis, guardar preferências de exibição de relatórios e coletar métricas básicas de uso das páginas da Orion Sat.</p>
                 </section>
 
                 <section>
-                  <h2 className="text-2xl font-bold text-cyan-400 mb-3">2. Tipos de Cookies Armazenados [cite: 7]</h2>
+                  <h2 className="text-2xl font-bold text-cyan-400 mb-3">2. Tipos de Cookies Armazenados</h2>
                   <div className="space-y-4">
                     <div className="bg-white/5 border border-white/10 p-5 rounded-2xl">
-                      <h3 className="text-xl font-bold text-zinc-200 mb-1">Cookies de Sessão (Essenciais) [cite: 9]</h3>
-                      <p className="text-sm mb-2 text-zinc-400">Imprescindíveis para validar a autenticação do usuário gestor ou autônomo e manter sua área logada ativa com estabilidade técnica[cite: 9].</p>
-                      <span className="text-xs font-bold text-red-400 uppercase bg-red-400/10 px-3 py-1 rounded-full">Duração: Sessão / Obrigatório [cite: 9]</span>
+                      <h3 className="text-xl font-bold text-zinc-200 mb-1">Cookies de Sessão (Essenciais)</h3>
+                      <p className="text-sm mb-2 text-zinc-400">Imprescindíveis para validar a autenticação do usuário gestor ou autônomo e manter sua área logada ativa com estabilidade técnica.</p>
+                      <span className="text-xs font-bold text-red-400 uppercase bg-red-400/10 px-3 py-1 rounded-full">Duração: Sessão / Obrigatório</span>
                     </div>
 
                     <div className="bg-white/5 border border-white/10 p-5 rounded-2xl">
-                      <h3 className="text-xl font-bold text-zinc-200 mb-1">Cookies de Preferências (Funcionais) [cite: 9]</h3>
-                      <p className="text-sm mb-2 text-zinc-400">Guardam as configurações personalizadas aplicadas pelo usuário na ordenação de tabelas, filtragem de relatórios operacionais ou escolha de layouts de mapas[cite: 9].</p>
-                      <span className="text-xs font-bold text-cyan-400 uppercase bg-cyan-400/10 px-3 py-1 rounded-full">Duração: Persistente / Opcional [cite: 9]</span>
+                      <h3 className="text-xl font-bold text-zinc-200 mb-1">Cookies de Preferências (Funcionais)</h3>
+                      <p className="text-sm mb-2 text-zinc-400">Guardam as configurações personalizadas aplicadas pelo usuário na ordenação de tabelas, filtragem de relatórios operacionais ou escolha de layouts de mapas.</p>
+                      <span className="text-xs font-bold text-cyan-400 uppercase bg-cyan-400/10 px-3 py-1 rounded-full">Duração: Persistente / Opcional</span>
                     </div>
 
                     <div className="bg-white/5 border border-white/10 p-5 rounded-2xl">
-                      <h3 className="text-xl font-bold text-zinc-200 mb-1">Cookies Analíticos [cite: 9]</h3>
-                      <p className="text-sm mb-2 text-zinc-400">Coletam estatísticas de uso totalmente consolidadas e anônimas para monitorar o tempo de carregamento das telas de gestão e apontar falhas de links[cite: 9].</p>
-                      <span className="text-xs font-bold text-cyan-400 uppercase bg-cyan-400/10 px-3 py-1 rounded-full">Duração: Persistente / Opcional [cite: 9]</span>
+                      <h3 className="text-xl font-bold text-zinc-200 mb-1">Cookies Analíticos</h3>
+                      <p className="text-sm mb-2 text-zinc-400">Coletam estatísticas de uso totalmente consolidadas e anônimas para monitorar o tempo de carregamento das telas de gestão e apontar falhas de links.</p>
+                      <span className="text-xs font-bold text-cyan-400 uppercase bg-cyan-400/10 px-3 py-1 rounded-full">Duração: Persistente / Opcional</span>
                     </div>
                   </div>
                 </section>
 
                 <section>
-                  <h2 className="text-2xl font-bold text-cyan-400 mb-3">3. Gerenciamento Técnico pelo Usuário [cite: 10]</h2>
-                  <p>O usuário pode gerenciar, bloquear ou limpar os cookies armazenados a qualquer momento acessando as configurações de privacidade do seu respectivo navegador web[cite: 11]. Importante ressaltar que a recusa total de cookies essenciais impede a autenticação e o uso pleno dos painéis de telemetria em nuvem[cite: 12].</p>
+                  <h2 className="text-2xl font-bold text-cyan-400 mb-3">3. Gerenciamento Técnico pelo Usuário</h2>
+                  <p>O usuário pode gerenciar, bloquear ou limpar os cookies armazenados a qualquer momento acessando as configurações de privacidade do seu respectivo navegador web. Importante ressaltar que a recusa total de cookies essenciais impede a autenticação e o uso pleno dos painéis de telemetria em nuvem.</p>
                 </section>
 
                 <section className="border-t border-white/10 pt-8">
-                  <h2 className="text-2xl font-bold text-cyan-400 mb-3">4. Contrato e Contato [cite: 13]</h2>
-                  <p>Dúvidas sobre o funcionamento técnico de nossas aplicações digitais podem ser endereçadas diretamente ao nosso Setor de Governança de Privacidade pelo e-mail[cite: 14]:</p>
+                  <h2 className="text-2xl font-bold text-cyan-400 mb-3">4. Contrato e Contato</h2>
+                  <p>Dúvidas sobre o funcionamento técnico de nossas aplicações digitais podem ser endereçadas diretamente ao nosso Setor de Governança de Privacidade pelo e-mail:</p>
                   <p className="mt-3 text-cyan-400 font-bold text-xl bg-white/5 p-4 rounded-xl border border-white/10">
-                    privacidade@orionsatgestao.com.br [cite: 14]
+                    privacidade@orionsatgestao.com.br
                   </p>
                 </section>
               </div>
             </div>
           )}
 
-          {/* DOCUMENTO 3: TERMOS DE USO [cite: 61] */}
+          {/* DOCUMENTO 3: TERMOS DE USO */}
           {docAtivo === "termos" && (
             <div>
-              <p className="text-zinc-500 uppercase tracking-widest text-xs mb-2">CONTRATOS E REGULAMENTOS DIGITAIS [cite: 60]</p>
-              <h1 className="text-4xl font-black tracking-tight mb-2">Termos de Uso da Plataforma [cite: 61]</h1>
-              <p className="text-zinc-500 mb-12">Versão Premium Final | Canal CPF e B2B Híbrido | Maio de 2026 [cite: 62]</p>
+              <p className="text-zinc-500 uppercase tracking-widest text-xs mb-2">CONTRATOS E REGULAMENTOS DIGITAIS</p>
+              <h1 className="text-4xl font-black tracking-tight mb-2">Termos de Uso da Plataforma</h1>
+              <p className="text-zinc-500 mb-12">Versão Premium Final | Canal CPF e B2B Híbrido | Maio de 2026</p>
 
               <div className="space-y-8 text-zinc-400 text-lg leading-relaxed">
                 <section>
-                  <h2 className="text-2xl font-bold text-cyan-400 mb-3">1. Escopo das Soluções de Software [cite: 63]</h2>
-                  <p>Os presentes Terms regulam o direito de acesso e utilização dos sistemas de software, painéis corporativos em nuvem e aplicativos móveis de propriedade da ORION SAT LTDA[cite: 64]. O ecossistema constitui um conjunto de ferramentas digitais dedicadas exclusivamente à gestão inteligente de frotas, operações individuais, telemetria e roteirização comercial[cite: 65].</p>
+                  <h2 className="text-2xl font-bold text-cyan-400 mb-3">1. Escopo das Soluções de Software</h2>
+                  <p>Os presentes Termos regulam o direito de acesso e utilização dos sistemas de software, painéis corporativos em nuvem e aplicativos móveis de propriedade da ORION SAT LTDA. O ecossistema constitui um conjunto de ferramentas digitais dedicadas exclusivamente à gestão inteligente de frotas, operações individuais, telemetria e roteirização comercial.</p>
                 </section>
 
                 <section className="bg-red-500/5 border border-red-500/20 p-6 rounded-2xl">
-                  <h2 className="text-2xl font-bold text-red-400 mb-3">2. Delimitação Tecnológica Importante [cite: 66]</h2>
+                  <h2 className="text-2xl font-bold text-red-400 mb-3">2. Delimitação Tecnológica Importante</h2>
                   <p className="text-zinc-300 font-medium mb-3">
-                    <strong>Cláusula de Escopo Tecnológico Estrito: [cite: 69]</strong>
+                    <strong>Cláusula de Escopo Tecnológico Estrito:</strong>
                   </p>
                   <p className="text-sm text-zinc-400">
-                    Por se tratar de um ambiente puramente de análise de dados, processamento de telemetria e gestão de software informacional (SaaS), as soluções da Orion Sat <strong>NÃO possuem escopo, vinculação ou aderência com o mercado de gerenciamento de riscos civis de ativos, atividades corporativas de pronta resposta, intervenções físicas de campo ou qualquer modalidade de salvaguarda material de bens [cite: 69]</strong>. A Orion Sat exime-se inteiramente de qualquer natureza de cobertura financeira ou securitária sobre os veículos cadastrados[cite: 70].
+                    Por se tratar de um ambiente puramente de análise de dados, processamento de telemetria e gestão de software informacional (SaaS), as soluções da Orion Sat <strong>NÃO possuem escopo, vinculação ou aderência com o mercado de gerenciamento de riscos civis de ativos, atividades corporativas de pronta resposta, intervenções físicas de campo ou qualquer modalidade de salvaguarda material de bens</strong>. A Orion Sat exime-se inteiramente de qualquer natureza de cobertura financeira ou securitária sobre os veículos cadastrados.
                   </p>
                 </section>
 
                 <section>
-                  <h2 className="text-2xl font-bold text-cyan-400 mb-3">3. Responsabilidade Operacional e Uso [cite: 71]</h2>
-                  <p>As credenciais de acesso (login e senha) possuem caráter estritamente pessoal, confidencial e intransferível[cite: 72]. Compete exclusivamente ao cliente corporativo ou usuário autônomo a guarda segura de suas chaves, respondendo legalmente por ações executadas sob sua identificação[cite: 73]. São proibidas condutas de engenharia reversa ou cópia de código-fonte[cite: 74].</p>
+                  <h2 className="text-2xl font-bold text-cyan-400 mb-3">3. Responsabilidade Operacional e Uso</h2>
+                  <p>As credenciais de acesso (login e senha) possuem caráter estritamente pessoal, confidencial e intransferível. Compete exclusivamente ao cliente corporativo ou usuário autônomo a guarda segura de suas chaves, respondendo legalmente por ações executadas sob sua identificação. São proibidas condutas de engenharia reversa ou cópia de código-fonte.</p>
                 </section>
 
                 <section>
-                  <h2 className="text-2xl font-bold text-cyan-400 mb-3">4. Conectividade e Infraestrutura Externa [cite: 76]</h2>
-                  <p>A exibição das informações operacionais em tempo real depende diretamente da estabilidade e disponibilidade de redes de telecomunicações terceirizadas, internet móvel e captação técnica de sinais de satélite (GPS)[cite: 77]. Oscilações decorrentes dessas redes externas de infraestrutura não configuram falha de software da Orion Sat[cite: 80].</p>
+                  <h2 className="text-2xl font-bold text-cyan-400 mb-3">4. Conectividade e Infraestrutura Externa</h2>
+                  <p>A exibição das informações operacionais em tempo real depende diretamente da estabilidade e disponibilidade de redes de telecomunicações terceirizadas, internet móvel e captação técnica de sinais de satélite (GPS). Oscilações decorrentes dessas redes externas de infraestrutura não configuram falha de software da Orion Sat.</p>
                 </section>
 
                 <section>
-                  <h2 className="text-2xl font-bold text-cyan-400 mb-3">5. Propriedade Intelectual e Atualizações [cite: 85]</h2>
-                  <p>A outorga de acesso temporário não transfere direitos industriais ou intelectuais[cite: 86]. Algoritmos de roteirização, dashboards, marcas e APIs permanecem sob domínio exclusivo da Orion Sat LTDA[cite: 87]. O sistema poderá sofrer atualizações e alterações de layouts sem que isso configure quebra contratual ou gere direito a indenizações[cite: 89, 90].</p>
+                  <h2 className="text-2xl font-bold text-cyan-400 mb-3">5. Propriedade Intelectual e Atualizações</h2>
+                  <p>A outorga de acesso temporário não transfere direitos industriais ou intelectuais. Algoritmos de roteirização, dashboards, marcas e APIs permanecem sob domínio exclusivo da Orion Sat LTDA. O sistema poderá sofrer atualizações e alterações de layouts sem que isso configure quebra contratual ou gere direito a indenizações.</p>
                 </section>
 
                 <section>
-                  <h2 className="text-2xl font-bold text-cyan-400 mb-3">6. Suspensão de Acesso [cite: 91]</h2>
-                  <p>A Orion Sat reserva-se o direito de suspender o acesso ao sistema em casos comprovados de inadimplência financeira corporativa ou individual, tentativas de violação cibernética da infraestrutura de nuvem ou descumprimento de qualquer cláusula destes Termos[cite: 92].</p>
+                  <h2 className="text-2xl font-bold text-cyan-400 mb-3">6. Suspensão de Acesso</h2>
+                  <p>A Orion Sat reserva-se o direito de suspender o acesso ao sistema em casos comprovados de inadimplência financeira corporativa ou individual, tentativas de violação cibernética da infraestrutura de nuvem ou descumprimento de qualquer cláusula destes Termos.</p>
                 </section>
 
                 <section className="border-t border-white/10 pt-8">
-                  <h2 className="text-2xl font-bold text-cyan-400 mb-3">7. Foro de Eleição [cite: 93]</h2>
-                  <p>As partes elegem o foro da Comarca de <strong>Itaquaquecetuba/SP</strong>, sede da Orion Sat LTDA, como o único competente para dirimir quaisquer dúvidas ou controvérsias técnicas decorrentes da aplicação destes Termos de Uso[cite: 94].</p>
+                  <h2 className="text-2xl font-bold text-cyan-400 mb-3">7. Foro de Eleição</h2>
+                  <p>As partes elegem o foro da Comarca de <strong>Itaquaquecetuba/SP</strong>, sede da Orion Sat LTDA, como o único competente para dirimir quaisquer dúvidas ou controvérsias técnicas decorrentes da aplicação destes Termos de Uso.</p>
                 </section>
               </div>
             </div>
