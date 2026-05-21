@@ -149,7 +149,7 @@ export default function App() {
             <div>
               <p className="text-zinc-500 uppercase tracking-widest text-xs mb-2">GOVERNANÇA CORPORATIVA E TI</p>
               <h1 className="text-4xl font-black tracking-tight mb-2">Política de Privacidade</h1>
-              <p className="text-zinc-500 mb-12">Versão Premium Final | Atualização: Maio de 2026</p>
+              <p className="text-zinc-500 mb-12">Atualização: Maio de 2026</p>
 
               <div className="space-y-8 text-zinc-400 text-lg leading-relaxed">
                 <section>
