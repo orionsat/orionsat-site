@@ -17,7 +17,6 @@ import {
   Route,
   MonitorSmartphone,
 } from "lucide-react";
-import { Link } from "react-router-dom"; // Importação do link de navegação
 
 import "./App.css";
 import logo from "./assets/logo.png";
@@ -350,7 +349,7 @@ export default function App() {
             <p className="text-cyan-400 uppercase tracking-[0.3em] text-sm mb-5">Sobre a ORIONSAT</p>
 
             <h2 className="text-5xl font-black leading-tight">
-              Gestão operacional inteligente para operações modernas.
+              Gestão operacional inteligente para operations modernas.
             </h2>
           </div>
 
@@ -582,12 +581,12 @@ export default function App() {
           </div>
         </div>
 
-        {/* PARTE ATUALIZADA: Alinhamento automático e Link da Política de Privacidade */}
+        {/* SOLUÇÃO DEFINITIVA: Usando o link nativo do HTML (a) para evitar erros de build */}
         <div className="border-t border-white/10 mt-12 pt-8 max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4 text-zinc-600 text-sm">
           <p>© 2026 ORIONSAT Gestão Inteligente. Todos os direitos reservados.</p>
-          <Link to="/privacidade" className="hover:text-cyan-400 transition text-zinc-500 font-medium">
+          <a href="/privacidade" className="hover:text-cyan-400 transition text-zinc-500 font-medium">
             Política de Privacidade
-          </Link>
+          </a>
         </div>
       </footer>
     </div>
