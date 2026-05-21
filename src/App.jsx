@@ -1,3 +1,4 @@
+import { useState } from "react"; // Importação necessária para alternar as páginas
 import {
   Activity,
   Bell,
@@ -22,6 +23,9 @@ import "./App.css";
 import logo from "./assets/logo.png";
 
 export default function App() {
+  // Estado que controla se o usuário está vendo o site ou a política de privacidade
+  const [verPrivacidade, setVerPrivacidade] = useState(false);
+
   const empresas = [
     "Advance Facilities",
     "Fênix Telecom",
@@ -104,6 +108,119 @@ export default function App() {
     },
   ];
 
+  // SE O USUÁRIO CLICOU EM VER A POLÍTICA, MOSTRA ESSA TELA PREMIUM:
+  if (verPrivacidade) {
+    return (
+      <div className="bg-[#020817] text-white min-h-screen py-24 px-6 relative overflow-hidden">
+        {/* BACKGROUND EFFECT */}
+        <div className="fixed inset-0 opacity-10 pointer-events-none">
+          <div className="absolute top-0 left-1/3 w-[600px] h-[600px] bg-cyan-400 blur-[150px]" />
+        </div>
+
+        <div className="max-w-3xl mx-auto relative z-10">
+          {/* BOTÃO VOLTAR */}
+          <button
+            onClick={() => {
+              setVerPrivacidade(false);
+              window.scrollTo({ top: 0, behavior: "instant" });
+            }}
+            className="inline-flex items-center gap-2 text-cyan-400 hover:text-cyan-300 font-bold mb-12 transition group"
+          >
+            <ArrowRight className="rotate-180 transition-transform group-hover:-translate-x-1" size={20} />
+            Voltar para o site
+          </button>
+
+          <h1 className="text-4xl md:text-5xl font-black tracking-tight mb-2">
+            Política de Privacidade
+          </h1>
+          <p className="text-zinc-500 mb-12">Última atualização: Maio de 2026</p>
+
+          <div className="space-y-8 text-zinc-400 text-lg leading-relaxed">
+            <section>
+              <h2 className="text-2xl font-bold text-cyan-400 mb-3">1. Sobre a Orion Sat</h2>
+              <p>
+                A Orion Sat é uma plataforma de gestão operacional, telemetria e
+                monitoramento inteligente, oferecendo soluções tecnológicas para
+                empresas e usuários que necessitam de controle operacional e
+                rastreamento em tempo real.
+              </p>
+            </section>
+
+            <section>
+              <h2 className="text-2xl font-bold text-cyan-400 mb-3">2. Coleta de Informações</h2>
+              <p className="mb-3">
+                Podemos coletar informações fornecidas diretamente pelo usuário, incluindo:
+              </p>
+              <ul className="list-disc list-inside space-y-1 pl-4 text-zinc-300">
+                <li>Nome, E-mail e Telefone</li>
+                <li>Dados de localização e posicionamento global</li>
+                <li>Informações operacionais do dispositivo rastreado</li>
+              </ul>
+            </section>
+
+            <section>
+              <h2 className="text-2xl font-bold text-cyan-400 mb-3">3. Uso das Informações</h2>
+              <p className="mb-3">As informações coletadas são utilizadas para:</p>
+              <ul className="list-disc list-inside space-y-1 pl-4 text-zinc-300">
+                <li>Operação e estabilidade da plataforma</li>
+                <li>Monitoramento e telemetria em tempo real</li>
+                <li>Suporte técnico e melhoria contínua dos serviços</li>
+                <li>Segurança e integridade operacional</li>
+              </ul>
+            </section>
+
+            <section>
+              <h2 className="text-2xl font-bold text-cyan-400 mb-3">4. Compartilhamento de Dados</h2>
+              <p>
+                A Orion Sat não comercializa dados pessoais de seus usuários. As informações podem ser
+                compartilhadas apenas quando estritamente necessário para cumprimento legal, operacional ou
+                mediante solicitação de autoridades competentes.
+              </p>
+            </section>
+
+            <section>
+              <h2 className="text-2xl font-bold text-cyan-400 mb-3">5. Segurança</h2>
+              <p>
+                Utilizamos medidas técnicas avançadas e organizacionais rígidas para proteger todos os dados
+                armazenados contra acessos não autorizados, alterações, divulgações ou destruições indevidas.
+              </p>
+            </section>
+
+            <section>
+              <h2 className="text-2xl font-bold text-cyan-400 mb-3">6. Direitos do Usuário</h2>
+              <p>
+                O usuário ou empresa contratante pode solicitar a atualização, correção ou exclusão definitiva
+                de seus dados pessoais a qualquer momento através dos nossos canais oficiais de atendimento.
+              </p>
+            </section>
+
+            <section className="border-t border-white/10 pt-8 mt-12">
+              <h2 className="text-2xl font-bold text-cyan-400 mb-3">7. Contato</h2>
+              <p>Em caso de dúvidas sobre esta Política de Privacidade, entre em contato:</p>
+              <p className="mt-3 text-zinc-300 font-medium">
+                <span className="text-cyan-400 block font-bold text-xl mb-1">Orion Sat</span>
+                E-mail: juridico@orionsatgestao.com.br <br />
+                Site: https://orionsatgestao.com.br
+              </p>
+            </section>
+          </div>
+
+          {/* BOTÃO VOLTAR NO FINAL DA PÁGINA TAMBÉM */}
+          <button
+            onClick={() => {
+              setVerPrivacidade(false);
+              window.scrollTo({ top: 0, behavior: "instant" });
+            }}
+            className="inline-flex items-center gap-2 bg-white/5 border border-white/10 hover:border-cyan-400/30 px-6 py-3 rounded-xl font-bold mt-16 transition"
+          >
+            Fechar e voltar ao site
+          </button>
+        </div>
+      </div>
+    );
+  }
+
+  // CASO CONTRÁRIO, MOSTRA O SITE NORMAL
   return (
     <div className="bg-[#020817] text-white overflow-hidden">
       {/* BACKGROUND */}
@@ -116,42 +233,20 @@ export default function App() {
       <header className="fixed top-0 left-0 w-full z-50 border-b border-white/10 backdrop-blur-xl bg-[#020817]/70">
         <div className="max-w-7xl mx-auto px-6 py-5 flex items-center justify-between">
           <div className="flex items-center gap-4">
-            <img
-              src={logo}
-              alt="ORIONSAT"
-              className="w-14 h-14 object-contain"
-              translate="no"
-            />
+            <img src={logo} alt="ORIONSAT" className="w-14 h-14 object-contain" translate="no" />
 
             <div translate="no">
               <h1 className="font-black text-3xl tracking-tight">ORIONSAT</h1>
-
-              <p className="text-cyan-400 uppercase tracking-[0.35em] text-xs">
-                Gestão Inteligente
-              </p>
+              <p className="text-cyan-400 uppercase tracking-[0.35em] text-xs">Gestão Inteligente</p>
             </div>
           </div>
 
           <nav className="hidden lg:flex items-center gap-10 text-sm text-zinc-300">
-            <a href="#sobre" className="hover:text-cyan-400 transition">
-              Sobre
-            </a>
-
-            <a href="#plataforma" className="hover:text-cyan-400 transition">
-              Plataforma
-            </a>
-
-            <a href="#tecnologia" className="hover:text-cyan-400 transition">
-              Tecnologia
-            </a>
-
-            <a href="#clientes" className="hover:text-cyan-400 transition">
-              Clientes
-            </a>
-
-            <a href="#faq" className="hover:text-cyan-400 transition">
-              FAQ
-            </a>
+            <a href="#sobre" className="hover:text-cyan-400 transition">Sobre</a>
+            <a href="#plataforma" className="hover:text-cyan-400 transition">Plataforma</a>
+            <a href="#tecnologia" className="hover:text-cyan-400 transition">Tecnologia</a>
+            <a href="#clientes" className="hover:text-cyan-400 transition">Clientes</a>
+            <a href="#faq" className="hover:text-cyan-400 transition">FAQ</a>
           </nav>
 
           <a
@@ -196,7 +291,6 @@ export default function App() {
                 Solicitar demonstração
                 <ArrowRight size={20} />
               </a>
-
               <a
                 href="#plataforma"
                 className="border border-white/10 hover:border-cyan-400/40 px-8 py-5 rounded-2xl transition"
@@ -210,12 +304,10 @@ export default function App() {
                 <h3 className="text-5xl font-black text-cyan-400">24h</h3>
                 <p className="text-zinc-500 mt-2">Monitoramento contínuo</p>
               </div>
-
               <div>
                 <h3 className="text-5xl font-black text-cyan-400">98%</h3>
                 <p className="text-zinc-500 mt-2">Eficiência operacional</p>
               </div>
-
               <div>
                 <h3 className="text-5xl font-black text-cyan-400">API</h3>
                 <p className="text-zinc-500 mt-2">Integrações inteligentes</p>
@@ -233,7 +325,6 @@ export default function App() {
                   <p className="text-zinc-500 text-sm">Dashboard Operacional</p>
                   <h3 className="text-4xl font-black mt-2">ORIONSAT DASHBOARD</h3>
                 </div>
-
                 <div className="flex items-center gap-2 text-green-400">
                   <div className="w-3 h-3 rounded-full bg-green-400 animate-pulse" />
                   ONLINE
@@ -246,19 +337,16 @@ export default function App() {
                   <h4 className="text-5xl font-black">248</h4>
                   <p className="text-zinc-500 mt-3">Veículos Online</p>
                 </div>
-
                 <div className="bg-black/30 rounded-3xl p-6">
                   <Bell className="text-cyan-400 mb-5" />
                   <h4 className="text-5xl font-black">12</h4>
                   <p className="text-zinc-500 mt-3">Alertas em tempo real</p>
                 </div>
-
                 <div className="bg-black/30 rounded-3xl p-6">
                   <BarChart3 className="text-cyan-400 mb-5" />
                   <h4 className="text-5xl font-black">98%</h4>
                   <p className="text-zinc-500 mt-3">Performance operacional</p>
                 </div>
-
                 <div className="bg-black/30 rounded-3xl p-6">
                   <ShieldCheck className="text-cyan-400 mb-5" />
                   <h4 className="text-5xl font-black">24h</h4>
@@ -271,7 +359,6 @@ export default function App() {
                   <h4 className="text-2xl font-black">Eficiência operacional</h4>
                   <Activity className="text-cyan-400" />
                 </div>
-
                 <div className="flex items-end gap-4 h-44">
                   <div className="bg-blue-500 rounded-t-2xl h-24 w-full animate-pulse" />
                   <div className="bg-blue-500 rounded-t-2xl h-16 w-full animate-pulse" />
@@ -288,39 +375,28 @@ export default function App() {
 
       {/* BANNER PREMIUM */}
       <section className="relative py-40 overflow-hidden">
-        {/* FUNDO */}
         <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/10 to-blue-700/10" />
-
-        {/* GRID */}
         <div className="absolute inset-0 opacity-[0.04]">
           <div className="w-full h-full bg-[linear-gradient(rgba(255,255,255,0.08)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.08)_1px,transparent_1px)] bg-[size:80px_80px]" />
         </div>
-
-        {/* LOGO BG */}
         <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 opacity-[0.03]">
           <img src={logo} alt="logo" className="w-[700px]" />
         </div>
-
-        {/* GLOW */}
         <div className="absolute top-1/2 left-1/2 w-[700px] h-[700px] -translate-x-1/2 -translate-y-1/2 bg-cyan-400/20 blur-[180px]" />
 
-        {/* CONTEÚDO */}
         <div className="relative z-10 max-w-6xl mx-auto px-6 text-center">
           <p className="uppercase tracking-[0.4em] text-cyan-400 text-sm mb-10">ORIONSAT</p>
-
           <h2 className="text-6xl lg:text-8xl font-black leading-[0.95] tracking-tight">
             Tecnologia
             <span className="block text-cyan-400">que abre caminhos.</span>
             Inteligência
             <span className="block text-cyan-400">que domina o mercado.</span>
           </h2>
-
           <p className="text-zinc-500 text-xl mt-10 max-w-3xl mx-auto leading-relaxed">
             Plataforma inteligente para monitoramento, telemetria, gestão operacional e controle
             avançado de ativos em tempo real.
           </p>
 
-          {/* BOTÕES */}
           <div className="flex flex-wrap justify-center gap-5 mt-14">
             <a
               href="https://wa.me/5511911021692"
@@ -331,7 +407,6 @@ export default function App() {
               Solicitar demonstração
               <ArrowRight size={20} />
             </a>
-
             <a
               href="#plataforma"
               className="border border-white/10 hover:border-cyan-400/40 px-10 py-5 rounded-2xl transition"
@@ -347,23 +422,19 @@ export default function App() {
         <div className="grid lg:grid-cols-2 gap-20 items-center">
           <div>
             <p className="text-cyan-400 uppercase tracking-[0.3em] text-sm mb-5">Sobre a ORIONSAT</p>
-
             <h2 className="text-5xl font-black leading-tight">
-              Gestão operacional inteligente para operations modernas.
+              Gestão operacional inteligente para operações modernas.
             </h2>
           </div>
-
           <div className="space-y-6 text-zinc-400 text-lg leading-relaxed">
             <p>
               A ORIONSAT atua com soluções de gestão de frotas, telemetria, rastreamento operacional e
               monitoramento inteligente.
             </p>
-
             <p>
               Nossa plataforma foi desenvolvida para empresas que precisam controlar ativos, otimizar custos,
               aumentar produtividade e centralizar operações em tempo real.
             </p>
-
             <p>
               Com tecnologia escalável, dashboards avançados e inteligência operacional, entregamos mais
               controle, conectividade e eficiência.
@@ -376,7 +447,6 @@ export default function App() {
       <section id="plataforma" className="max-w-7xl mx-auto px-6 pb-32">
         <div className="text-center mb-20">
           <p className="text-cyan-400 uppercase tracking-[0.3em] text-sm mb-4">Plataforma</p>
-
           <h2 className="text-5xl font-black">Soluções completas de gestão operacional</h2>
         </div>
 
@@ -387,9 +457,7 @@ export default function App() {
               className="bg-white/5 border border-white/10 rounded-[32px] p-8 hover:border-cyan-400/30 transition duration-500 hover:-translate-y-2"
             >
               <div className="text-cyan-400 mb-6">{item.icon}</div>
-
               <h3 className="text-2xl font-bold mb-5">{item.title}</h3>
-
               <p className="text-zinc-400 leading-relaxed">{item.desc}</p>
             </div>
           ))}
@@ -400,7 +468,6 @@ export default function App() {
       <section className="max-w-7xl mx-auto px-6 pb-32">
         <div className="text-center mb-20">
           <p className="text-cyan-400 uppercase tracking-[0.3em] text-sm mb-4">Segmentos</p>
-
           <h2 className="text-5xl font-black">Operações que atendemos</h2>
         </div>
 
@@ -411,7 +478,6 @@ export default function App() {
               className="bg-white/5 border border-white/10 rounded-3xl p-8 hover:border-cyan-400/30 transition"
             >
               <Route className="text-cyan-400 mb-6" />
-
               <h3 className="text-2xl font-bold">{item}</h3>
             </div>
           ))}
@@ -422,32 +488,18 @@ export default function App() {
       <section id="tecnologia" className="max-w-7xl mx-auto px-6 pb-32">
         <div className="text-center mb-20">
           <p className="text-cyan-400 uppercase tracking-[0.3em] text-sm mb-4">Tecnologia</p>
-
           <h2 className="text-5xl font-black">Infraestrutura moderna e escalável</h2>
         </div>
 
         <div className="grid md:grid-cols-4 gap-6">
           {[
-            {
-              icon: <Cpu />,
-              title: "Processamento inteligente",
-            },
-            {
-              icon: <Database />,
-              title: "Dados em tempo real",
-            },
-            {
-              icon: <Server />,
-              title: "Infraestrutura escalável",
-            },
-            {
-              icon: <Globe />,
-              title: "Conectividade contínua",
-            },
+            { icon: <Cpu />, title: "Processamento inteligente" },
+            { icon: <Database />, title: "Dados em tempo real" },
+            { icon: <Server />, title: "Infraestrutura escalável" },
+            { icon: <Globe />, title: "Conectividade contínua" },
           ].map((item, index) => (
             <div key={index} className="bg-white/5 border border-white/10 rounded-3xl p-8 text-center">
               <div className="flex justify-center text-cyan-400 mb-5">{item.icon}</div>
-
               <h3 className="text-xl font-bold">{item.title}</h3>
             </div>
           ))}
@@ -458,7 +510,6 @@ export default function App() {
       <section id="beneficios" className="max-w-7xl mx-auto px-6 pb-32">
         <div className="text-center mb-20">
           <p className="text-cyan-400 uppercase tracking-[0.3em] text-sm mb-4">Benefícios</p>
-
           <h2 className="text-5xl font-black">Mais controle e eficiência operacional</h2>
         </div>
 
@@ -466,7 +517,6 @@ export default function App() {
           {beneficios.map((item, index) => (
             <div key={index} className="bg-white/5 border border-white/10 rounded-3xl p-8 flex items-center gap-5">
               <CheckCircle2 className="text-cyan-400" />
-
               <p className="text-xl text-zinc-300">{item}</p>
             </div>
           ))}
@@ -477,7 +527,6 @@ export default function App() {
       <section id="clientes" className="max-w-7xl mx-auto px-6 pb-32">
         <div className="text-center mb-20">
           <p className="text-cyan-400 uppercase tracking-[0.3em] text-sm mb-4">Empresas atendidas</p>
-
           <h2 className="text-5xl font-black">Operações que confiam na ORIONSAT</h2>
         </div>
 
@@ -488,7 +537,6 @@ export default function App() {
               className="bg-white/5 border border-white/10 rounded-3xl p-8 text-center hover:border-cyan-400/30 transition"
             >
               <Waves className="mx-auto text-cyan-400 mb-5" />
-
               <p className="font-semibold text-zinc-200">{empresa}</p>
             </div>
           ))}
@@ -499,7 +547,6 @@ export default function App() {
       <section id="faq" className="max-w-5xl mx-auto px-6 pb-32">
         <div className="text-center mb-20">
           <p className="text-cyan-400 uppercase tracking-[0.3em] text-sm mb-4">FAQ</p>
-
           <h2 className="text-5xl font-black">Perguntas frequentes</h2>
         </div>
 
@@ -507,7 +554,6 @@ export default function App() {
           {faq.map((item, index) => (
             <div key={index} className="bg-white/5 border border-white/10 rounded-3xl p-8">
               <h3 className="text-2xl font-bold mb-4">{item.pergunta}</h3>
-
               <p className="text-zinc-400 leading-relaxed">{item.resposta}</p>
             </div>
           ))}
@@ -520,11 +566,9 @@ export default function App() {
           <h2 className="text-5xl font-black max-w-4xl mx-auto leading-tight">
             Tecnologia, conectividade e inteligência operacional.
           </h2>
-
           <p className="text-zinc-400 text-xl mt-8 max-w-2xl mx-auto">
             Conheça a plataforma ORIONSAT e transforme a gestão operacional da sua empresa.
           </p>
-
           <a
             href="https://linktr.ee/orionsatgestao"
             target="_blank"
@@ -543,14 +587,11 @@ export default function App() {
           <div>
             <div className="flex items-center gap-4 mb-6">
               <img src={logo} alt="ORIONSAT" className="w-14 h-14 object-contain" />
-
               <div>
                 <h3 className="font-black text-3xl">ORIONSAT</h3>
-
                 <p className="text-cyan-400 uppercase tracking-[0.3em] text-xs">Gestão Inteligente</p>
               </div>
             </div>
-
             <p className="text-zinc-500 leading-relaxed">
               Tecnologia • Conectividade • Inteligência • Resultados
             </p>
@@ -558,7 +599,6 @@ export default function App() {
 
           <div>
             <h4 className="font-bold text-xl mb-5">Plataforma</h4>
-
             <ul className="space-y-3 text-zinc-500">
               <li>Gestão de Frotas</li>
               <li>Telemetria</li>
@@ -570,7 +610,6 @@ export default function App() {
 
           <div>
             <h4 className="font-bold text-xl mb-5">Contato</h4>
-
             <ul className="space-y-3 text-zinc-500">
               <li>ORION SAT LTDA</li>
               <li>CNPJ: 66.620.074/0001-39</li>
@@ -581,12 +620,18 @@ export default function App() {
           </div>
         </div>
 
-        {/* SOLUÇÃO DEFINITIVA: Usando o link nativo do HTML (a) para evitar erros de build */}
+        {/* CLICK ACTION ATUALIZADA: Agora altera o estado local e sobe a página de forma imediata */}
         <div className="border-t border-white/10 mt-12 pt-8 max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4 text-zinc-600 text-sm">
           <p>© 2026 ORIONSAT Gestão Inteligente. Todos os direitos reservados.</p>
-          <a href="/privacidade" className="hover:text-cyan-400 transition text-zinc-500 font-medium">
+          <button
+            onClick={() => {
+              setVerPrivacidade(true);
+              window.scrollTo({ top: 0, behavior: "instant" });
+            }}
+            className="hover:text-cyan-400 transition text-zinc-500 font-medium cursor-pointer"
+          >
             Política de Privacidade
-          </a>
+          </button>
         </div>
       </footer>
     </div>
