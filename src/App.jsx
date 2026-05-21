@@ -24,9 +24,7 @@ import PrivacyPolicy from "./pages/PrivacyPolicy";
 
 export default function App() {
 
-  const currentPath = window.location.pathname;
-
-  if (currentPath === "/politica-de-privacidade") {
+  if (window.location.pathname === "/privacidade") {
     return <PrivacyPolicy />;
   }
 
@@ -92,23 +90,19 @@ export default function App() {
   const faq = [
     {
       pergunta: "A plataforma possui aplicativo?",
-      resposta:
-        "Sim. Plataforma web completa e aplicativo Android/iOS para monitoramento operacional em tempo real.",
+      resposta: "Sim. Plataforma web completa e aplicativo Android/iOS para monitoramento operacional em tempo real.",
     },
     {
       pergunta: "Funciona para máquinas e equipamentos?",
-      resposta:
-        "Sim. Nossa tecnologia atende veículos leves, pesados, máquinas, operações especiais e ativos operacionais.",
+      resposta: "Sim. Nossa tecnologia atende veículos leves, pesados, máquinas, operações especiais e ativos operacionais.",
     },
     {
       pergunta: "Possui telemetria avançada?",
-      resposta:
-        "Sim. Trabalhamos desde telemetria básica até análises operacionais avançadas.",
+      resposta: "Sim. Trabalhamos desde telemetria básica até análises operacionais avançadas.",
     },
     {
       pergunta: "Possui API e integração?",
-      resposta:
-        "Sim. A plataforma suporta integrações API, ERPs, sistemas operacionais e soluções externas.",
+      resposta: "Sim. A plataforma suporta integrações API, ERPs, sistemas operacionais e soluções externas.",
     },
   ];
 
@@ -130,12 +124,8 @@ export default function App() {
               className="w-14 h-14 object-contain"
               translate="no"
             />
-
             <div translate="no">
-              <h1 className="font-black text-3xl tracking-tight">
-                ORIONSAT
-              </h1>
-
+              <h1 className="font-black text-3xl tracking-tight">ORIONSAT</h1>
               <p className="text-cyan-400 uppercase tracking-[0.35em] text-xs">
                 Gestão Inteligente
               </p>
@@ -143,30 +133,17 @@ export default function App() {
           </div>
 
           <nav className="hidden lg:flex items-center gap-10 text-sm text-zinc-300">
-            <a href="#sobre" className="hover:text-cyan-400 transition">
-              Sobre
-            </a>
-
-            <a href="#plataforma" className="hover:text-cyan-400 transition">
-              Plataforma
-            </a>
-
-            <a href="#tecnologia" className="hover:text-cyan-400 transition">
-              Tecnologia
-            </a>
-
-            <a href="#clientes" className="hover:text-cyan-400 transition">
-              Clientes
-            </a>
-
-            <a href="#faq" className="hover:text-cyan-400 transition">
-              FAQ
-            </a>
+            <a href="#sobre" className="hover:text-cyan-400 transition">Sobre</a>
+            <a href="#plataforma" className="hover:text-cyan-400 transition">Plataforma</a>
+            <a href="#tecnologia" className="hover:text-cyan-400 transition">Tecnologia</a>
+            <a href="#clientes" className="hover:text-cyan-400 transition">Clientes</a>
+            <a href="#faq" className="hover:text-cyan-400 transition">FAQ</a>
           </nav>
 
           <a
             href="https://linktr.ee/orionsatgestao"
             target="_blank"
+            rel="noopener noreferrer"
             className="bg-cyan-400 hover:bg-cyan-300 text-black px-7 py-3 rounded-2xl font-bold transition hover:scale-105"
           >
             Comercial
@@ -174,7 +151,20 @@ export default function App() {
         </div>
       </header>
 
-      {/* RESTANTE DO SEU CÓDIGO CONTINUA IGUAL */}
-    </div>
-  );
-}
+      {/* HERO */}
+      <section className="min-h-screen flex items-center pt-36 relative">
+        <div className="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-24 items-center relative z-10">
+          <div>
+            <div className="inline-flex items-center gap-3 px-5 py-3 rounded-full border border-cyan-400/20 bg-cyan-400/5 text-cyan-300 text-sm mb-10">
+              <Radar size={16} />
+              Plataforma premium de gestão operacional
+            </div>
+
+            <h2 className="text-6xl lg:text-8xl font-black leading-[0.92] tracking-tight">
+              Tecnologia <span className="text-cyan-400 block">que abre caminhos.</span>
+              Inteligência <span className="text-cyan-400 block">que entrega resultados.</span>
+            </h2>
+
+            <p className="text-zinc-400 text-xl leading-relaxed max-w-2xl mt-10">
+              Plataforma de gestão operacional, telemetria avançada, rastreamento inteligente e
+              monitoramento em tempo real para empresas que exigem controle
