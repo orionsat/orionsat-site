@@ -30,7 +30,6 @@ import {
   Fuel,
   Map,
   CheckSquare,
-  PlayCircle,
   Truck
 } from "lucide-react";
 
@@ -60,7 +59,7 @@ export default function App() {
   useEffect(() => {
     if (docAtivo) return; 
 
-    const abas = ["visaoGeral", "logistica", "videoIA", "telemetria"];
+    const abas = ["visaoGeral", "videoIA", "logistica", "telemetria"];
     
     const intervalo = setInterval(() => {
       setDashTab((abaAtual) => {
@@ -103,7 +102,7 @@ export default function App() {
     "Operações de Máquinas e Equipamentos",
     "Locadoras e Terceirização de Frotas",
     "Facilities e Operações de Campo",
-    "Pequenos e Médios Frotistas",
+    "Pequenos Frotistas e Autônomos",
   ];
 
   const funcionalidades = [
@@ -141,11 +140,11 @@ export default function App() {
 
   const beneficios = [
     "Ecossistema unificado: elimine a necessidade de contratar múltiplos softwares",
-    "Mitigação drástica do passivo de multas (Velocidade na Via) e trabalhista (Jornada)",
+    "Mitigação drástica do passivo de multas (Velocidade na Via) e riscos trabalhistas (Jornada)",
     "Redução comprovada de custos com combustível e manutenções corretivas",
     "Controle total e auditoria visual da operação via Videomonitoramento IA",
     "Tomada de decisão baseada em dados reais (Big Data e Telemetria Avançada)",
-    "Arquitetura escalável: atende com excelência desde 5 até 5.000 veículos",
+    "Arquitetura escalável: atende com excelência desde 1 até 5.000 veículos",
   ];
 
   const faq = [
@@ -165,9 +164,9 @@ export default function App() {
         "O módulo 'Jornada de Trabalho' permite que o motorista faça o apontamento de suas atividades (direção, espera, descanso, refeição) diretamente pelo celular via App Onboard, ou através de identificação no painel (iButton/RFID). Isso gera relatórios blindados contra passivos trabalhistas.",
     },
     {
-      pergunta: "A plataforma é acessível para frotas de menor porte?",
+      pergunta: "A plataforma é acessível para frotas de menor porte e veículos particulares?",
       resposta:
-        "Sim. Nossa tecnologia Enterprise foi desenhada para ser escalável. Pequenos e médios frotistas têm acesso à mesma inteligência operacional utilizada por grandes transportadoras, pagando apenas pelas licenças ativas na sua operação.",
+        "Sim. Nossa tecnologia Enterprise foi desenhada para ser totalmente escalável. Pequenos frotistas, locadoras menores e até profissionais autônomos têm acesso à mesma inteligência operacional utilizada por grandes transportadoras, pagando apenas pelas licenças ativas na sua rotina.",
     },
   ];
 
@@ -455,19 +454,19 @@ export default function App() {
                   onClick={() => setDashTab("visaoGeral")}
                   className={`px-4 py-2 rounded-full text-xs font-bold transition-all whitespace-nowrap flex items-center gap-2 ${dashTab === 'visaoGeral' ? 'bg-cyan-400 text-black shadow-[0_0_15px_rgba(34,211,238,0.4)]' : 'bg-white/5 text-zinc-400 hover:bg-white/10 hover:text-white'}`}
                 >
-                  <PlayCircle size={14} /> Vídeo Demo
-                </button>
-                <button 
-                  onClick={() => setDashTab("logistica")}
-                  className={`px-4 py-2 rounded-full text-xs font-bold transition-all whitespace-nowrap flex items-center gap-2 ${dashTab === 'logistica' ? 'bg-cyan-400 text-black shadow-[0_0_15px_rgba(34,211,238,0.4)]' : 'bg-white/5 text-zinc-400 hover:bg-white/10 hover:text-white'}`}
-                >
-                  <Map size={14} /> Logística
+                  <Activity size={14} /> Visão Geral
                 </button>
                 <button 
                   onClick={() => setDashTab("videoIA")}
                   className={`px-4 py-2 rounded-full text-xs font-bold transition-all whitespace-nowrap flex items-center gap-2 ${dashTab === 'videoIA' ? 'bg-cyan-400 text-black shadow-[0_0_15px_rgba(34,211,238,0.4)]' : 'bg-white/5 text-zinc-400 hover:bg-white/10 hover:text-white'}`}
                 >
                   <Video size={14} /> Câmera IA
+                </button>
+                <button 
+                  onClick={() => setDashTab("logistica")}
+                  className={`px-4 py-2 rounded-full text-xs font-bold transition-all whitespace-nowrap flex items-center gap-2 ${dashTab === 'logistica' ? 'bg-cyan-400 text-black shadow-[0_0_15px_rgba(34,211,238,0.4)]' : 'bg-white/5 text-zinc-400 hover:bg-white/10 hover:text-white'}`}
+                >
+                  <Map size={14} /> Logística
                 </button>
                 <button 
                   onClick={() => setDashTab("telemetria")}
@@ -479,36 +478,37 @@ export default function App() {
 
               {/* CONTEÚDO DINÂMICO BASEADO NA ABA ATIVA */}
               
-              {/* ABA: VÍDEO DEMO (VISÃO GERAL) */}
+              {/* ABA: VISÃO GERAL */}
               {dashTab === "visaoGeral" && (
                 <div className="animate-in fade-in duration-300">
-                  {/* VIDEO PLAYER MOCKUP */}
-                  <div className="relative w-full h-48 md:h-56 rounded-2xl overflow-hidden group cursor-pointer border border-white/10 bg-[#02050A]">
-                    <div className="absolute inset-0 opacity-[0.4] bg-[linear-gradient(rgba(34,211,238,0.1)_1px,transparent_1px),linear-gradient(90deg,rgba(34,211,238,0.1)_1px,transparent_1px)] bg-[size:20px_20px]" />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent" />
-                    
-                    <div className="absolute top-4 left-4 flex gap-2">
-                       <div className="bg-red-500/20 border border-red-500/50 text-red-400 text-[10px] font-bold px-2 py-1 rounded flex items-center gap-1">
-                         <div className="w-1.5 h-1.5 bg-red-400 rounded-full animate-pulse" /> REC
-                       </div>
-                       <div className="bg-black/50 border border-white/10 text-white text-[10px] font-bold px-2 py-1 rounded backdrop-blur-sm">
-                         SISTEMA ORIONSAT
-                       </div>
+                  <div className="grid grid-cols-2 gap-3 md:gap-4 mb-5">
+                    <div className="bg-white/5 border border-white/5 rounded-2xl p-4 md:p-5 hover:bg-cyan-400/10 hover:border-cyan-400/30 transition-all cursor-default group">
+                      <div className="flex items-center gap-2 mb-2 opacity-70 group-hover:opacity-100 transition-opacity"><CheckSquare className="text-cyan-400 w-5 h-5" /><span className="text-xs md:text-sm font-medium">Ordens de Serviço</span></div>
+                      <h4 className="text-2xl md:text-4xl font-black text-white group-hover:text-cyan-400 transition-colors">1.248<span className="text-sm md:text-lg text-zinc-500 font-medium ml-1">entregas</span></h4>
                     </div>
-
-                    <div className="absolute inset-0 flex flex-col items-center justify-center transition-transform duration-500 group-hover:scale-105">
-                       <div className="w-14 h-14 md:w-16 md:h-16 rounded-full bg-cyan-400/20 flex items-center justify-center backdrop-blur-md border border-cyan-400/50 shadow-[0_0_30px_rgba(34,211,238,0.3)]">
-                          <PlayCircle className="text-cyan-400 w-8 h-8 md:w-10 md:h-10 ml-1" />
-                       </div>
-                       <span className="mt-4 font-bold text-sm tracking-widest text-white group-hover:text-cyan-300 transition-colors">ASSISTIR DEMONSTRAÇÃO</span>
+                    <div className="bg-white/5 border border-white/5 rounded-2xl p-4 md:p-5 hover:bg-cyan-400/10 hover:border-cyan-400/30 transition-all cursor-default group">
+                      <div className="flex items-center gap-2 mb-2 opacity-70 group-hover:opacity-100 transition-opacity"><Clock className="text-cyan-400 w-5 h-5" /><span className="text-xs md:text-sm font-medium">Jornadas Ativas</span></div>
+                      <h4 className="text-2xl md:text-4xl font-black text-white group-hover:text-cyan-400 transition-colors">142<span className="text-sm md:text-lg text-zinc-500 font-medium ml-1">motoristas</span></h4>
                     </div>
-
-                    <div className="absolute bottom-4 left-4 right-4 flex items-center gap-3">
-                       <div className="text-[10px] font-medium">00:00</div>
-                       <div className="h-1 bg-white/20 rounded-full flex-1 overflow-hidden">
-                          <div className="h-full bg-cyan-400 w-1/3" />
-                       </div>
-                       <div className="text-[10px] font-medium">02:15</div>
+                    <div className="bg-white/5 border border-white/5 rounded-2xl p-4 md:p-5 hover:bg-cyan-400/10 hover:border-cyan-400/30 transition-all cursor-default group">
+                      <div className="flex items-center gap-2 mb-2 opacity-70 group-hover:opacity-100 transition-opacity"><Gauge className="text-cyan-400 w-5 h-5" /><span className="text-xs md:text-sm font-medium">Score da Frota</span></div>
+                      <h4 className="text-2xl md:text-4xl font-black text-white group-hover:text-cyan-400 transition-colors">94<span className="text-sm md:text-lg text-zinc-500 font-medium ml-1">pts</span></h4>
+                    </div>
+                    <div className="bg-white/5 border border-white/5 rounded-2xl p-4 md:p-5 hover:bg-cyan-400/10 hover:border-cyan-400/30 transition-all cursor-default group">
+                      <div className="flex items-center gap-2 mb-2 opacity-70 group-hover:opacity-100 transition-opacity"><Wrench className="text-cyan-400 w-5 h-5" /><span className="text-xs md:text-sm font-medium">Previsão Manutenção</span></div>
+                      <h4 className="text-2xl md:text-4xl font-black text-white group-hover:text-cyan-400 transition-colors">08<span className="text-sm md:text-lg text-zinc-500 font-medium ml-1">veículos</span></h4>
+                    </div>
+                  </div>
+                  
+                  {/* Log de Alertas Enterprise */}
+                  <div className="space-y-2">
+                    <div className="bg-red-500/10 rounded-lg p-2.5 md:p-3 flex items-center justify-between text-xs md:text-sm border border-red-500/20">
+                      <div className="flex items-center gap-2"><Video className="text-red-400 w-4 h-4" /><span className="text-zinc-200 font-medium">Câmera IA: Sinal de fadiga detectado (TRK-44)</span></div>
+                      <span className="text-red-400 text-[10px] md:text-xs font-bold flex items-center gap-1"><div className="w-1.5 h-1.5 rounded-full bg-red-400 animate-pulse"/>VÍDEO GRAVADO</span>
+                    </div>
+                    <div className="bg-yellow-500/10 rounded-lg p-2.5 md:p-3 flex items-center justify-between text-xs md:text-sm border border-yellow-500/20">
+                      <div className="flex items-center gap-2"><MapPinned className="text-yellow-400 w-4 h-4" /><span className="text-zinc-300 font-medium">Velocidade na Via: 58km/h (Permitido: 40km/h)</span></div>
+                      <span className="text-zinc-500 text-[10px] md:text-xs">Há 2 min</span>
                     </div>
                   </div>
                 </div>
@@ -620,7 +620,7 @@ export default function App() {
                     </div>
                   </div>
                   
-                  {/* Novos Gráficos de Infração */}
+                  {/* Gráficos de Infração */}
                   <div className="bg-black/40 rounded-2xl border border-white/5 p-3.5 flex flex-col justify-center shadow-inner">
                     <div className="flex justify-between items-center mb-3">
                       <span className="text-[10px] font-bold text-zinc-400 tracking-wider flex items-center gap-1.5">
@@ -742,8 +742,8 @@ export default function App() {
 
           <div>
             <div className="mb-8 md:mb-12 text-center lg:text-left mt-12 lg:mt-0">
-              <p className="text-cyan-400 font-bold uppercase tracking-[0.2em] md:tracking-[0.3em] text-xs md:text-sm mb-3 md:mb-4">Retorno Financeiro Direto</p>
-              <h2 className="text-3xl md:text-4xl font-black">Por que o sistema se paga?</h2>
+              <p className="text-cyan-400 font-bold uppercase tracking-[0.2em] md:tracking-[0.3em] text-xs md:text-sm mb-3 md:mb-4">Impacto Financeiro Real</p>
+              <h2 className="text-3xl md:text-4xl font-black">Resultados que transformam dados em redução de custos.</h2>
             </div>
             <div className="space-y-3 md:space-y-4">
               {beneficios.map((item, index) => (
