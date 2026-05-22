@@ -23,7 +23,6 @@ import {
   TrendingUp,
   Video,
   Clock,
-  Fuel,
   Wrench,
   Eye,
   Camera
@@ -60,7 +59,10 @@ export default function App() {
     }
   };
 
-  // ARRAY DE CLIENTES ATUALIZADO COM AS IMAGENS
+  const voltarAoTopo = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
   const empresas = [
     { nome: "Advance Facilities", logo: logoAdvance },
     { nome: "Fênix Telecom", logo: logoFenix },
@@ -69,77 +71,78 @@ export default function App() {
     { nome: "ZLS Transportes", logo: logoZls },
   ];
 
+  // SEGMENTOS AJUSTADOS PARA ABRAÇAR TODOS OS PÚBLICOS
   const segmentos = [
+    "Motoristas de App e Autônomos",
+    "Veículos de Passeio e Motos",
+    "Pequenas e Médias Frotas",
     "Transportadoras e Logística",
-    "Frotas de Valor Agregado",
-    "Transporte de Passageiros",
-    "Facilities e Serviços",
-    "Máquinas e Agronegócio",
     "Locadoras de Veículos",
+    "Máquinas e Agronegócio",
   ];
 
   const funcionalidades = [
     {
       icon: <Video size={34} />,
       title: "Videomonitoramento com IA",
-      desc: "Câmeras veiculares com Inteligência Artificial para detecção de fadiga, uso de celular e ausência de cinto de segurança em tempo real.",
+      desc: "Câmeras veiculares inteligentes que detectam fadiga, uso de celular e garantem a segurança de quem está ao volante.",
     },
     {
       icon: <Gauge size={34} />,
       title: "Performance e Telemetria",
-      desc: "Ranking de motoristas baseado em RPM, acelerações, curvas e freadas bruscas. Identifique quem gera lucro e quem gera risco.",
+      desc: "Para sua frota ou seu carro particular: acompanhe acelerações, curvas, freadas bruscas e entenda seus gastos.",
     },
     {
       icon: <MapPinned size={34} />,
       title: "Controle de Velocidade na Via",
-      desc: "Reduza multas em até 65%. O sistema lê os limites de velocidade reais de cada rua (placas) e alerta violações instantaneamente.",
+      desc: "Evite multas indesejadas. O sistema identifica os limites de velocidade das ruas e te alerta em tempo real.",
     },
     {
       icon: <RouteIcon size={34} />,
       title: "Logistics e Roteirização",
-      desc: "Gestão completa de coletas e entregas. Planejamento de rotas, acompanhamento de ordens de serviço e motivos de cancelamento.",
+      desc: "Gestão para entregas. Planeje rotas otimizadas e acompanhe ordens de serviço pelo celular de forma simples.",
     },
     {
       icon: <Clock size={34} />,
       title: "Jornada de Trabalho",
-      desc: "Adequação total à Lei do Motorista. Controle de horas extras, intervalos de descanso e espera via app Onboard ou RFID.",
+      desc: "Adequação à Lei do Motorista. Controle horas, intervalos e descansos via aplicativo Onboard ou identificação no painel.",
     },
     {
       icon: <Wrench size={34} />,
       title: "Manutenção e Abastecimento",
-      desc: "Ciclos automatizados de manutenção preventiva, metas de consumo (Km/L) e relatórios de variação do nível do tanque.",
+      desc: "Nunca mais esqueça a troca de óleo. Ciclos automatizados de manutenção preventiva baseados no hodômetro real.",
     },
   ];
 
   const beneficios = [
-    "Redução drástica de multas com alertas de Velocidade na Via",
-    "Prevenção de acidentes com Videotelemetria e detecção de fadiga",
-    "Garantia de conformidade trabalhista (Lei do Motorista)",
-    "Economia comprovada de combustível e manutenção preventiva",
-    "Auditoria visual: saiba exatamente o que aconteceu em caso de sinistro",
-    "Centralização total: rotas, imagens e telemetria na mesma tela",
+    "Proteção do seu patrimônio contra furtos e roubos (Veículos físicos)",
+    "Redução drástica de multas com alertas inteligentes de velocidade",
+    "Prevenção de acidentes protegendo a vida de quem dirige",
+    "Garantia de conformidade trabalhista para o dono da frota",
+    "Auditoria visual: provas em vídeo em caso de acidentes ou sinistros",
+    "Gestão que cabe no bolso: do motorista individual à grande transportadora",
   ];
 
   const faq = [
     {
+      pergunta: "O sistema atende motoristas particulares e carros de passeio?",
+      resposta:
+        "Com certeza! Nossa plataforma é flexível. Se você quer apenas proteger seu carro, sua moto ou monitorar seu trabalho como motorista de aplicativo, temos a solução ideal, simples e acessível.",
+    },
+    {
       pergunta: "Como funciona a Videotelemetria com Inteligência Artificial?",
       resposta:
-        "Utilizamos câmeras veiculares de alta tecnologia (Hikvision, Jimi) voltadas para a via e para a cabine. A IA embarcada identifica padrões de risco, como o motorista bocejando, fumando, usando celular ou sem cinto, e dispara alertas em tempo real para a central.",
+        "Utilizamos câmeras de alta tecnologia. A Inteligência Artificial identifica se o motorista está com sono, fumando ou distraído no celular, emitindo alertas sonoros na cabine para evitar acidentes imediatamente.",
     },
     {
-      pergunta: "O controle de velocidade é por via ou um limite único?",
+      pergunta: "Como a Orion Sat me ajuda a não tomar multas?",
       resposta:
-        "Nosso sistema possui o módulo avançado 'Velocidade na Via'. Ele não usa um limite único engessado. A plataforma cruza a posição do veículo com o mapa de limites de velocidade de cada rua/rodovia, alertando se o motorista passar de 50km/h em uma via de 40km/h, por exemplo.",
+        "Através do módulo de 'Velocidade na Via'. O nosso sistema lê o mapa da sua cidade e sabe qual o limite de cada rua. Se o motorista passar de 50km/h em uma via de 40km/h, nós avisamos na hora.",
     },
     {
-      pergunta: "Como é feito o controle de Jornada de Trabalho?",
+      pergunta: "O sistema exige grandes investimentos iniciais?",
       resposta:
-        "O controle pode ser feito através do nosso aplicativo Onboard no celular do motorista, ou via identificação por iButton/RFID no painel do veículo. Ele registra o início da jornada, direção, intervalos, refeições e espera, adequando sua operação à legislação trabalhista.",
-    },
-    {
-      pergunta: "O sistema auxilia na redução de custos de manutenção?",
-      resposta:
-        "Sim. O módulo de Manutenção permite criar ciclos contínuos (Avançada) ou pontuais (Básica). O sistema avisa automaticamente quando um veículo precisa de revisão, troca de óleo ou peças com base no hodômetro ou horímetro real lido pela telemetria.",
+        "Não! Diferente de outros softwares focados apenas em gigantes do mercado, a Orion Sat permite contratação escalável. Você pode começar com 1 veículo e ir expandindo conforme seu negócio cresce.",
     },
   ];
 
@@ -159,7 +162,6 @@ export default function App() {
             Voltar para o site principal
           </button>
 
-          {/* PRIVACIDADE */}
           {docAtivo === "privacidade" && (
             <div className="animate-in fade-in slide-in-from-bottom-8 duration-700">
               <p className="text-zinc-500 uppercase tracking-widest text-[10px] md:text-xs mb-2">GOVERNANÇA CORPORATIVA E TI</p>
@@ -169,46 +171,33 @@ export default function App() {
               <div className="space-y-8 text-zinc-400 text-base md:text-lg leading-relaxed">
                 <section>
                   <h2 className="text-xl md:text-2xl font-bold text-cyan-400 mb-3">1. Introdução</h2>
-                  <p>A ORION SAT LTDA ("Orion Sat") é uma corporação de tecnologia dedicada exclusivamente ao desenvolvimento de inteligência operacional, conectividade avançada, telemetria analítica e soluções para a gestão inteligente de frotas, motoristas independentes, operações individuais e usuários autônomos. Nossos sistemas atuam sob as estritas diretrizes da Lei Geral de Proteção de Dados Pessoais (LGPD - Lei nº 13.709/2018) e do Marco Civil da Internet (Lei nº 12.965/2014).</p>
+                  <p>A ORION SAT LTDA ("Orion Sat") atua sob as estritas diretrizes da Lei Geral de Proteção de Dados Pessoais (LGPD - Lei nº 13.709/2018) e do Marco Civil da Internet (Lei nº 12.965/2014).</p>
                 </section>
-
                 <section>
                   <h2 className="text-xl md:text-2xl font-bold text-cyan-400 mb-3">2. Categorias de Dados Tratados</h2>
                   <ul className="list-disc list-inside space-y-3 text-zinc-300 pl-2">
                     <li><strong>Dados Cadastrais:</strong> Nome do gestor ou usuário, e-mail comercial ou pessoal, telefone e dados cadastrais (CPF/CNPJ).</li>
-                    <li><strong>Dados de Telemetria e Videomonitoramento:</strong> Indicadores técnicos do veículo, imagens e vídeos da via e cabine captados por câmeras embarcadas, velocidade, rotação do motor (RPM), consumo, frenagens abruptas e curvas acentuadas.</li>
-                    <li><strong>Dados de Posicionamento Logístico:</strong> Coordenadas de geolocalização coletadas em primeiro e segundo plano para roteirização automatizada.</li>
-                    <li><strong>Dados de Sessão Técnica:</strong> Registros obrigatórios de conexão (logs), especificações de navegadores e identificadores de hardware.</li>
+                    <li><strong>Dados de Telemetria e Videomonitoramento:</strong> Indicadores técnicos do veículo, imagens e vídeos da via e cabine captados por câmeras embarcadas.</li>
+                    <li><strong>Dados de Posicionamento Logístico:</strong> Coordenadas de geolocalização coletadas em primeiro e segundo plano para roteirização.</li>
+                    <li><strong>Dados de Sessão Técnica:</strong> Registros obrigatórios de conexão (logs).</li>
                   </ul>
                 </section>
-
                 <section>
                   <h2 className="text-xl md:text-2xl font-bold text-cyan-400 mb-3">3. Finalidade e Justificativas Jurídicas</h2>
-                  <p>O tratamento estrutura-se nas bases legais de: Execução de Contrato (operação estável do software de videotelemetria e gestão), Cumprimento de Obrigação Legal (guarda de logs por 6 meses) e Legítimo Interesse (segurança cibernética e prevenção contra inconsistências).</p>
+                  <p>O tratamento estrutura-se nas bases legais de: Execução de Contrato, Cumprimento de Obrigação Legal e Legítimo Interesse para segurança cibernética e operacional.</p>
                 </section>
-
                 <section>
                   <h2 className="text-xl md:text-2xl font-bold text-cyan-400 mb-3">4. Diretrizes de Compartilhamento e Não Comercialização</h2>
-                  <p>A Orion Sat adota uma política corporativa inflexível de não comercialização de dados. As informações operacionais e de videomonitoramento nunca serão vendidas ou compartilhadas com terceiros para fins comerciais. O fluxo limita-se ao armazenamento criptografado em nuvem global e fornecimento direto para a empresa contratante.</p>
+                  <p>A Orion Sat adota uma política corporativa inflexível de não comercialização de dados. O fluxo limita-se ao armazenamento criptografado em nuvem global e fornecimento direto para a pessoa ou empresa contratante.</p>
                 </section>
-
                 <section>
-                  <h2 className="text-xl md:text-2xl font-bold text-cyan-400 mb-3">5. Operação de Geolocalização em Segundo Plano</h2>
-                  <p>Para assegurar a continuidade dos indicadores logísticos e da jornada de trabalho, o aplicativo móvel requer autorização para processar dados de localização de forma ininterrupta, inclusive em segundo plano (aplicativo minimizado ou tela bloqueada).</p>
+                  <h2 className="text-xl md:text-2xl font-bold text-cyan-400 mb-3">5. Direitos do Titular</h2>
+                  <p>Asseguramos todos os direitos previstos no Art. 18 da LGPD, viabilizando o acesso facilitado, retificação e exclusão definitiva, observados os prazos fiscais e cíveis obrigatórios.</p>
                 </section>
-
-                <section>
-                  <h2 className="text-xl md:text-2xl font-bold text-cyan-400 mb-3">6. Direitos do Titular</h2>
-                  <p>Asseguramos todos os direitos previstos no Art. 18 da LGPD, viabilizando o acesso facilitado, retificação de inconsistências, confirmação de tratamento e exclusão definitiva, observados os prazos fiscais e cíveis obrigatórios.</p>
-                </section>
-
                 <section className="border-t border-white/10 pt-8">
-                  <h2 className="text-xl md:text-2xl font-bold text-cyan-400 mb-3">7. Governança e Contato</h2>
-                  <p>Para dúvidas operacionais ou requisições técnicas de dados, entre em contato:</p>
+                  <h2 className="text-xl md:text-2xl font-bold text-cyan-400 mb-3">6. Contato</h2>
                   <p className="mt-4 text-zinc-300 font-medium bg-white/5 p-5 rounded-2xl border border-white/10 text-sm md:text-base break-words">
                     <strong className="text-white text-lg">ORION SAT LTDA</strong><br />
-                    CNPJ: 66.620.074/0001-39<br />
-                    Sede: Itaquaquecetuba/SP<br />
                     E-mail Oficial: <span className="text-cyan-400">privacidade@orionsatgestao.com.br</span>
                   </p>
                 </section>
@@ -216,7 +205,6 @@ export default function App() {
             </div>
           )}
 
-          {/* COOKIES */}
           {docAtivo === "cookies" && (
             <div className="animate-in fade-in slide-in-from-bottom-8 duration-700">
               <p className="text-zinc-500 uppercase tracking-widest text-[10px] md:text-xs mb-2">TRANSPARÊNCIA E EXPERIÊNCIA DIGITAL</p>
@@ -228,38 +216,12 @@ export default function App() {
                   <h2 className="text-xl md:text-2xl font-bold text-cyan-400 mb-3">1. Escopo e Conceito</h2>
                   <p>Cookies são pequenos arquivos temporários inseridos no navegador do usuário para viabilizar logins estáveis, guardar preferências de exibição de relatórios e coletar métricas básicas de uso das páginas da Orion Sat.</p>
                 </section>
-
                 <section>
-                  <h2 className="text-xl md:text-2xl font-bold text-cyan-400 mb-3">2. Tipos de Cookies Armazenados</h2>
-                  <div className="space-y-4">
-                    <div className="bg-white/5 border border-white/10 p-5 rounded-2xl">
-                      <h3 className="text-lg font-bold text-zinc-200 mb-1">Cookies de Sessão (Essenciais)</h3>
-                      <p className="text-sm mb-3 text-zinc-400">Imprescindíveis para validar a autenticação do usuário gestor ou autônomo e manter sua área logada ativa com estabilidade técnica.</p>
-                      <span className="text-[10px] md:text-xs font-bold text-red-400 uppercase bg-red-400/10 px-3 py-1.5 rounded-full inline-block">Duração: Sessão / Obrigatório</span>
-                    </div>
-
-                    <div className="bg-white/5 border border-white/10 p-5 rounded-2xl">
-                      <h3 className="text-lg font-bold text-zinc-200 mb-1">Cookies de Preferências (Funcionais)</h3>
-                      <p className="text-sm mb-3 text-zinc-400">Guardam as configurações personalizadas aplicadas pelo usuário na ordenação de tabelas, filtragem de relatórios ou escolha de layouts de mapas.</p>
-                      <span className="text-[10px] md:text-xs font-bold text-cyan-400 uppercase bg-cyan-400/10 px-3 py-1.5 rounded-full inline-block">Duração: Persistente / Opcional</span>
-                    </div>
-
-                    <div className="bg-white/5 border border-white/10 p-5 rounded-2xl">
-                      <h3 className="text-lg font-bold text-zinc-200 mb-1">Cookies Analíticos</h3>
-                      <p className="text-sm mb-3 text-zinc-400">Coletam estatísticas de uso consolidadas para monitorar o tempo de carregamento das telas de gestão e apontar falhas de links.</p>
-                      <span className="text-[10px] md:text-xs font-bold text-cyan-400 uppercase bg-cyan-400/10 px-3 py-1.5 rounded-full inline-block">Duração: Persistente / Opcional</span>
-                    </div>
-                  </div>
+                  <h2 className="text-xl md:text-2xl font-bold text-cyan-400 mb-3">2. Gerenciamento Técnico pelo Usuário</h2>
+                  <p>O usuário pode gerenciar, bloquear ou limpar os cookies armazenados acessando as configurações do navegador web. A recusa total de cookies essenciais impede a autenticação e o uso dos painéis em nuvem.</p>
                 </section>
-
-                <section>
-                  <h2 className="text-xl md:text-2xl font-bold text-cyan-400 mb-3">3. Gerenciamento Técnico pelo Usuário</h2>
-                  <p>O usuário pode gerenciar, bloquear ou limpar os cookies armazenados acessando as configurações do navegador web. A recusa total de cookies essenciais impede a autenticação e o uso dos painéis de telemetria em nuvem.</p>
-                </section>
-
                 <section className="border-t border-white/10 pt-8">
-                  <h2 className="text-xl md:text-2xl font-bold text-cyan-400 mb-3">4. Contato</h2>
-                  <p>Dúvidas sobre aplicações digitais podem ser endereçadas diretamente pelo e-mail:</p>
+                  <h2 className="text-xl md:text-2xl font-bold text-cyan-400 mb-3">3. Contato</h2>
                   <p className="mt-4 text-cyan-400 font-bold text-lg md:text-xl bg-white/5 p-5 rounded-2xl border border-white/10 break-words">
                     privacidade@orionsatgestao.com.br
                   </p>
@@ -268,7 +230,6 @@ export default function App() {
             </div>
           )}
 
-          {/* TERMOS DE USO */}
           {docAtivo === "termos" && (
             <div className="animate-in fade-in slide-in-from-bottom-8 duration-700">
               <p className="text-zinc-500 uppercase tracking-widest text-[10px] md:text-xs mb-2">CONTRATOS E REGULAMENTOS DIGITAIS</p>
@@ -278,42 +239,25 @@ export default function App() {
               <div className="space-y-8 text-zinc-400 text-base md:text-lg leading-relaxed">
                 <section>
                   <h2 className="text-xl md:text-2xl font-bold text-cyan-400 mb-3">1. Escopo das Soluções de Software</h2>
-                  <p>Os presentes Termos regulam o direito de acesso e utilização dos sistemas de software, painéis corporativos em nuvem e aplicativos móveis de propriedade da ORION SAT LTDA. O ecossistema constitui um conjunto de ferramentas dedicadas exclusivamente à gestão inteligente de frotas, operações individuais, telemetria avançada, videomonitoramento e roteirização comercial.</p>
+                  <p>Os presentes Termos regulam o direito de acesso e utilização dos sistemas de software, painéis e aplicativos móveis de propriedade da ORION SAT LTDA.</p>
                 </section>
-
                 <section className="bg-red-500/5 border border-red-500/20 p-5 md:p-6 rounded-2xl">
                   <h2 className="text-xl md:text-2xl font-bold text-red-400 mb-3">2. Delimitação Tecnológica Importante</h2>
-                  <p className="text-zinc-300 font-medium mb-3 text-sm md:text-base">
-                    <strong>Cláusula de Escopo Tecnológico Estrito:</strong>
-                  </p>
                   <p className="text-sm text-zinc-400 leading-relaxed">
                     Por se tratar de um ambiente puramente de análise de dados, processamento de telemetria e gestão de software informacional (SaaS), as soluções da Orion Sat <strong>NÃO possuem escopo, vinculação ou aderência com o mercado de gerenciamento de riscos civis de ativos, atividades corporativas de pronta resposta, intervenções físicas de campo ou qualquer modalidade de salvaguarda material de bens</strong>. A Orion Sat exime-se inteiramente de qualquer natureza de cobertura financeira ou securitária sobre os veículos cadastrados.
                   </p>
                 </section>
-
                 <section>
                   <h2 className="text-xl md:text-2xl font-bold text-cyan-400 mb-3">3. Responsabilidade Operacional e Uso</h2>
-                  <p>As credenciais de acesso possuem caráter pessoal e intransferível. Compete exclusivamente ao cliente corporativo ou usuário autônomo a guarda segura de suas chaves. São proibidas condutas de engenharia reversa ou cópia de código-fonte.</p>
+                  <p>As credenciais de acesso possuem caráter pessoal e intransferível. Compete exclusivamente ao usuário (físico ou jurídico) a guarda segura de suas chaves.</p>
                 </section>
-
                 <section>
-                  <h2 className="text-xl md:text-2xl font-bold text-cyan-400 mb-3">4. Conectividade, Mídia e Infraestrutura Externa</h2>
-                  <p>A exibição das informações operacionais e a transmissão de vídeos em tempo real dependem diretamente da estabilidade de redes de telecomunicações terceirizadas e pacotes de dados de internet móvel. Oscilações destas infraestruturas externas ou limites de armazenamento de mídia em nuvem não configuram falha de software da Orion Sat.</p>
+                  <h2 className="text-xl md:text-2xl font-bold text-cyan-400 mb-3">4. Propriedade Intelectual e Suspensão</h2>
+                  <p>A outorga de acesso não transfere direitos. A Orion Sat reserva-se o direito de suspender o acesso em casos de inadimplência ou violação destes Termos.</p>
                 </section>
-
-                <section>
-                  <h2 className="text-xl md:text-2xl font-bold text-cyan-400 mb-3">5. Propriedade Intelectual e Atualizações</h2>
-                  <p>A outorga de acesso não transfere direitos industriais ou intelectuais. Algoritmos de IA, roteirização, dashboards, marcas e APIs permanecem sob domínio exclusivo da Orion Sat LTDA. O sistema poderá sofrer atualizações tecnológicas sem gerar direito a indenizações.</p>
-                </section>
-
-                <section>
-                  <h2 className="text-xl md:text-2xl font-bold text-cyan-400 mb-3">6. Suspensão de Acesso</h2>
-                  <p>A Orion Sat reserva-se o direito de suspender o acesso em casos comprovados de inadimplência, tentativas de violação cibernética da infraestrutura de nuvem ou descumprimento de qualquer cláusula destes Termos.</p>
-                </section>
-
                 <section className="border-t border-white/10 pt-8">
-                  <h2 className="text-xl md:text-2xl font-bold text-cyan-400 mb-3">7. Foro de Eleição</h2>
-                  <p>As partes elegem o foro da Comarca de <strong>Itaquaquecetuba/SP</strong> como o único competente para dirimir controvérsias técnicas decorrentes da aplicação destes Termos.</p>
+                  <h2 className="text-xl md:text-2xl font-bold text-cyan-400 mb-3">5. Foro de Eleição</h2>
+                  <p>As partes elegem o foro da Comarca de <strong>Itaquaquecetuba/SP</strong> como competente para dirimir controvérsias técnicas.</p>
                 </section>
               </div>
             </div>
@@ -336,7 +280,7 @@ export default function App() {
   return (
     <div className="bg-[#020817] text-white overflow-x-hidden font-sans">
       
-      {/* INJEÇÃO DE CSS DE ANIMAÇÃO NATIVA E BLEND MODE */}
+      {/* INJEÇÃO DE CSS */}
       <style>{`
         @keyframes float {
           0% { transform: translateY(0px); }
@@ -348,27 +292,24 @@ export default function App() {
           50% { opacity: 0.3; transform: scale(1.1); }
           100% { opacity: 0.15; transform: scale(1); }
         }
-        .animate-float {
-          animation: float 6s ease-in-out infinite;
-        }
-        .animate-slow-pulse {
-          animation: slow-pulse 8s ease-in-out infinite;
-        }
-        .blend-logo {
-          mix-blend-mode: screen;
-        }
+        .animate-float { animation: float 6s ease-in-out infinite; }
+        .animate-slow-pulse { animation: slow-pulse 8s ease-in-out infinite; }
+        .blend-logo { mix-blend-mode: screen; }
       `}</style>
 
-      {/* BACKGROUND EFFECTS DINÂMICOS */}
+      {/* BACKGROUND EFFECTS */}
       <div className="fixed inset-0 pointer-events-none z-0">
         <div className="absolute top-0 left-1/2 md:left-1/3 w-[400px] md:w-[800px] h-[400px] md:h-[800px] bg-cyan-400 blur-[150px] md:blur-[200px] -translate-x-1/2 md:-translate-x-0 animate-slow-pulse" />
         <div className="absolute bottom-0 right-0 md:right-1/4 w-[400px] md:w-[800px] h-[400px] md:h-[800px] bg-blue-700 blur-[150px] md:blur-[200px] animate-slow-pulse" style={{ animationDelay: '4s' }} />
       </div>
 
       {/* HEADER NAVBAR */}
-      <header className="fixed top-0 left-0 w-full z-50 border-b border-white/5 backdrop-blur-2xl bg-[#020817]/70 transition-all duration-300">
+      <header className="fixed top-0 left-0 w-full z-40 border-b border-white/5 backdrop-blur-2xl bg-[#020817]/70 transition-all duration-300">
         <div className="max-w-7xl mx-auto px-4 md:px-6 py-4 flex items-center justify-between">
-          <div className="flex items-center gap-3 md:gap-4 hover:scale-105 transition-transform duration-300 cursor-pointer">
+          <div 
+            onClick={voltarAoTopo} 
+            className="flex items-center gap-3 md:gap-4 hover:scale-105 transition-transform duration-300 cursor-pointer"
+          >
             <img src={logo} alt="ORIONSAT" className="w-10 h-10 md:w-14 md:h-14 object-contain" translate="no" />
             <div translate="no">
               <h1 className="font-black text-xl md:text-3xl tracking-tight leading-none bg-gradient-to-r from-white to-zinc-400 bg-clip-text text-transparent">ORIONSAT</h1>
@@ -380,7 +321,7 @@ export default function App() {
             <a href="#sobre" className="hover:text-cyan-400 hover:-translate-y-0.5 transition-all duration-300">Sobre</a>
             <a href="#plataforma" className="hover:text-cyan-400 hover:-translate-y-0.5 transition-all duration-300">Soluções</a>
             <a href="#tecnologia" className="hover:text-cyan-400 hover:-translate-y-0.5 transition-all duration-300">Tecnologia</a>
-            <a href="#clientes" className="hover:text-cyan-400 hover:-translate-y-0.5 transition-all duration-300">Clientes</a>
+            <a href="#clientes" className="hover:text-cyan-400 hover:-translate-y-0.5 transition-all duration-300">Para Quem É</a>
             <a href="#faq" className="hover:text-cyan-400 hover:-translate-y-0.5 transition-all duration-300">FAQ</a>
           </nav>
 
@@ -402,19 +343,19 @@ export default function App() {
           {/* Hero Texto */}
           <div className="text-center lg:text-left">
             <div className="inline-flex items-center gap-2 md:gap-3 px-4 py-2 md:px-5 md:py-3 rounded-full border border-cyan-400/30 bg-cyan-400/10 text-cyan-300 text-xs md:text-sm mb-8 mx-auto lg:mx-0 font-medium backdrop-blur-sm shadow-[0_0_15px_rgba(34,211,238,0.1)]">
-              <Camera size={16} className="animate-pulse" />
-              ERP de Logística e Videotelemetria com IA
+              <ShieldCheck size={16} className="text-cyan-400" />
+              Do motorista autônomo às grandes frotas
             </div>
 
-            <h2 className="text-5xl md:text-6xl lg:text-8xl font-black leading-[1.05] md:leading-[0.95] tracking-tight">
-              Visibilidade
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500 block mt-2">operacional total.</span>
-              Inteligência
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500 block mt-2">que gera economia.</span>
+            <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-[5rem] font-black leading-[1.05] md:leading-[0.95] tracking-tight">
+              Proteção para
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500 block mt-2">o seu veículo.</span>
+              Gestão para
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500 block mt-2">a sua empresa.</span>
             </h2>
 
             <p className="text-zinc-400 text-base md:text-xl leading-relaxed max-w-2xl mt-8 mx-auto lg:mx-0">
-              Assuma o controle com Videomonitoramento, auditoria de condução em tempo real, roteirização logística e gestão de jornadas na mesma plataforma.
+              Assuma o controle total. Monitoramento simplificado, videotelemetria inteligente e gestão de economia acessível para todos na mesma plataforma.
             </p>
 
             <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 md:gap-5 mt-10">
@@ -424,134 +365,92 @@ export default function App() {
                 rel="noopener noreferrer"
                 className="w-full sm:w-auto bg-cyan-400 text-black px-8 py-4 md:py-5 rounded-2xl font-bold flex items-center justify-center gap-3 transition-all duration-300 hover:scale-105 hover:bg-cyan-300 hover:shadow-[0_0_30px_rgba(34,211,238,0.5)] active:scale-95 group"
               >
-                Solicitar demonstração
+                Fazer meu orçamento
                 <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
               </a>
               <a
                 href="#plataforma"
                 className="w-full sm:w-auto border border-white/10 bg-white/5 backdrop-blur-sm hover:border-cyan-400/50 hover:bg-white/10 px-8 py-4 md:py-5 rounded-2xl transition-all duration-300 font-medium text-center hover:-translate-y-1"
               >
-                Explorar soluções
+                Ver planos e soluções
               </a>
             </div>
 
             <div className="grid grid-cols-3 gap-4 md:gap-8 pt-12 border-t border-white/10 mt-12 max-w-lg mx-auto lg:mx-0">
               <div className="group cursor-default">
+                <h3 className="text-3xl md:text-4xl font-black text-cyan-400 group-hover:scale-110 transition-transform origin-left">1+</h3>
+                <p className="text-zinc-500 text-xs md:text-sm mt-1 font-medium group-hover:text-zinc-300 transition-colors">Veículo ou Frota</p>
+              </div>
+              <div className="group cursor-default">
+                <h3 className="text-3xl md:text-4xl font-black text-cyan-400 group-hover:scale-110 transition-transform origin-left">24h</h3>
+                <p className="text-zinc-500 text-xs md:text-sm mt-1 font-medium group-hover:text-zinc-300 transition-colors">Acesso via App</p>
+              </div>
+              <div className="group cursor-default">
                 <h3 className="text-3xl md:text-4xl font-black text-cyan-400 group-hover:scale-110 transition-transform origin-left">IA</h3>
-                <p className="text-zinc-500 text-xs md:text-sm mt-1 font-medium group-hover:text-zinc-300 transition-colors">Videotelemetria embarcada</p>
-              </div>
-              <div className="group cursor-default">
-                <h3 className="text-3xl md:text-4xl font-black text-cyan-400 group-hover:scale-110 transition-transform origin-left">65%</h3>
-                <p className="text-zinc-500 text-xs md:text-sm mt-1 font-medium group-hover:text-zinc-300 transition-colors">Redução em multas</p>
-              </div>
-              <div className="group cursor-default">
-                <h3 className="text-3xl md:text-4xl font-black text-cyan-400 group-hover:scale-110 transition-transform origin-left">API</h3>
-                <p className="text-zinc-500 text-xs md:text-sm mt-1 font-medium group-hover:text-zinc-300 transition-colors">Integração ERP</p>
+                <p className="text-zinc-500 text-xs md:text-sm mt-1 font-medium group-hover:text-zinc-300 transition-colors">Prevenção e Segurança</p>
               </div>
             </div>
           </div>
 
           {/* DASHBOARD MOCKUP FLUTUANTE */}
-          <div className="relative w-full mt-10 lg:mt-0 animate-float perspective-1000">
+          <div className="relative w-full mt-10 lg:mt-0 animate-float perspective-1000 hidden md:block">
             <div className="absolute inset-0 bg-cyan-400/20 blur-[80px] md:blur-[120px] rounded-full animate-pulse" />
             <div className="relative bg-[#050B1A]/80 border border-white/10 rounded-3xl md:rounded-[36px] p-5 md:p-8 backdrop-blur-2xl shadow-[0_20px_50px_rgba(0,0,0,0.5)] overflow-hidden transition-all duration-500 hover:border-cyan-400/30">
               
               <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-8">
                 <div>
-                  <p className="text-cyan-400 font-bold tracking-widest text-[10px] md:text-xs mb-1 uppercase">Logística & Videotelemetria</p>
+                  <p className="text-cyan-400 font-bold tracking-widest text-[10px] md:text-xs mb-1 uppercase">Logística & Proteção</p>
                   <h3 className="text-xl md:text-2xl font-black text-white flex items-center gap-2">
-                    <Eye className="text-cyan-400 animate-pulse" size={24} />
-                    ORIONSAT DASHBOARD
+                    <Activity className="text-cyan-400 animate-pulse" size={24} />
+                    ORIONSAT APP
                   </h3>
                 </div>
                 <div className="flex items-center gap-2 text-green-400 bg-green-400/10 px-3 py-1.5 rounded-full border border-green-400/20 text-xs md:text-sm font-bold">
                   <div className="w-2 h-2 md:w-2.5 md:h-2.5 rounded-full bg-green-400 animate-ping absolute opacity-75" />
                   <div className="w-2 h-2 md:w-2.5 md:h-2.5 rounded-full bg-green-400 relative" />
-                  SISTEMA ONLINE
+                  ONLINE
                 </div>
               </div>
 
-              {/* Grid de Métricas de Telemetria */}
               <div className="grid grid-cols-2 gap-3 md:gap-4 mb-5">
                 <div className="bg-white/5 border border-white/5 rounded-2xl p-4 md:p-5 hover:bg-cyan-400/10 hover:border-cyan-400/30 hover:-translate-y-1 transition-all duration-300 cursor-default group">
                   <div className="flex items-center gap-2 md:gap-3 mb-2 md:mb-3 opacity-70 group-hover:opacity-100 transition-opacity">
-                    <Camera className="text-cyan-400 w-5 h-5 md:w-6 md:h-6" />
-                    <span className="text-xs md:text-sm font-medium">Câmeras Ativas (IA)</span>
+                    <MapPinned className="text-cyan-400 w-5 h-5 md:w-6 md:h-6" />
+                    <span className="text-xs md:text-sm font-medium">Veículos Conectados</span>
                   </div>
-                  <h4 className="text-2xl md:text-4xl font-black tracking-tight text-white group-hover:text-cyan-400 transition-colors">18<span className="text-sm md:text-lg text-zinc-500 font-medium tracking-normal ml-1">veículos</span></h4>
+                  <h4 className="text-2xl md:text-4xl font-black tracking-tight text-white group-hover:text-cyan-400 transition-colors">Online</h4>
                 </div>
 
                 <div className="bg-white/5 border border-white/5 rounded-2xl p-4 md:p-5 hover:bg-cyan-400/10 hover:border-cyan-400/30 hover:-translate-y-1 transition-all duration-300 cursor-default group">
                   <div className="flex items-center gap-2 md:gap-3 mb-2 md:mb-3 opacity-70 group-hover:opacity-100 transition-opacity">
                     <TrendingUp className="text-cyan-400 w-5 h-5 md:w-6 md:h-6" />
-                    <span className="text-xs md:text-sm font-medium">Eficiência / Meta</span>
+                    <span className="text-xs md:text-sm font-medium">Economia Diária</span>
                   </div>
                   <h4 className="text-2xl md:text-4xl font-black tracking-tight text-white group-hover:text-cyan-400 transition-colors">98<span className="text-sm md:text-lg text-zinc-500 font-medium tracking-normal ml-1">%</span></h4>
-                </div>
-
-                <div className="bg-white/5 border border-white/5 rounded-2xl p-4 md:p-5 hover:bg-cyan-400/10 hover:border-cyan-400/30 hover:-translate-y-1 transition-all duration-300 cursor-default group">
-                  <div className="flex items-center gap-2 md:gap-3 mb-2 md:mb-3 opacity-70 group-hover:opacity-100 transition-opacity">
-                    <Gauge className="text-cyan-400 w-5 h-5 md:w-6 md:h-6" />
-                    <span className="text-xs md:text-sm font-medium">Score de Condução</span>
-                  </div>
-                  <h4 className="text-2xl md:text-4xl font-black tracking-tight text-white group-hover:text-cyan-400 transition-colors">96<span className="text-sm md:text-lg text-zinc-500 font-medium tracking-normal ml-1">pts</span></h4>
-                </div>
-
-                <div className="bg-red-500/10 border border-red-500/20 rounded-2xl p-4 md:p-5 hover:bg-red-500/20 hover:-translate-y-1 transition-all duration-300 cursor-default">
-                  <div className="flex items-center gap-2 md:gap-3 mb-2 md:mb-3 opacity-90 text-red-400">
-                    <AlertTriangle className="w-5 h-5 md:w-6 md:h-6 animate-[bounce_2s_infinite]" />
-                    <span className="text-xs md:text-sm font-bold">Alertas Críticos</span>
-                  </div>
-                  <h4 className="text-2xl md:text-4xl font-black tracking-tight text-white">02</h4>
                 </div>
               </div>
 
               <div className="bg-[#02050A] rounded-2xl border border-white/10 p-1 relative overflow-hidden h-40 md:h-48 group">
                 <div className="absolute inset-0 opacity-[0.15] bg-[linear-gradient(rgba(255,255,255,1)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,1)_1px,transparent_1px)] bg-[size:20px_20px] md:bg-[size:30px_30px] transition-transform duration-1000 group-hover:scale-105" />
                 <div className="absolute top-3 left-4 text-[10px] md:text-xs font-bold text-zinc-400 tracking-wider flex items-center gap-2 z-10 bg-black/60 backdrop-blur-sm px-2 py-1 rounded border border-white/10">
-                  <MapPinned size={14} className="text-cyan-400" />
-                  ACOMPANHAMENTO LOGÍSTICO
+                  <Camera size={14} className="text-cyan-400" />
+                  VISUALIZAÇÃO AO VIVO
                 </div>
                 
                 <div className="absolute top-1/2 left-1/4 -translate-y-1/2 flex flex-col items-center">
                   <div className="w-8 h-8 rounded-full bg-cyan-400/20 flex items-center justify-center animate-[pulse_2s_ease-in-out_infinite]">
                     <div className="w-3 h-3 bg-cyan-400 rounded-full shadow-[0_0_15px_rgba(34,211,238,1)]" />
                   </div>
-                  <span className="text-[8px] font-bold text-cyan-300 mt-1 bg-black/80 px-1.5 py-0.5 rounded border border-cyan-400/20">ROTA-01</span>
-                </div>
-
-                <div className="absolute top-1/4 right-1/3 flex flex-col items-center">
-                  <div className="w-8 h-8 rounded-full bg-cyan-400/20 flex items-center justify-center animate-[pulse_2.5s_ease-in-out_infinite]">
-                    <Navigation2 size={14} className="text-cyan-400 fill-cyan-400 rotate-45 animate-pulse" />
-                  </div>
-                  <span className="text-[8px] font-bold text-cyan-300 mt-1 bg-black/80 px-1.5 py-0.5 rounded border border-cyan-400/20">TRK-99</span>
+                  <span className="text-[8px] font-bold text-cyan-300 mt-1 bg-black/80 px-1.5 py-0.5 rounded border border-cyan-400/20">MEU CARRO</span>
                 </div>
 
                 <div className="absolute bottom-1/4 right-1/4 flex flex-col items-center">
                   <div className="w-8 h-8 rounded-full bg-red-500/20 flex items-center justify-center animate-[pulse_1.5s_ease-in-out_infinite]">
-                    <Video size={12} className="text-red-400 fill-red-400" />
+                    <AlertTriangle size={12} className="text-red-400" />
                   </div>
-                  <span className="text-[8px] font-bold text-red-300 mt-1 bg-black/80 px-1.5 py-0.5 rounded border border-red-500/30 text-center">CAM-12<br/>FADIGA</span>
+                  <span className="text-[8px] font-bold text-red-300 mt-1 bg-black/80 px-1.5 py-0.5 rounded border border-red-500/30 text-center">ALERTA</span>
                 </div>
               </div>
-
-              <div className="mt-4 md:mt-5 space-y-2">
-                <div className="bg-red-500/10 rounded-lg p-2.5 md:p-3 flex items-center justify-between text-xs md:text-sm border border-red-500/20 hover:bg-red-500/20 transition-colors cursor-default">
-                  <div className="flex items-center gap-2 md:gap-3">
-                    <Video className="text-red-400 w-4 h-4 md:w-5 md:h-5" />
-                    <span className="text-zinc-200 font-medium">Sinal de fadiga detectado (Motorista 05)</span>
-                  </div>
-                  <span className="text-red-400 text-[10px] md:text-xs font-bold flex items-center gap-1"><div className="w-1.5 h-1.5 rounded-full bg-red-400 animate-pulse"/>GRAVANDO</span>
-                </div>
-                <div className="bg-white/5 rounded-lg p-2.5 md:p-3 flex items-center justify-between text-xs md:text-sm border border-white/5 hover:bg-white/10 transition-colors cursor-default">
-                  <div className="flex items-center gap-2 md:gap-3">
-                    <div className="w-2 h-2 rounded-full bg-yellow-400" />
-                    <span className="text-zinc-300 font-medium">Violação: Velocidade na Via (55km/h em trecho de 40km/h)</span>
-                  </div>
-                  <span className="text-zinc-500 text-[10px] md:text-xs">Há 2 min</span>
-                </div>
-              </div>
-
             </div>
           </div>
         </div>
@@ -562,28 +461,28 @@ export default function App() {
         <div className="grid lg:grid-cols-2 gap-12 md:gap-20 items-center">
           <div>
             <p className="text-cyan-400 font-bold uppercase tracking-[0.2em] md:tracking-[0.3em] text-xs md:text-sm mb-4 md:mb-5 flex items-center gap-2">
-              <span className="w-8 h-px bg-cyan-400"></span> Inteligência Logística
+              <span className="w-8 h-px bg-cyan-400"></span> Simples e Robusto
             </p>
             <h2 className="text-3xl md:text-5xl font-black leading-tight">
-              Mais do que mapa. O raio-X completo da sua operação.
+              Acesso empresarial, na palma da sua mão.
             </h2>
           </div>
           <div className="space-y-4 md:space-y-6 text-zinc-400 text-base md:text-lg leading-relaxed">
             <p className="hover:text-zinc-300 transition-colors">
-              A ORIONSAT integra a <strong className="text-white">Videotelemetria com Inteligência Artificial</strong> para identificar comportamentos de risco em tempo real. Identificamos motoristas bocejando, utilizando o celular ou dirigindo sem cinto, permitindo ações corretivas imediatas.
+              A ORIONSAT democratizou a tecnologia de rastreamento avançado. Não importa se você quer apenas acompanhar a segurança do seu <strong className="text-white">carro particular</strong>, se é um <strong className="text-white">motorista de aplicativo</strong>, ou se gerencia uma frota inteira.
             </p>
             <p className="hover:text-zinc-300 transition-colors">
-              Nossa missão é centralizar suas necessidades logísticas: desde o <strong className="text-white">Controle da Jornada de Trabalho</strong> (cumprindo a Lei do Motorista) até a roteirização de entregas, leitura de RPM e controle preciso do Abastecimento.
+              Disponibilizamos recursos poderosos, como câmeras com <strong className="text-white">Inteligência Artificial</strong> e painéis de controle de economia, em um formato simples de usar pelo celular ou computador.
             </p>
           </div>
         </div>
       </section>
 
-      {/* FUNCIONALIDADES (ATUALIZADAS) */}
+      {/* FUNCIONALIDADES */}
       <section id="plataforma" className="max-w-7xl mx-auto px-4 md:px-6 pb-20 md:pb-32 relative z-10">
         <div className="text-center mb-12 md:mb-20">
-          <p className="text-cyan-400 font-bold uppercase tracking-[0.2em] md:tracking-[0.3em] text-xs md:text-sm mb-3 md:mb-4">Módulos da Plataforma</p>
-          <h2 className="text-3xl md:text-5xl font-black">Inteligência aplicada à frota</h2>
+          <p className="text-cyan-400 font-bold uppercase tracking-[0.2em] md:tracking-[0.3em] text-xs md:text-sm mb-3 md:mb-4">Tecnologia Disponível</p>
+          <h2 className="text-3xl md:text-5xl font-black">O que entregamos para você</h2>
         </div>
 
         <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-8">
@@ -603,10 +502,10 @@ export default function App() {
       </section>
 
       {/* SEGMENTOS */}
-      <section className="max-w-7xl mx-auto px-4 md:px-6 pb-20 md:pb-32 relative z-10">
+      <section id="clientes" className="max-w-7xl mx-auto px-4 md:px-6 pb-20 md:pb-32 relative z-10">
         <div className="text-center mb-12 md:mb-20">
-          <p className="text-cyan-400 font-bold uppercase tracking-[0.2em] md:tracking-[0.3em] text-xs md:text-sm mb-3 md:mb-4">Cobertura de Atuação</p>
-          <h2 className="text-3xl md:text-5xl font-black">Operações que conectamos</h2>
+          <p className="text-cyan-400 font-bold uppercase tracking-[0.2em] md:tracking-[0.3em] text-xs md:text-sm mb-3 md:mb-4">Feito para Todos</p>
+          <h2 className="text-3xl md:text-5xl font-black">Quem nós atendemos</h2>
         </div>
 
         <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-6">
@@ -615,7 +514,7 @@ export default function App() {
               key={index}
               className="group bg-white/5 border border-white/10 rounded-xl md:rounded-3xl p-5 md:p-8 hover:bg-cyan-400/10 hover:border-cyan-400/50 hover:-translate-y-1 hover:shadow-[0_0_20px_rgba(34,211,238,0.2)] transition-all duration-300 flex flex-col sm:flex-row items-center sm:items-start text-center sm:text-left gap-4 cursor-default"
             >
-              <RouteIcon className="text-cyan-400 flex-shrink-0 group-hover:scale-110 transition-transform duration-300" size={28} />
+              <CheckCircle2 className="text-cyan-400 flex-shrink-0 group-hover:scale-110 transition-transform duration-300" size={28} />
               <h3 className="text-base md:text-xl font-bold text-white leading-tight">{item}</h3>
             </div>
           ))}
@@ -628,15 +527,15 @@ export default function App() {
           
           <div>
             <div className="mb-8 md:mb-12 text-center lg:text-left">
-              <p className="text-cyan-400 font-bold uppercase tracking-[0.2em] md:tracking-[0.3em] text-xs md:text-sm mb-3 md:mb-4">Infraestrutura Multicâmeras</p>
-              <h2 className="text-3xl md:text-4xl font-black">Tecnologia de Ponta</h2>
+              <p className="text-cyan-400 font-bold uppercase tracking-[0.2em] md:tracking-[0.3em] text-xs md:text-sm mb-3 md:mb-4">Solução Completa</p>
+              <h2 className="text-3xl md:text-4xl font-black">Por que nos escolher?</h2>
             </div>
             <div className="grid grid-cols-2 gap-3 md:gap-5">
               {[
-                { icon: <Video size={28} />, title: "Integração Hikvision e Jimi" },
-                { icon: <Database size={28} />, title: "Armazenamento em Nuvem Seguro" },
-                { icon: <Server size={28} />, title: "Uptime de 99.9% garantido" },
-                { icon: <Globe size={28} />, title: "Gestão Integrada via API e ERPs" },
+                { icon: <Smartphone size={28} />, title: "Aplicativo Leve e Intuitivo" },
+                { icon: <ShieldCheck size={28} />, title: "Segurança de Dados (LGPD)" },
+                { icon: <Car size={28} />, title: "Planos Individuais (CPF)" },
+                { icon: <Globe size={28} />, title: "Gestão Corporativa (CNPJ)" },
               ].map((item, index) => (
                 <div key={index} className="group bg-white/5 border border-white/10 rounded-xl md:rounded-2xl p-5 md:p-6 text-center hover:bg-white/10 hover:border-cyan-400/30 hover:-translate-y-1 transition-all duration-300">
                   <div className="flex justify-center text-cyan-400 mb-3 md:mb-4 bg-cyan-400/10 w-fit p-3 rounded-full mx-auto group-hover:scale-110 group-hover:bg-cyan-400/20 transition-all">{item.icon}</div>
@@ -648,8 +547,8 @@ export default function App() {
 
           <div>
             <div className="mb-8 md:mb-12 text-center lg:text-left mt-12 lg:mt-0">
-              <p className="text-cyan-400 font-bold uppercase tracking-[0.2em] md:tracking-[0.3em] text-xs md:text-sm mb-3 md:mb-4">Retorno Financeiro</p>
-              <h2 className="text-3xl md:text-4xl font-black">Por que implantar?</h2>
+              <p className="text-cyan-400 font-bold uppercase tracking-[0.2em] md:tracking-[0.3em] text-xs md:text-sm mb-3 md:mb-4">Retorno Imediato</p>
+              <h2 className="text-3xl md:text-4xl font-black">As suas vantagens</h2>
             </div>
             <div className="space-y-3 md:space-y-4">
               {beneficios.map((item, index) => (
@@ -663,11 +562,11 @@ export default function App() {
         </div>
       </section>
 
-      {/* CLIENTES - COM AS LOGOS DE IMAGEM */}
-      <section id="clientes" className="max-w-7xl mx-auto px-4 md:px-6 pb-20 md:pb-32 relative z-10">
+      {/* CLIENTES PARCEIROS */}
+      <section className="max-w-7xl mx-auto px-4 md:px-6 pb-20 md:pb-32 relative z-10">
         <div className="text-center mb-12 md:mb-16">
-          <p className="text-cyan-400 font-bold uppercase tracking-[0.2em] md:tracking-[0.3em] text-xs md:text-sm mb-3 md:mb-4">Ecossistema Logístico</p>
-          <h2 className="text-3xl md:text-5xl font-black">Operações que confiam em nós</h2>
+          <p className="text-cyan-400 font-bold uppercase tracking-[0.2em] md:tracking-[0.3em] text-xs md:text-sm mb-3 md:mb-4">Casos de Sucesso</p>
+          <h2 className="text-3xl md:text-5xl font-black">Empresas que confiam</h2>
         </div>
 
         <div className="flex flex-wrap justify-center gap-3 md:gap-5">
@@ -686,10 +585,10 @@ export default function App() {
         </div>
       </section>
 
-      {/* FAQ ATUALIZADO */}
+      {/* FAQ */}
       <section id="faq" className="max-w-4xl mx-auto px-4 md:px-6 pb-20 md:pb-32 relative z-10">
         <div className="text-center mb-12 md:mb-16">
-          <p className="text-cyan-400 font-bold uppercase tracking-[0.2em] md:tracking-[0.3em] text-xs md:text-sm mb-3 md:mb-4">Suporte de Implantação</p>
+          <p className="text-cyan-400 font-bold uppercase tracking-[0.2em] md:tracking-[0.3em] text-xs md:text-sm mb-3 md:mb-4">Dúvidas Comuns</p>
           <h2 className="text-3xl md:text-5xl font-black">Perguntas frequentes</h2>
         </div>
 
@@ -710,10 +609,10 @@ export default function App() {
           
           <div className="relative z-10">
             <h2 className="text-3xl md:text-5xl lg:text-6xl font-black max-w-4xl mx-auto leading-[1.1] tracking-tight text-white">
-              Assuma o controle total da sua operação hoje.
+              Tecnologia de ponta acessível para você.
             </h2>
             <p className="text-zinc-300 text-base md:text-xl mt-6 max-w-2xl mx-auto leading-relaxed">
-              Agende uma demonstração gratuita do nosso painel de Videotelemetria e gestão e veja a performance da sua frota decolar.
+              Descubra o plano ideal para o seu veículo ou para a sua frota. Agende uma conversa gratuita hoje.
             </p>
             <a
               href="https://linktr.ee/orionsatgestao"
@@ -721,7 +620,7 @@ export default function App() {
               rel="noopener noreferrer"
               className="inline-flex items-center justify-center gap-3 w-full sm:w-auto bg-cyan-400 text-black px-8 py-4 md:py-5 rounded-xl md:rounded-2xl font-bold mt-10 transition-all duration-300 hover:scale-105 hover:bg-cyan-300 hover:shadow-[0_0_30px_rgba(34,211,238,0.5)] active:scale-95 text-base md:text-lg"
             >
-              Falar com um especialista
+              Consultar planos e preços
               <ArrowRight size={20} className="animate-pulse" />
             </a>
           </div>
@@ -732,15 +631,18 @@ export default function App() {
       <footer className="border-t border-white/10 py-12 md:py-16 bg-black/40 relative z-10">
         <div className="max-w-7xl mx-auto px-4 md:px-6 grid sm:grid-cols-2 lg:grid-cols-4 gap-10 md:gap-12">
           <div className="sm:col-span-2 lg:col-span-2">
-            <div className="flex items-center gap-3 md:gap-4 mb-5 md:mb-6">
-              <img src={logo} alt="ORIONSAT" className="w-10 h-10 md:w-12 md:h-12 object-contain hover:scale-110 transition-transform" />
+            <div 
+              onClick={voltarAoTopo}
+              className="flex items-center gap-3 md:gap-4 mb-5 md:mb-6 cursor-pointer hover:scale-105 transition-transform w-fit"
+            >
+              <img src={logo} alt="ORIONSAT" className="w-10 h-10 md:w-12 md:h-12 object-contain" />
               <div>
                 <h3 className="font-black text-2xl md:text-3xl tracking-tight text-white">ORIONSAT</h3>
                 <p className="text-cyan-400 font-bold uppercase tracking-[0.2em] md:tracking-[0.3em] text-[8px] md:text-xs">Gestão Inteligente</p>
               </div>
             </div>
             <p className="text-zinc-400 text-sm md:text-base leading-relaxed max-w-sm">
-              Plataforma de inteligência logística, videotelemetria com IA e visibilidade operacional para frotas que exigem alta performance.
+              Proteção automotiva e gestão de frotas democratizada. A tecnologia das maiores transportadoras, agora para você.
             </p>
           </div>
 
@@ -749,17 +651,19 @@ export default function App() {
             <ul className="space-y-2 md:space-y-3 text-zinc-400 text-sm md:text-base">
               <li className="hover:text-cyan-400 hover:translate-x-1 cursor-pointer transition-all">Videotelemetria IA</li>
               <li className="hover:text-cyan-400 hover:translate-x-1 cursor-pointer transition-all">Jornada e Roteirização</li>
-              <li className="hover:text-cyan-400 hover:translate-x-1 cursor-pointer transition-all">Controle de Velocidade na Via</li>
-              <li className="hover:text-cyan-400 hover:translate-x-1 cursor-pointer transition-all">Manutenção e Abastecimento</li>
+              <li className="hover:text-cyan-400 hover:translate-x-1 cursor-pointer transition-all">Velocidade e Manutenção</li>
+              <li className="hover:text-cyan-400 hover:translate-x-1 cursor-pointer transition-all">Aplicativo Mobile</li>
             </ul>
           </div>
 
           <div>
-            <h4 className="font-bold text-white text-lg md:text-xl mb-4 md:mb-5">Corporativo</h4>
+            <h4 className="font-bold text-white text-lg md:text-xl mb-4 md:mb-5">Contato</h4>
             <ul className="space-y-2 md:space-y-3 text-zinc-400 text-sm md:text-base">
               <li>CNPJ: 66.620.074/0001-39</li>
               <li>Itaquaquecetuba/SP</li>
-              <li className="hover:text-cyan-400 transition-colors">(11) 91102-1692</li>
+              <li className="hover:text-cyan-400 transition-colors">
+                <a href="https://wa.me/5511911021692" target="_blank" rel="noopener noreferrer">(11) 91102-1692</a>
+              </li>
               <li className="hover:text-cyan-400 transition-colors break-words">comercial@orionsatgestao.com.br</li>
             </ul>
           </div>
@@ -780,6 +684,20 @@ export default function App() {
           </div>
         </div>
       </footer>
+
+      {/* BOTÃO FLUTUANTE DO WHATSAPP (MANTÉM O USUÁRIO SEMPRE CONECTADO) */}
+      <a
+        href="https://wa.me/5511911021692"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="fixed bottom-6 right-6 z-50 bg-[#25D366] text-white p-3.5 md:p-4 rounded-full shadow-[0_4px_20px_rgba(37,211,102,0.5)] hover:scale-110 hover:-translate-y-1 transition-all duration-300 flex items-center justify-center group animate-bounce"
+        style={{ animationDuration: '3s' }}
+        aria-label="Falar no WhatsApp"
+      >
+        <svg className="w-7 h-7 md:w-8 md:h-8 fill-current" viewBox="0 0 24 24">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.305-.885-.653-1.48-1.459-1.653-1.756-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.422-.272.347-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/>
+        </svg>
+      </a>
     </div>
   );
 }
