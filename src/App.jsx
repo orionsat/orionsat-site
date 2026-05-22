@@ -287,7 +287,7 @@ export default function App() {
                 </section>
                 <section className="border-t border-white/10 pt-8">
                   <h2 className="text-xl font-bold text-cyan-400 mb-3">7. GOVERNANÇA E CONTATO</h2>
-                  <p>Para o esclarecimento de dúvidas operacionais sobre privacidade ou requisições técnicas de dados, a Orion Sat disponibiliza o canal eletrônico oficial de seu Setor de Governança de Privacidade pelo e-mail: <strong className="text-white">privacidade@orionsatgestao.com.br</strong></p>
+                  <p>Para o esclarecimento de dúvidas operacionais sobre privacidade ou requisições técnicas de dados, a Orion Sat disponibiliza o canal eletrônico oficial de seu Setor de Governança de Privacidade pelo e-mail: <strong className="text-white">juridico@orionsatgestao.com.br</strong></p>
                   <p className="mt-4 text-xs text-zinc-500 uppercase tracking-widest">Orion Sat LTDA CNPJ: 66.620.074/0001-39 Itaquaquecetuba/SP<br/>Tecnologia que abre caminhos. Inteligência que entrega resultados.</p>
                 </section>
               </div>
