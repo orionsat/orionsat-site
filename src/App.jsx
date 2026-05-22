@@ -26,7 +26,10 @@ import {
   Wrench,
   Eye,
   Camera,
-  Layers
+  Layers,
+  Battery,
+  Map,
+  CheckSquare
 } from "lucide-react";
 
 import "./App.css";
@@ -47,6 +50,9 @@ export default function App() {
     }
     return null;
   });
+
+  // ESTADO PARA CONTROLAR AS ABAS DO DASHBOARD INTERATIVO
+  const [dashTab, setDashTab] = useState("visaoGeral");
 
   const alternarDocumento = (tipo) => {
     setDocAtivo(tipo);
@@ -72,7 +78,6 @@ export default function App() {
     { nome: "ZLS Transportes", logo: logoZls },
   ];
 
-  // SEGMENTOS COM ABORDAGEM ENTERPRISE, MAS ESCALÁVEIS
   const segmentos = [
     "Logística e Transportadoras",
     "Frotas Corporativas e Executivas",
@@ -82,7 +87,6 @@ export default function App() {
     "Pequenos e Médios Frotistas",
   ];
 
-  // OS 6 PILARES DO ECOSSISTEMA SYSTEM SAT WHITE LABEL
   const funcionalidades = [
     {
       icon: <Video size={34} />,
@@ -148,9 +152,7 @@ export default function App() {
     },
   ];
 
-  // ==========================================
   // RENDERIZAÇÃO DAS PÁGINAS LEGAIS
-  // ==========================================
   if (docAtivo) {
     return (
       <div className="bg-[#020817] text-white min-h-screen py-24 px-6 relative overflow-hidden font-sans">
@@ -288,7 +290,7 @@ export default function App() {
   return (
     <div className="bg-[#020817] text-white overflow-x-hidden font-sans">
       
-      {/* INJEÇÃO DE CSS */}
+      {/* INJEÇÃO DE CSS DA ANIMAÇÃO E SCROLL BAR */}
       <style>{`
         @keyframes float {
           0% { transform: translateY(0px); }
@@ -303,6 +305,14 @@ export default function App() {
         .animate-float { animation: float 6s ease-in-out infinite; }
         .animate-slow-pulse { animation: slow-pulse 8s ease-in-out infinite; }
         .blend-logo { mix-blend-mode: screen; }
+        
+        .hide-scrollbar::-webkit-scrollbar {
+          display: none;
+        }
+        .hide-scrollbar {
+          -ms-overflow-style: none;
+          scrollbar-width: none;
+        }
       `}</style>
 
       {/* BACKGROUND EFFECTS */}
@@ -400,78 +410,185 @@ export default function App() {
             </div>
           </div>
 
-          {/* DASHBOARD MOCKUP FLUTUANTE (ENTERPRISE ECOSYSTEM) */}
+          {/* DASHBOARD MOCKUP INTERATIVO (MULTI-MÓDULO) */}
           <div className="relative w-full mt-10 lg:mt-0 animate-float perspective-1000 hidden md:block">
             <div className="absolute inset-0 bg-cyan-400/20 blur-[80px] md:blur-[120px] rounded-full animate-pulse" />
-            <div className="relative bg-[#050B1A]/80 border border-white/10 rounded-3xl md:rounded-[36px] p-5 md:p-8 backdrop-blur-2xl shadow-[0_20px_50px_rgba(0,0,0,0.5)] overflow-hidden transition-all duration-500 hover:border-cyan-400/30">
+            
+            <div className="relative bg-[#050B1A]/90 border border-white/10 rounded-3xl md:rounded-[36px] p-5 md:p-8 backdrop-blur-2xl shadow-[0_20px_50px_rgba(0,0,0,0.5)] overflow-hidden transition-all duration-500 hover:border-cyan-400/40">
               
-              <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-8">
-                <div>
-                  <p className="text-cyan-400 font-bold tracking-widest text-[10px] md:text-xs mb-1 uppercase">Centro de Controle Operacional</p>
-                  <h3 className="text-xl md:text-2xl font-black text-white flex items-center gap-2">
-                    <Activity className="text-cyan-400 animate-pulse" size={24} />
-                    ORIONSAT DASHBOARD
-                  </h3>
-                </div>
-                <div className="flex items-center gap-2 text-green-400 bg-green-400/10 px-3 py-1.5 rounded-full border border-green-400/20 text-xs md:text-sm font-bold">
-                  <div className="w-2 h-2 md:w-2.5 md:h-2.5 rounded-full bg-green-400 animate-ping absolute opacity-75" />
-                  <div className="w-2 h-2 md:w-2.5 md:h-2.5 rounded-full bg-green-400 relative" />
-                  CONECTADO
-                </div>
+              {/* TABS INTERATIVAS */}
+              <div className="flex items-center gap-2 mb-6 overflow-x-auto pb-2 hide-scrollbar border-b border-white/10">
+                <button 
+                  onClick={() => setDashTab("visaoGeral")}
+                  className={`px-4 py-2 rounded-full text-xs font-bold transition-all whitespace-nowrap flex items-center gap-2 ${dashTab === 'visaoGeral' ? 'bg-cyan-400 text-black shadow-[0_0_15px_rgba(34,211,238,0.4)]' : 'bg-white/5 text-zinc-400 hover:bg-white/10 hover:text-white'}`}
+                >
+                  <Activity size={14} /> Visão Geral
+                </button>
+                <button 
+                  onClick={() => setDashTab("videoIA")}
+                  className={`px-4 py-2 rounded-full text-xs font-bold transition-all whitespace-nowrap flex items-center gap-2 ${dashTab === 'videoIA' ? 'bg-cyan-400 text-black shadow-[0_0_15px_rgba(34,211,238,0.4)]' : 'bg-white/5 text-zinc-400 hover:bg-white/10 hover:text-white'}`}
+                >
+                  <Video size={14} /> Vídeo IA
+                </button>
+                <button 
+                  onClick={() => setDashTab("logistica")}
+                  className={`px-4 py-2 rounded-full text-xs font-bold transition-all whitespace-nowrap flex items-center gap-2 ${dashTab === 'logistica' ? 'bg-cyan-400 text-black shadow-[0_0_15px_rgba(34,211,238,0.4)]' : 'bg-white/5 text-zinc-400 hover:bg-white/10 hover:text-white'}`}
+                >
+                  <RouteIcon size={14} /> Logística
+                </button>
+                <button 
+                  onClick={() => setDashTab("telemetria")}
+                  className={`px-4 py-2 rounded-full text-xs font-bold transition-all whitespace-nowrap flex items-center gap-2 ${dashTab === 'telemetria' ? 'bg-cyan-400 text-black shadow-[0_0_15px_rgba(34,211,238,0.4)]' : 'bg-white/5 text-zinc-400 hover:bg-white/10 hover:text-white'}`}
+                >
+                  <Gauge size={14} /> Telemetria
+                </button>
               </div>
 
-              {/* Grid de Métricas Multi-Módulo */}
-              <div className="grid grid-cols-2 gap-3 md:gap-4 mb-5">
-                <div className="bg-white/5 border border-white/5 rounded-2xl p-4 md:p-5 hover:bg-cyan-400/10 hover:border-cyan-400/30 hover:-translate-y-1 transition-all duration-300 cursor-default group">
-                  <div className="flex items-center gap-2 md:gap-3 mb-2 md:mb-3 opacity-70 group-hover:opacity-100 transition-opacity">
-                    <RouteIcon className="text-cyan-400 w-5 h-5 md:w-6 md:h-6" />
-                    <span className="text-xs md:text-sm font-medium">Ordens de Serviço</span>
+              {/* CONTEÚDO DINÂMICO BASEADO NA ABA ATIVA */}
+              
+              {/* ABA: VISÃO GERAL */}
+              {dashTab === "visaoGeral" && (
+                <div className="animate-in fade-in duration-300">
+                  <div className="grid grid-cols-2 gap-3 md:gap-4 mb-5">
+                    <div className="bg-white/5 border border-white/5 rounded-2xl p-4 md:p-5 hover:bg-cyan-400/10 hover:border-cyan-400/30 transition-all cursor-default">
+                      <div className="flex items-center gap-2 mb-2 opacity-70"><CheckSquare className="text-cyan-400 w-5 h-5" /><span className="text-xs md:text-sm font-medium">Entregas</span></div>
+                      <h4 className="text-2xl md:text-4xl font-black text-white">1.248</h4>
+                    </div>
+                    <div className="bg-white/5 border border-white/5 rounded-2xl p-4 md:p-5 hover:bg-cyan-400/10 hover:border-cyan-400/30 transition-all cursor-default">
+                      <div className="flex items-center gap-2 mb-2 opacity-70"><Clock className="text-cyan-400 w-5 h-5" /><span className="text-xs md:text-sm font-medium">Jornadas Ativas</span></div>
+                      <h4 className="text-2xl md:text-4xl font-black text-white">142</h4>
+                    </div>
+                    <div className="bg-white/5 border border-white/5 rounded-2xl p-4 md:p-5 hover:bg-cyan-400/10 hover:border-cyan-400/30 transition-all cursor-default">
+                      <div className="flex items-center gap-2 mb-2 opacity-70"><Gauge className="text-cyan-400 w-5 h-5" /><span className="text-xs md:text-sm font-medium">Score Médio</span></div>
+                      <h4 className="text-2xl md:text-4xl font-black text-white">94<span className="text-sm text-zinc-500 font-medium ml-1">pts</span></h4>
+                    </div>
+                    <div className="bg-red-500/10 border border-red-500/20 rounded-2xl p-4 md:p-5 hover:bg-red-500/20 transition-all cursor-default">
+                      <div className="flex items-center gap-2 mb-2 opacity-90 text-red-400"><AlertTriangle className="w-5 h-5 animate-[bounce_2s_infinite]" /><span className="text-xs md:text-sm font-bold">Alertas Ativos</span></div>
+                      <h4 className="text-2xl md:text-4xl font-black text-white">03</h4>
+                    </div>
                   </div>
-                  <h4 className="text-2xl md:text-4xl font-black tracking-tight text-white group-hover:text-cyan-400 transition-colors">1.248<span className="text-sm md:text-lg text-zinc-500 font-medium tracking-normal ml-1">entregas</span></h4>
+                  {/* Log de Alertas Enterprise */}
+                  <div className="space-y-2">
+                    <div className="bg-red-500/10 rounded-lg p-2.5 md:p-3 flex items-center justify-between text-xs md:text-sm border border-red-500/20">
+                      <div className="flex items-center gap-2"><Video className="text-red-400 w-4 h-4" /><span className="text-zinc-200 font-medium">Sinal de fadiga detectado (TRK-44)</span></div>
+                      <span className="text-red-400 text-[10px] md:text-xs font-bold flex items-center gap-1"><div className="w-1.5 h-1.5 rounded-full bg-red-400 animate-pulse"/>GRAVANDO</span>
+                    </div>
+                    <div className="bg-yellow-500/10 rounded-lg p-2.5 md:p-3 flex items-center justify-between text-xs md:text-sm border border-yellow-500/20">
+                      <div className="flex items-center gap-2"><MapPinned className="text-yellow-400 w-4 h-4" /><span className="text-zinc-300 font-medium">Velocidade na Via: 58km/h (Permitido: 40km/h)</span></div>
+                      <span className="text-zinc-500 text-[10px] md:text-xs">Há 2 min</span>
+                    </div>
+                  </div>
                 </div>
+              )}
 
-                <div className="bg-white/5 border border-white/5 rounded-2xl p-4 md:p-5 hover:bg-cyan-400/10 hover:border-cyan-400/30 hover:-translate-y-1 transition-all duration-300 cursor-default group">
-                  <div className="flex items-center gap-2 md:gap-3 mb-2 md:mb-3 opacity-70 group-hover:opacity-100 transition-opacity">
-                    <Clock className="text-cyan-400 w-5 h-5 md:w-6 md:h-6" />
-                    <span className="text-xs md:text-sm font-medium">Jornadas Ativas</span>
+              {/* ABA: VÍDEO IA */}
+              {dashTab === "videoIA" && (
+                <div className="animate-in fade-in duration-300">
+                  <div className="grid grid-cols-3 gap-3 mb-5">
+                    <div className="bg-white/5 border border-white/5 rounded-xl p-4 text-center">
+                      <Camera className="text-cyan-400 w-6 h-6 mx-auto mb-2" />
+                      <h4 className="text-2xl font-black text-white">42</h4>
+                      <span className="text-xs text-zinc-500">Câmeras Online</span>
+                    </div>
+                    <div className="bg-white/5 border border-white/5 rounded-xl p-4 text-center">
+                      <Eye className="text-yellow-400 w-6 h-6 mx-auto mb-2" />
+                      <h4 className="text-2xl font-black text-white">04</h4>
+                      <span className="text-xs text-zinc-500">Eventos Distração</span>
+                    </div>
+                    <div className="bg-red-500/10 border border-red-500/20 rounded-xl p-4 text-center">
+                      <Bell className="text-red-400 w-6 h-6 mx-auto mb-2" />
+                      <h4 className="text-2xl font-black text-white">01</h4>
+                      <span className="text-xs text-red-400 font-bold">Fadiga Severa</span>
+                    </div>
                   </div>
-                  <h4 className="text-2xl md:text-4xl font-black tracking-tight text-white group-hover:text-cyan-400 transition-colors">142<span className="text-sm md:text-lg text-zinc-500 font-medium tracking-normal ml-1">motoristas</span></h4>
+                  {/* Simulador Video */}
+                  <div className="bg-black rounded-2xl border border-white/10 p-4 relative h-36 flex flex-col items-center justify-center group overflow-hidden">
+                     <div className="absolute inset-0 bg-gradient-to-t from-cyan-900/20 to-transparent opacity-50" />
+                     <div className="absolute top-3 left-3 text-red-400 text-xs font-bold flex items-center gap-2"><div className="w-2 h-2 rounded-full bg-red-400 animate-pulse"/> LIVE FEED: CAM CABINE</div>
+                     <Video className="text-white/20 w-12 h-12 mb-2 group-hover:scale-110 transition-transform" />
+                     <span className="text-zinc-500 text-xs font-medium">Reconhecimento Facial Ativo</span>
+                     {/* Bounding box simulator */}
+                     <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-16 h-16 border-2 border-cyan-400/50 rounded flex items-center justify-center opacity-50">
+                        <div className="w-full h-0.5 bg-cyan-400/30 animate-[bounce_2s_infinite]" />
+                     </div>
+                  </div>
                 </div>
+              )}
 
-                <div className="bg-white/5 border border-white/5 rounded-2xl p-4 md:p-5 hover:bg-cyan-400/10 hover:border-cyan-400/30 hover:-translate-y-1 transition-all duration-300 cursor-default group">
-                  <div className="flex items-center gap-2 md:gap-3 mb-2 md:mb-3 opacity-70 group-hover:opacity-100 transition-opacity">
-                    <Gauge className="text-cyan-400 w-5 h-5 md:w-6 md:h-6" />
-                    <span className="text-xs md:text-sm font-medium">Score da Frota</span>
+              {/* ABA: LOGÍSTICA */}
+              {dashTab === "logistica" && (
+                <div className="animate-in fade-in duration-300">
+                  <div className="grid grid-cols-2 gap-3 mb-5">
+                    <div className="bg-white/5 border border-white/5 rounded-2xl p-4">
+                      <div className="flex items-center gap-2 mb-2 opacity-70"><CheckCircle2 className="text-green-400 w-5 h-5" /><span className="text-sm font-medium">No Prazo</span></div>
+                      <h4 className="text-3xl font-black text-white">96<span className="text-sm text-zinc-500 font-medium ml-1">%</span></h4>
+                      <div className="w-full bg-white/10 h-1.5 rounded-full mt-2"><div className="bg-green-400 h-1.5 rounded-full w-[96%]"></div></div>
+                    </div>
+                    <div className="bg-white/5 border border-white/5 rounded-2xl p-4">
+                      <div className="flex items-center gap-2 mb-2 opacity-70"><Car className="text-cyan-400 w-5 h-5" /><span className="text-sm font-medium">Em Rota (Ativos)</span></div>
+                      <h4 className="text-3xl font-black text-white">18</h4>
+                      <span className="text-xs text-zinc-500 mt-1 block">Roteirização Otimizada</span>
+                    </div>
                   </div>
-                  <h4 className="text-2xl md:text-4xl font-black tracking-tight text-white group-hover:text-cyan-400 transition-colors">94<span className="text-sm md:text-lg text-zinc-500 font-medium tracking-normal ml-1">pts</span></h4>
+                  {/* Mapa Logística */}
+                  <div className="bg-[#02050A] rounded-2xl border border-white/10 relative h-36 overflow-hidden">
+                    <div className="absolute inset-0 opacity-[0.15] bg-[linear-gradient(rgba(255,255,255,1)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,1)_1px,transparent_1px)] bg-[size:30px_30px]" />
+                    <div className="absolute top-3 left-3 text-cyan-400 text-xs font-bold flex items-center gap-2"><Map size={14} /> TRACKING DE ENTREGAS</div>
+                    {/* Rota (Linha HTML CSS) */}
+                    <div className="absolute top-1/2 left-1/4 w-1/2 h-1 border-t-2 border-dashed border-cyan-400/50" />
+                    <div className="absolute top-1/2 left-1/4 -translate-y-1/2 -translate-x-1/2 w-4 h-4 bg-green-400 rounded-full flex items-center justify-center shadow-[0_0_10px_rgba(74,222,128,0.8)]"><div className="w-1.5 h-1.5 bg-black rounded-full" /></div>
+                    <div className="absolute top-1/2 left-[75%] -translate-y-1/2 -translate-x-1/2 w-4 h-4 bg-cyan-400 rounded-full flex items-center justify-center shadow-[0_0_10px_rgba(34,211,238,0.8)]"><div className="w-1.5 h-1.5 bg-black rounded-full" /></div>
+                    {/* Veículo movendo na rota */}
+                    <div className="absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 animate-[pulse_1s_infinite]">
+                      <Navigation2 size={16} className="text-white fill-white rotate-90" />
+                    </div>
+                  </div>
                 </div>
+              )}
 
-                <div className="bg-white/5 border border-white/5 rounded-2xl p-4 md:p-5 hover:bg-cyan-400/10 hover:border-cyan-400/30 hover:-translate-y-1 transition-all duration-300 cursor-default group">
-                  <div className="flex items-center gap-2 md:gap-3 mb-2 md:mb-3 opacity-70 group-hover:opacity-100 transition-opacity">
-                    <Wrench className="text-cyan-400 w-5 h-5 md:w-6 md:h-6" />
-                    <span className="text-xs md:text-sm font-medium">Previsão Manutenção</span>
+              {/* ABA: TELEMETRIA */}
+              {dashTab === "telemetria" && (
+                <div className="animate-in fade-in duration-300">
+                  <div className="grid grid-cols-3 gap-3 mb-5">
+                    <div className="bg-white/5 border border-white/5 rounded-xl p-4 text-center">
+                      <TrendingUp className="text-green-400 w-6 h-6 mx-auto mb-2" />
+                      <h4 className="text-2xl font-black text-white">4.8</h4>
+                      <span className="text-xs text-zinc-500">Km/L (Média)</span>
+                    </div>
+                    <div className="bg-white/5 border border-white/5 rounded-xl p-4 text-center">
+                      <Wrench className="text-yellow-400 w-6 h-6 mx-auto mb-2" />
+                      <h4 className="text-2xl font-black text-white">05</h4>
+                      <span className="text-xs text-zinc-500">Revisões Próximas</span>
+                    </div>
+                    <div className="bg-white/5 border border-white/5 rounded-xl p-4 text-center">
+                      <Activity className="text-cyan-400 w-6 h-6 mx-auto mb-2" />
+                      <h4 className="text-2xl font-black text-white">12</h4>
+                      <span className="text-xs text-zinc-500">Picos de RPM</span>
+                    </div>
                   </div>
-                  <h4 className="text-2xl md:text-4xl font-black tracking-tight text-white group-hover:text-cyan-400 transition-colors">08<span className="text-sm md:text-lg text-zinc-500 font-medium tracking-normal ml-1">veículos</span></h4>
-                </div>
-              </div>
-
-              {/* Log de Alertas Enterprise */}
-              <div className="mt-4 md:mt-5 space-y-2">
-                <div className="bg-red-500/10 rounded-lg p-2.5 md:p-3 flex items-center justify-between text-xs md:text-sm border border-red-500/20 hover:bg-red-500/20 transition-colors cursor-default">
-                  <div className="flex items-center gap-2 md:gap-3">
-                    <Video className="text-red-400 w-4 h-4 md:w-5 md:h-5" />
-                    <span className="text-zinc-200 font-medium">Câmera IA: Sinal de fadiga detectado (TRK-44)</span>
+                  {/* Gráfico / Barras */}
+                  <div className="bg-black/30 rounded-2xl border border-white/5 p-4 h-36 flex flex-col justify-center">
+                    <div className="flex justify-between items-center mb-4">
+                      <span className="text-xs font-bold text-zinc-400">DESEMPENHO DE CONSUMO (FROTA)</span>
+                      <Fuel size={14} className="text-cyan-400" />
+                    </div>
+                    <div className="space-y-3">
+                      <div className="w-full bg-white/5 h-2 rounded-full relative">
+                        <div className="absolute top-0 left-0 bg-green-400 h-2 rounded-full w-[85%]" />
+                        <span className="absolute -top-4 right-0 text-[10px] text-green-400 font-bold">Leves (85%)</span>
+                      </div>
+                      <div className="w-full bg-white/5 h-2 rounded-full relative">
+                        <div className="absolute top-0 left-0 bg-cyan-400 h-2 rounded-full w-[65%]" />
+                        <span className="absolute -top-4 right-0 text-[10px] text-cyan-400 font-bold">Pesados (65%)</span>
+                      </div>
+                      <div className="w-full bg-white/5 h-2 rounded-full relative">
+                        <div className="absolute top-0 left-0 bg-yellow-400 h-2 rounded-full w-[40%]" />
+                        <span className="absolute -top-4 right-0 text-[10px] text-yellow-400 font-bold">Máquinas (40%)</span>
+                      </div>
+                    </div>
                   </div>
-                  <span className="text-red-400 text-[10px] md:text-xs font-bold flex items-center gap-1"><div className="w-1.5 h-1.5 rounded-full bg-red-400 animate-pulse"/>VÍDEO GRAVADO</span>
                 </div>
-                <div className="bg-yellow-500/10 rounded-lg p-2.5 md:p-3 flex items-center justify-between text-xs md:text-sm border border-yellow-500/20 hover:bg-yellow-500/20 transition-colors cursor-default">
-                  <div className="flex items-center gap-2 md:gap-3">
-                    <MapPinned className="text-yellow-400 w-4 h-4 md:w-5 md:h-5" />
-                    <span className="text-zinc-300 font-medium">Velocidade na Via: 58km/h em trecho de 40km/h (RTA-12)</span>
-                  </div>
-                  <span className="text-zinc-500 text-[10px] md:text-xs">Há 2 min</span>
-                </div>
-              </div>
+              )}
 
             </div>
           </div>
@@ -534,7 +651,7 @@ export default function App() {
             </div>
             <div className="grid grid-cols-2 gap-3 md:gap-5">
               {[
-                { icon: <Video size={28} />, title: "Homologação de Câmeras de Ponta" },
+                { icon: <Video size={28} />, title: "Integração Hikvision e Jimi" },
                 { icon: <Database size={28} />, title: "Big Data e Nuvem Criptografada" },
                 { icon: <Server size={28} />, title: "Disponibilidade de Servidor 99.9%" },
                 { icon: <Globe size={28} />, title: "Integrações ERP via API Rest" },
