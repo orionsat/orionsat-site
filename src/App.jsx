@@ -21,7 +21,17 @@ import {
   Navigation2,
   AlertTriangle,
   TrendingUp,
-  Video
+  Video,
+  Clock,
+  Wrench,
+  Eye,
+  Camera,
+  Layers,
+  Fuel,
+  Map,
+  CheckSquare,
+  PlayCircle,
+  Truck
 } from "lucide-react";
 
 import "./App.css";
@@ -46,7 +56,7 @@ export default function App() {
   // ESTADO PARA CONTROLAR AS ABAS DO DASHBOARD INTERATIVO
   const [dashTab, setDashTab] = useState("visaoGeral");
 
-  // EFEITO PARA TROCAR AS ABAS AUTOMATICAMENTE A CADA 7 SEGUNDOS
+  // EFEITO PARA TROCAR AS ABAS AUTOMATICAMENTE A CADA 13 SEGUNDOS
   useEffect(() => {
     if (docAtivo) return; 
 
@@ -58,11 +68,10 @@ export default function App() {
         const proximoIndex = (indexAtual + 1) % abas.length;
         return abas[proximoIndex];
       });
-    }, 7000); 
+    }, 13000); 
 
-    // Limpa o cronômetro com segurança
     return () => clearInterval(intervalo);
-  }, [docAtivo]); 
+  }, [docAtivo, dashTab]); 
 
   const alternarDocumento = (tipo) => {
     setDocAtivo(tipo);
@@ -109,7 +118,7 @@ export default function App() {
       desc: "Gestão inteligente de entregas e coletas. Programe itinerários, acompanhe ordens de serviço e automatize a logística de campo de ponta a ponta.",
     },
     {
-      icon: <Smartphone size={34} />,
+      icon: <Clock size={34} />,
       title: "Jornada de Trabalho",
       desc: "Conformidade total com a Lei do Motorista. Apontamento preciso de horas trabalhadas, intervalos e espera via App Onboard ou RFID, mitigando passivos.",
     },
@@ -124,7 +133,7 @@ export default function App() {
       desc: "Dashboard de eficiência operacional. Meça acelerações, freadas bruscas, uso de RPM e crie rankings de condução para reduzir o desperdício.",
     },
     {
-      icon: <ShieldCheck size={34} />,
+      icon: <Wrench size={34} />,
       title: "Manutenção e Abastecimento",
       desc: "Aumente a disponibilidade da frota. Defina planos de manutenção preditiva e corretiva com base no hodômetro real e monitore custos de consumo.",
     },
@@ -299,7 +308,7 @@ export default function App() {
   return (
     <div className="bg-[#020817] text-white overflow-x-hidden font-sans">
       
-      {/* INJEÇÃO DE CSS */}
+      {/* INJEÇÃO DE CSS DE ANIMAÇÕES E BARRA DO GRÁFICO */}
       <style>{`
         @keyframes float {
           0% { transform: translateY(0px); }
@@ -311,9 +320,14 @@ export default function App() {
           50% { opacity: 0.3; transform: scale(1.1); }
           100% { opacity: 0.15; transform: scale(1); }
         }
+        @keyframes slideRight {
+          from { transform: scaleX(0); transform-origin: left; }
+          to { transform: scaleX(1); transform-origin: left; }
+        }
         .animate-float { animation: float 6s ease-in-out infinite; }
         .animate-slow-pulse { animation: slow-pulse 8s ease-in-out infinite; }
         .blend-logo { mix-blend-mode: screen; }
+        .animate-bar { animation: slideRight 1.5s cubic-bezier(0.22, 1, 0.36, 1) forwards; }
         
         .hide-scrollbar::-webkit-scrollbar { display: none; }
         .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
@@ -365,15 +379,15 @@ export default function App() {
           {/* Hero Texto */}
           <div className="text-center lg:text-left">
             <div className="inline-flex items-center gap-2 md:gap-3 px-4 py-2 md:px-5 md:py-3 rounded-full border border-cyan-400/30 bg-cyan-400/10 text-cyan-300 text-xs md:text-sm mb-8 mx-auto lg:mx-0 font-medium backdrop-blur-sm shadow-[0_0_15px_rgba(34,211,238,0.1)]">
-              <Server size={16} className="animate-pulse" />
+              <Layers size={16} className="animate-pulse" />
               Ecossistema Definitivo de Gestão Operacional
             </div>
 
-            <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-[4.5rem] xl:text-[5rem] font-black leading-[1.05] md:leading-[0.95] tracking-tight">
-              A inteligência
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500 block mt-2">da sua operação.</span>
-              O controle
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500 block mt-2">dos seus custos.</span>
+            <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-[4.5rem] font-black leading-tight tracking-tight mb-4">
+              Inteligência exata na
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500 block">sua operação.</span>
+              Corte definitivo nos
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500 block">seus custos.</span>
             </h2>
 
             <p className="text-zinc-400 text-base md:text-xl leading-relaxed max-w-2xl mt-8 mx-auto lg:mx-0">
@@ -441,19 +455,19 @@ export default function App() {
                   onClick={() => setDashTab("visaoGeral")}
                   className={`px-4 py-2 rounded-full text-xs font-bold transition-all whitespace-nowrap flex items-center gap-2 ${dashTab === 'visaoGeral' ? 'bg-cyan-400 text-black shadow-[0_0_15px_rgba(34,211,238,0.4)]' : 'bg-white/5 text-zinc-400 hover:bg-white/10 hover:text-white'}`}
                 >
-                  <Activity size={14} /> Visão Geral
+                  <PlayCircle size={14} /> Vídeo Demo
+                </button>
+                <button 
+                  onClick={() => setDashTab("logistica")}
+                  className={`px-4 py-2 rounded-full text-xs font-bold transition-all whitespace-nowrap flex items-center gap-2 ${dashTab === 'logistica' ? 'bg-cyan-400 text-black shadow-[0_0_15px_rgba(34,211,238,0.4)]' : 'bg-white/5 text-zinc-400 hover:bg-white/10 hover:text-white'}`}
+                >
+                  <Map size={14} /> Logística
                 </button>
                 <button 
                   onClick={() => setDashTab("videoIA")}
                   className={`px-4 py-2 rounded-full text-xs font-bold transition-all whitespace-nowrap flex items-center gap-2 ${dashTab === 'videoIA' ? 'bg-cyan-400 text-black shadow-[0_0_15px_rgba(34,211,238,0.4)]' : 'bg-white/5 text-zinc-400 hover:bg-white/10 hover:text-white'}`}
                 >
                   <Video size={14} /> Câmera IA
-                </button>
-                <button 
-                  onClick={() => setDashTab("logistica")}
-                  className={`px-4 py-2 rounded-full text-xs font-bold transition-all whitespace-nowrap flex items-center gap-2 ${dashTab === 'logistica' ? 'bg-cyan-400 text-black shadow-[0_0_15px_rgba(34,211,238,0.4)]' : 'bg-white/5 text-zinc-400 hover:bg-white/10 hover:text-white'}`}
-                >
-                  <RouteIcon size={14} /> Logística
                 </button>
                 <button 
                   onClick={() => setDashTab("telemetria")}
@@ -463,36 +477,85 @@ export default function App() {
                 </button>
               </div>
 
-              {/* ABA: VISÃO GERAL */}
+              {/* CONTEÚDO DINÂMICO BASEADO NA ABA ATIVA */}
+              
+              {/* ABA: VÍDEO DEMO (VISÃO GERAL) */}
               {dashTab === "visaoGeral" && (
                 <div className="animate-in fade-in duration-300">
-                  <div className="grid grid-cols-2 gap-3 md:gap-4 mb-5">
-                    <div className="bg-white/5 border border-white/5 rounded-2xl p-4 md:p-5 hover:bg-cyan-400/10 hover:border-cyan-400/30 transition-all cursor-default group">
-                      <div className="flex items-center gap-2 mb-2 opacity-70 group-hover:opacity-100 transition-opacity"><CheckCircle2 className="text-cyan-400 w-5 h-5" /><span className="text-xs md:text-sm font-medium">Ordens de Serviço</span></div>
-                      <h4 className="text-2xl md:text-4xl font-black text-white group-hover:text-cyan-400 transition-colors">1.248<span className="text-sm md:text-lg text-zinc-500 font-medium ml-1">entregas</span></h4>
+                  {/* VIDEO PLAYER MOCKUP */}
+                  <div className="relative w-full h-48 md:h-56 rounded-2xl overflow-hidden group cursor-pointer border border-white/10 bg-[#02050A]">
+                    <div className="absolute inset-0 opacity-[0.4] bg-[linear-gradient(rgba(34,211,238,0.1)_1px,transparent_1px),linear-gradient(90deg,rgba(34,211,238,0.1)_1px,transparent_1px)] bg-[size:20px_20px]" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent" />
+                    
+                    <div className="absolute top-4 left-4 flex gap-2">
+                       <div className="bg-red-500/20 border border-red-500/50 text-red-400 text-[10px] font-bold px-2 py-1 rounded flex items-center gap-1">
+                         <div className="w-1.5 h-1.5 bg-red-400 rounded-full animate-pulse" /> REC
+                       </div>
+                       <div className="bg-black/50 border border-white/10 text-white text-[10px] font-bold px-2 py-1 rounded backdrop-blur-sm">
+                         SISTEMA ORIONSAT
+                       </div>
                     </div>
-                    <div className="bg-white/5 border border-white/5 rounded-2xl p-4 md:p-5 hover:bg-cyan-400/10 hover:border-cyan-400/30 transition-all cursor-default group">
-                      <div className="flex items-center gap-2 mb-2 opacity-70 group-hover:opacity-100 transition-opacity"><Smartphone className="text-cyan-400 w-5 h-5" /><span className="text-xs md:text-sm font-medium">Jornadas Ativas</span></div>
-                      <h4 className="text-2xl md:text-4xl font-black text-white group-hover:text-cyan-400 transition-colors">142<span className="text-sm md:text-lg text-zinc-500 font-medium ml-1">motoristas</span></h4>
+
+                    <div className="absolute inset-0 flex flex-col items-center justify-center transition-transform duration-500 group-hover:scale-105">
+                       <div className="w-14 h-14 md:w-16 md:h-16 rounded-full bg-cyan-400/20 flex items-center justify-center backdrop-blur-md border border-cyan-400/50 shadow-[0_0_30px_rgba(34,211,238,0.3)]">
+                          <PlayCircle className="text-cyan-400 w-8 h-8 md:w-10 md:h-10 ml-1" />
+                       </div>
+                       <span className="mt-4 font-bold text-sm tracking-widest text-white group-hover:text-cyan-300 transition-colors">ASSISTIR DEMONSTRAÇÃO</span>
                     </div>
-                    <div className="bg-white/5 border border-white/5 rounded-2xl p-4 md:p-5 hover:bg-cyan-400/10 hover:border-cyan-400/30 transition-all cursor-default group">
-                      <div className="flex items-center gap-2 mb-2 opacity-70 group-hover:opacity-100 transition-opacity"><Gauge className="text-cyan-400 w-5 h-5" /><span className="text-xs md:text-sm font-medium">Score da Frota</span></div>
-                      <h4 className="text-2xl md:text-4xl font-black text-white group-hover:text-cyan-400 transition-colors">94<span className="text-sm md:text-lg text-zinc-500 font-medium ml-1">pts</span></h4>
-                    </div>
-                    <div className="bg-white/5 border border-white/5 rounded-2xl p-4 md:p-5 hover:bg-cyan-400/10 hover:border-cyan-400/30 transition-all cursor-default group">
-                      <div className="flex items-center gap-2 mb-2 opacity-70 group-hover:opacity-100 transition-opacity"><ShieldCheck className="text-cyan-400 w-5 h-5" /><span className="text-xs md:text-sm font-medium">Previsão Manutenção</span></div>
-                      <h4 className="text-2xl md:text-4xl font-black text-white group-hover:text-cyan-400 transition-colors">08<span className="text-sm md:text-lg text-zinc-500 font-medium ml-1">veículos</span></h4>
+
+                    <div className="absolute bottom-4 left-4 right-4 flex items-center gap-3">
+                       <div className="text-[10px] font-medium">00:00</div>
+                       <div className="h-1 bg-white/20 rounded-full flex-1 overflow-hidden">
+                          <div className="h-full bg-cyan-400 w-1/3" />
+                       </div>
+                       <div className="text-[10px] font-medium">02:15</div>
                     </div>
                   </div>
-                  {/* Log de Alertas Enterprise */}
-                  <div className="space-y-2">
-                    <div className="bg-red-500/10 rounded-lg p-2.5 md:p-3 flex items-center justify-between text-xs md:text-sm border border-red-500/20">
-                      <div className="flex items-center gap-2"><Video className="text-red-400 w-4 h-4" /><span className="text-zinc-200 font-medium">Câmera IA: Sinal de fadiga detectado (TRK-44)</span></div>
-                      <span className="text-red-400 text-[10px] md:text-xs font-bold flex items-center gap-1"><div className="w-1.5 h-1.5 rounded-full bg-red-400 animate-pulse"/>VÍDEO GRAVADO</span>
+                </div>
+              )}
+
+              {/* ABA: LOGÍSTICA E MAPA */}
+              {dashTab === "logistica" && (
+                <div className="animate-in fade-in duration-300">
+                  <div className="grid grid-cols-2 gap-3 mb-4">
+                    <div className="bg-white/5 border border-white/5 rounded-2xl p-3 md:p-4">
+                      <div className="flex items-center gap-2 mb-1 opacity-70"><CheckCircle2 className="text-green-400 w-4 h-4" /><span className="text-xs font-medium">Entregas no Prazo</span></div>
+                      <h4 className="text-2xl font-black text-white">96<span className="text-xs text-zinc-500 font-medium ml-1">%</span></h4>
                     </div>
-                    <div className="bg-yellow-500/10 rounded-lg p-2.5 md:p-3 flex items-center justify-between text-xs md:text-sm border border-yellow-500/20">
-                      <div className="flex items-center gap-2"><MapPinned className="text-yellow-400 w-4 h-4" /><span className="text-zinc-300 font-medium">Velocidade na Via: 58km/h (Permitido: 40km/h)</span></div>
-                      <span className="text-zinc-500 text-[10px] md:text-xs">Há 2 min</span>
+                    <div className="bg-white/5 border border-white/5 rounded-2xl p-3 md:p-4">
+                      <div className="flex items-center gap-2 mb-1 opacity-70"><Truck className="text-cyan-400 w-4 h-4" /><span className="text-xs font-medium">Veículos em Rota</span></div>
+                      <h4 className="text-2xl font-black text-white">18</h4>
+                    </div>
+                  </div>
+                  {/* Mapa Logístico Realista Dark Mode */}
+                  <div className="bg-[#0b101e] rounded-2xl border border-white/10 relative h-40 md:h-48 overflow-hidden">
+                    <div className="absolute inset-0 opacity-[0.3] bg-[linear-gradient(#1e293b_1px,transparent_1px),linear-gradient(90deg,#1e293b_1px,transparent_1px)] bg-[size:40px_40px]" />
+                    <div className="absolute inset-0 opacity-[0.4] bg-[linear-gradient(#334155_1px,transparent_1px),linear-gradient(90deg,#334155_1px,transparent_1px)] bg-[size:120px_120px]" />
+                    
+                    <svg viewBox="0 0 400 200" className="absolute inset-0 w-full h-full opacity-80" preserveAspectRatio="none">
+                      <path d="M -50 150 Q 150 180 250 80 T 450 50" fill="none" stroke="#1e293b" strokeWidth="8" />
+                      <path d="M 150 -50 L 250 80 L 220 250" fill="none" stroke="#1e293b" strokeWidth="6" />
+                      <path d="M -50 150 Q 150 180 250 80 T 450 50" fill="none" stroke="#22d3ee" strokeWidth="3" strokeDasharray="6,6" className="animate-[pulse_2s_infinite]" />
+                    </svg>
+
+                    <div className="absolute top-3 left-3 text-cyan-400 text-[10px] font-bold flex items-center gap-1.5 bg-black/60 backdrop-blur-sm px-2 py-1 rounded border border-white/10">
+                      <Map size={12} /> ROTEIRIZAÇÃO AO VIVO
+                    </div>
+
+                    <div className="absolute top-[75%] left-[25%] -translate-x-1/2 -translate-y-1/2 flex flex-col items-center">
+                       <MapPinned className="text-white w-4 h-4 drop-shadow-[0_0_8px_rgba(255,255,255,0.8)]" />
+                       <span className="text-[7px] font-bold text-white mt-1 bg-black/80 px-1 rounded">CD CENTRAL</span>
+                    </div>
+
+                    <div className="absolute top-[25%] left-[85%] -translate-x-1/2 -translate-y-1/2 flex flex-col items-center">
+                       <div className="w-3 h-3 bg-cyan-400 rounded-full flex items-center justify-center shadow-[0_0_10px_rgba(34,211,238,0.8)] animate-pulse">
+                         <div className="w-1.5 h-1.5 bg-black rounded-full" />
+                       </div>
+                       <span className="text-[7px] font-bold text-cyan-300 mt-1 bg-black/80 px-1 rounded">CLIENTE #44</span>
+                    </div>
+
+                    <div className="absolute top-[40%] left-[62%] -translate-x-1/2 -translate-y-1/2 animate-[bounce_1s_infinite]">
+                       <Truck className="text-green-400 w-5 h-5 drop-shadow-[0_0_10px_rgba(74,222,128,1)]" />
                     </div>
                   </div>
                 </div>
@@ -503,12 +566,12 @@ export default function App() {
                 <div className="animate-in fade-in duration-300">
                   <div className="grid grid-cols-3 gap-3 mb-5">
                     <div className="bg-white/5 border border-white/5 rounded-xl p-4 text-center">
-                      <MonitorSmartphone className="text-cyan-400 w-6 h-6 mx-auto mb-2" />
+                      <Camera className="text-cyan-400 w-6 h-6 mx-auto mb-2" />
                       <h4 className="text-2xl font-black text-white">42</h4>
                       <span className="text-xs text-zinc-500">Câmeras Online</span>
                     </div>
                     <div className="bg-white/5 border border-white/5 rounded-xl p-4 text-center">
-                      <Radar className="text-yellow-400 w-6 h-6 mx-auto mb-2" />
+                      <Eye className="text-yellow-400 w-6 h-6 mx-auto mb-2" />
                       <h4 className="text-2xl font-black text-white">04</h4>
                       <span className="text-xs text-zinc-500">Eventos Distração</span>
                     </div>
@@ -539,91 +602,64 @@ export default function App() {
                 </div>
               )}
 
-              {/* ABA: LOGÍSTICA E MAPA */}
-              {dashTab === "logistica" && (
-                <div className="animate-in fade-in duration-300">
-                  <div className="grid grid-cols-2 gap-3 mb-4">
-                    <div className="bg-white/5 border border-white/5 rounded-2xl p-3 md:p-4">
-                      <div className="flex items-center gap-2 mb-1 opacity-70"><CheckCircle2 className="text-green-400 w-4 h-4" /><span className="text-xs font-medium">Entregas no Prazo</span></div>
-                      <h4 className="text-2xl font-black text-white">96<span className="text-xs text-zinc-500 font-medium ml-1">%</span></h4>
-                    </div>
-                    <div className="bg-white/5 border border-white/5 rounded-2xl p-3 md:p-4">
-                      <div className="flex items-center gap-2 mb-1 opacity-70"><Car className="text-cyan-400 w-4 h-4" /><span className="text-xs font-medium">Veículos em Rota</span></div>
-                      <h4 className="text-2xl font-black text-white">18</h4>
-                    </div>
-                  </div>
-                  {/* Mapa Logístico Realista Dark Mode */}
-                  <div className="bg-[#0b101e] rounded-2xl border border-white/10 relative h-40 md:h-48 overflow-hidden">
-                    <div className="absolute inset-0 opacity-[0.3] bg-[linear-gradient(#1e293b_1px,transparent_1px),linear-gradient(90deg,#1e293b_1px,transparent_1px)] bg-[size:40px_40px]" />
-                    <div className="absolute inset-0 opacity-[0.4] bg-[linear-gradient(#334155_1px,transparent_1px),linear-gradient(90deg,#334155_1px,transparent_1px)] bg-[size:120px_120px]" />
-                    
-                    <svg viewBox="0 0 400 200" className="absolute inset-0 w-full h-full opacity-80" preserveAspectRatio="none">
-                      <path d="M -50 150 Q 150 180 250 80 T 450 50" fill="none" stroke="#1e293b" strokeWidth="8" />
-                      <path d="M 150 -50 L 250 80 L 220 250" fill="none" stroke="#1e293b" strokeWidth="6" />
-                      <path d="M -50 150 Q 150 180 250 80 T 450 50" fill="none" stroke="#22d3ee" strokeWidth="3" strokeDasharray="6,6" className="animate-[pulse_2s_infinite]" />
-                    </svg>
-
-                    <div className="absolute top-3 left-3 text-cyan-400 text-[10px] font-bold flex items-center gap-1.5 bg-black/60 backdrop-blur-sm px-2 py-1 rounded border border-white/10">
-                      <MapPinned size={12} /> ROTEIRIZAÇÃO AO VIVO
-                    </div>
-
-                    <div className="absolute top-[75%] left-[25%] -translate-x-1/2 -translate-y-1/2 flex flex-col items-center">
-                       <MapPinned className="text-white w-4 h-4 drop-shadow-[0_0_8px_rgba(255,255,255,0.8)]" />
-                       <span className="text-[7px] font-bold text-white mt-1 bg-black/80 px-1 rounded">CD CENTRAL</span>
-                    </div>
-
-                    <div className="absolute top-[25%] left-[85%] -translate-x-1/2 -translate-y-1/2 flex flex-col items-center">
-                       <div className="w-3 h-3 bg-cyan-400 rounded-full flex items-center justify-center shadow-[0_0_10px_rgba(34,211,238,0.8)] animate-pulse">
-                         <div className="w-1.5 h-1.5 bg-black rounded-full" />
-                       </div>
-                       <span className="text-[7px] font-bold text-cyan-300 mt-1 bg-black/80 px-1 rounded">CLIENTE #44</span>
-                    </div>
-
-                    <div className="absolute top-[40%] left-[62%] -translate-x-1/2 -translate-y-1/2 animate-[bounce_1s_infinite]">
-                       <Car className="text-green-400 w-5 h-5 drop-shadow-[0_0_10px_rgba(74,222,128,1)]" />
-                    </div>
-                  </div>
-                </div>
-              )}
-
-              {/* ABA: TELEMETRIA */}
+              {/* ABA: TELEMETRIA AVANÇADA (ANIMAÇÃO E INFRAÇÕES) */}
               {dashTab === "telemetria" && (
-                <div className="animate-in fade-in duration-300">
-                  <div className="grid grid-cols-3 gap-3 mb-5">
-                    <div className="bg-white/5 border border-white/5 rounded-xl p-4 text-center">
-                      <TrendingUp className="text-green-400 w-6 h-6 mx-auto mb-2" />
-                      <h4 className="text-2xl font-black text-white">4.8</h4>
-                      <span className="text-xs text-zinc-500">Km/L (Média)</span>
+                <div className="animate-in fade-in duration-500">
+                  <div className="grid grid-cols-3 gap-3 mb-4">
+                    <div className="bg-white/5 border border-white/5 rounded-xl p-3 text-center hover:bg-white/10 transition-colors">
+                      <TrendingUp className="text-green-400 w-5 h-5 mx-auto mb-1" />
+                      <h4 className="text-xl font-black text-white">4.8 <span className="text-[10px] text-zinc-500 font-normal">Km/L</span></h4>
                     </div>
-                    <div className="bg-white/5 border border-white/5 rounded-xl p-4 text-center">
-                      <ShieldCheck className="text-yellow-400 w-6 h-6 mx-auto mb-2" />
-                      <h4 className="text-2xl font-black text-white">05</h4>
-                      <span className="text-xs text-zinc-500">Revisões Próximas</span>
+                    <div className="bg-white/5 border border-white/5 rounded-xl p-3 text-center hover:bg-white/10 transition-colors">
+                      <Gauge className="text-cyan-400 w-5 h-5 mx-auto mb-1" />
+                      <h4 className="text-xl font-black text-white">96 <span className="text-[10px] text-zinc-500 font-normal">Pts</span></h4>
                     </div>
-                    <div className="bg-white/5 border border-white/5 rounded-xl p-4 text-center">
-                      <Activity className="text-cyan-400 w-6 h-6 mx-auto mb-2" />
-                      <h4 className="text-2xl font-black text-white">12</h4>
-                      <span className="text-xs text-zinc-500">Picos de RPM</span>
+                    <div className="bg-red-500/10 border border-red-500/20 rounded-xl p-3 text-center hover:bg-red-500/20 transition-colors">
+                      <AlertTriangle className="text-red-400 w-5 h-5 mx-auto mb-1 animate-pulse" />
+                      <h4 className="text-xl font-black text-red-400">12 <span className="text-[10px] font-normal">Riscos</span></h4>
                     </div>
                   </div>
-                  {/* Gráfico / Barras */}
-                  <div className="bg-black/30 rounded-2xl border border-white/5 p-4 h-36 flex flex-col justify-center">
-                    <div className="flex justify-between items-center mb-4">
-                      <span className="text-xs font-bold text-zinc-400">DESEMPENHO DE CONSUMO (FROTA)</span>
-                      <Database size={14} className="text-cyan-400" />
+                  
+                  {/* Novos Gráficos de Infração */}
+                  <div className="bg-black/40 rounded-2xl border border-white/5 p-3.5 flex flex-col justify-center shadow-inner">
+                    <div className="flex justify-between items-center mb-3">
+                      <span className="text-[10px] font-bold text-zinc-400 tracking-wider flex items-center gap-1.5">
+                        <Activity size={12} className="text-cyan-400"/> ANÁLISE DE CONDUÇÃO (INFRAÇÕES)
+                      </span>
                     </div>
-                    <div className="space-y-3">
-                      <div className="w-full bg-white/5 h-2 rounded-full relative">
-                        <div className="absolute top-0 left-0 bg-green-400 h-2 rounded-full w-[85%]" />
-                        <span className="absolute -top-4 right-0 text-[10px] text-green-400 font-bold">Leves (85%)</span>
+                    
+                    <div className="space-y-2.5">
+                      {/* Excesso de Velocidade */}
+                      <div>
+                        <div className="flex justify-between text-[9px] mb-1 uppercase font-medium">
+                          <span className="text-zinc-300">Excesso de Velocidade</span>
+                          <span className="text-red-400">12 Ocorrências</span>
+                        </div>
+                        <div className="w-full bg-white/5 h-1.5 rounded-full overflow-hidden">
+                          <div className="bg-red-400 h-full rounded-full animate-bar" style={{ width: '85%' }} />
+                        </div>
                       </div>
-                      <div className="w-full bg-white/5 h-2 rounded-full relative">
-                        <div className="absolute top-0 left-0 bg-cyan-400 h-2 rounded-full w-[65%]" />
-                        <span className="absolute -top-4 right-0 text-[10px] text-cyan-400 font-bold">Pesados (65%)</span>
+
+                      {/* Freada Brusca */}
+                      <div>
+                        <div className="flex justify-between text-[9px] mb-1 uppercase font-medium">
+                          <span className="text-zinc-300">Freada Brusca</span>
+                          <span className="text-yellow-400">04 Ocorrências</span>
+                        </div>
+                        <div className="w-full bg-white/5 h-1.5 rounded-full overflow-hidden">
+                          <div className="bg-yellow-400 h-full rounded-full animate-bar" style={{ width: '30%' }} />
+                        </div>
                       </div>
-                      <div className="w-full bg-white/5 h-2 rounded-full relative">
-                        <div className="absolute top-0 left-0 bg-yellow-400 h-2 rounded-full w-[40%]" />
-                        <span className="absolute -top-4 right-0 text-[10px] text-yellow-400 font-bold">Máquinas (40%)</span>
+
+                      {/* Curva Acidentada */}
+                      <div>
+                        <div className="flex justify-between text-[9px] mb-1 uppercase font-medium">
+                          <span className="text-zinc-300">Curva Acidentada</span>
+                          <span className="text-orange-400">02 Ocorrências</span>
+                        </div>
+                        <div className="w-full bg-white/5 h-1.5 rounded-full overflow-hidden">
+                          <div className="bg-orange-400 h-full rounded-full animate-bar" style={{ width: '15%' }} />
+                        </div>
                       </div>
                     </div>
                   </div>
