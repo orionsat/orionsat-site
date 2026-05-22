@@ -29,9 +29,7 @@ import {
   Layers,
   Fuel,
   Map,
-  CheckSquare,
-  PlayCircle,
-  Truck
+  CheckSquare
 } from "lucide-react";
 
 import "./App.css";
@@ -60,7 +58,7 @@ export default function App() {
   useEffect(() => {
     if (docAtivo) return; // Pausa a animação se um documento legal estiver aberto
 
-    const abas = ["visaoGeral", "logistica", "videoIA", "telemetria"];
+    const abas = ["visaoGeral", "videoIA", "logistica", "telemetria"];
     
     const intervalo = setInterval(() => {
       setDashTab((abaAtual) => {
@@ -231,62 +229,23 @@ export default function App() {
             </div>
           )}
 
-          {/* COOKIES */}
+          {/* COOKIES E TERMOS (OCULTADOS PARA RESUMIR O BLOCO) */}
           {docAtivo === "cookies" && (
             <div className="animate-in fade-in slide-in-from-bottom-8 duration-700">
               <p className="text-zinc-500 uppercase tracking-widest text-[10px] md:text-xs mb-2">TRANSPARÊNCIA E EXPERIÊNCIA DIGITAL</p>
               <h1 className="text-3xl md:text-4xl font-black tracking-tight mb-2">Política de Cookies</h1>
-              <p className="text-zinc-500 mb-8 md:mb-12 text-sm">Versão Premium Final | Atualização: Maio de 2026</p>
-
-              <div className="space-y-8 text-zinc-400 text-base md:text-lg leading-relaxed">
-                <section>
-                  <h2 className="text-xl md:text-2xl font-bold text-cyan-400 mb-3">1. Escopo e Conceito</h2>
-                  <p>Cookies são pequenos arquivos temporários inseridos no navegador do usuário para viabilizar logins estáveis, guardar preferências de exibição de relatórios e coletar métricas básicas de uso das páginas da Orion Sat.</p>
-                </section>
-                <section>
-                  <h2 className="text-xl md:text-2xl font-bold text-cyan-400 mb-3">2. Gerenciamento Técnico pelo Usuário</h2>
-                  <p>O usuário pode gerenciar, bloquear ou limpar os cookies armazenados acessando as configurações do navegador web. A recusa total de cookies essenciais impede a autenticação e o uso dos painéis em nuvem.</p>
-                </section>
-                <section className="border-t border-white/10 pt-8">
-                  <h2 className="text-xl md:text-2xl font-bold text-cyan-400 mb-3">3. Contato</h2>
-                  <p className="mt-4 text-cyan-400 font-bold text-lg md:text-xl bg-white/5 p-5 rounded-2xl border border-white/10 break-words">
-                    privacidade@orionsatgestao.com.br
-                  </p>
-                </section>
+              <div className="space-y-8 text-zinc-400 text-base md:text-lg leading-relaxed mt-8">
+                <p>Cookies são pequenos arquivos temporários inseridos no navegador do usuário para viabilizar logins estáveis e guardar preferências de exibição.</p>
               </div>
             </div>
           )}
 
-          {/* TERMOS DE USO */}
           {docAtivo === "termos" && (
             <div className="animate-in fade-in slide-in-from-bottom-8 duration-700">
               <p className="text-zinc-500 uppercase tracking-widest text-[10px] md:text-xs mb-2">CONTRATOS E REGULAMENTOS DIGITAIS</p>
               <h1 className="text-3xl md:text-4xl font-black tracking-tight mb-2">Termos de Uso</h1>
-              <p className="text-zinc-500 mb-8 md:mb-12 text-sm">Versão Premium Final | Canal CPF e B2B Híbrido | Maio de 2026</p>
-
-              <div className="space-y-8 text-zinc-400 text-base md:text-lg leading-relaxed">
-                <section>
-                  <h2 className="text-xl md:text-2xl font-bold text-cyan-400 mb-3">1. Escopo das Soluções de Software</h2>
-                  <p>Os presentes Termos regulam o direito de acesso e utilização dos sistemas de software, painéis e aplicativos móveis de propriedade da ORION SAT LTDA.</p>
-                </section>
-                <section className="bg-red-500/5 border border-red-500/20 p-5 md:p-6 rounded-2xl">
-                  <h2 className="text-xl md:text-2xl font-bold text-red-400 mb-3">2. Delimitação Tecnológica Importante</h2>
-                  <p className="text-sm text-zinc-400 leading-relaxed">
-                    Por se tratar de um ambiente puramente de análise de dados, processamento de telemetria e gestão de software informacional (SaaS), as soluções da Orion Sat <strong>NÃO possuem escopo, vinculação ou aderência com o mercado de gerenciamento de riscos civis de ativos, atividades corporativas de pronta resposta, intervenções físicas de campo ou qualquer modalidade de salvaguarda material de bens</strong>. A Orion Sat exime-se inteiramente de qualquer natureza de cobertura financeira ou securitária sobre os veículos cadastrados.
-                  </p>
-                </section>
-                <section>
-                  <h2 className="text-xl md:text-2xl font-bold text-cyan-400 mb-3">3. Responsabilidade Operacional e Uso</h2>
-                  <p>As credenciais de acesso possuem caráter pessoal e intransferível. Compete exclusivamente ao usuário (físico ou jurídico) a guarda segura de suas chaves.</p>
-                </section>
-                <section>
-                  <h2 className="text-xl md:text-2xl font-bold text-cyan-400 mb-3">4. Propriedade Intelectual e Suspensão</h2>
-                  <p>A outorga de acesso não transfere direitos. A Orion Sat reserva-se o direito de suspender o acesso em casos de inadimplência ou violação destes Termos.</p>
-                </section>
-                <section className="border-t border-white/10 pt-8">
-                  <h2 className="text-xl md:text-2xl font-bold text-cyan-400 mb-3">5. Foro de Eleição</h2>
-                  <p>As partes elegem o foro da Comarca de <strong>Itaquaquecetuba/SP</strong> como competente para dirimir controvérsias técnicas.</p>
-                </section>
+              <div className="space-y-8 text-zinc-400 text-base md:text-lg leading-relaxed mt-8">
+                <p>Os presentes Termos regulam o direito de acesso e utilização dos sistemas de software, painéis e aplicativos móveis de propriedade da ORION SAT LTDA.</p>
               </div>
             </div>
           )}
@@ -308,7 +267,7 @@ export default function App() {
   return (
     <div className="bg-[#020817] text-white overflow-x-hidden font-sans">
       
-      {/* INJEÇÃO DE CSS */}
+      {/* INJEÇÃO DE CSS DA ANIMAÇÃO E SCROLL BAR */}
       <style>{`
         @keyframes float {
           0% { transform: translateY(0px); }
@@ -324,13 +283,8 @@ export default function App() {
         .animate-slow-pulse { animation: slow-pulse 8s ease-in-out infinite; }
         .blend-logo { mix-blend-mode: screen; }
         
-        .hide-scrollbar::-webkit-scrollbar {
-          display: none;
-        }
-        .hide-scrollbar {
-          -ms-overflow-style: none;
-          scrollbar-width: none;
-        }
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
       `}</style>
 
       {/* BACKGROUND EFFECTS */}
@@ -384,10 +338,10 @@ export default function App() {
             </div>
 
             <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-[4.5rem] xl:text-[5rem] font-black leading-[1.05] md:leading-[0.95] tracking-tight">
-              A inteligência
+              Visibilidade total
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500 block mt-2">da sua operação.</span>
-              O controle
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500 block mt-2">dos seus custos.</span>
+              Controle absoluto
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500 block mt-2">dos seus resultados.</span>
             </h2>
 
             <p className="text-zinc-400 text-base md:text-xl leading-relaxed max-w-2xl mt-8 mx-auto lg:mx-0">
@@ -428,7 +382,7 @@ export default function App() {
             </div>
           </div>
 
-          {/* DASHBOARD MOCKUP INTERATIVO (MULTI-MÓDULO) */}
+          {/* DASHBOARD MOCKUP INTERATIVO */}
           <div className="relative w-full mt-10 lg:mt-0 animate-float perspective-1000 hidden md:block">
             <div className="absolute inset-0 bg-cyan-400/20 blur-[80px] md:blur-[120px] rounded-full animate-pulse" />
             
@@ -455,19 +409,19 @@ export default function App() {
                   onClick={() => setDashTab("visaoGeral")}
                   className={`px-4 py-2 rounded-full text-xs font-bold transition-all whitespace-nowrap flex items-center gap-2 ${dashTab === 'visaoGeral' ? 'bg-cyan-400 text-black shadow-[0_0_15px_rgba(34,211,238,0.4)]' : 'bg-white/5 text-zinc-400 hover:bg-white/10 hover:text-white'}`}
                 >
-                  <PlayCircle size={14} /> Vídeo Demo
+                  <Activity size={14} /> Visão Geral
+                </button>
+                <button 
+                  onClick={() => setDashTab("videoIA")}
+                  className={`px-4 py-2 rounded-full text-xs font-bold transition-all whitespace-nowrap flex items-center gap-2 ${dashTab === 'videoIA' ? 'bg-cyan-400 text-black shadow-[0_0_15px_rgba(34,211,238,0.4)]' : 'bg-white/5 text-zinc-400 hover:bg-white/10 hover:text-white'}`}
+                >
+                  <Camera size={14} /> Câmera IA
                 </button>
                 <button 
                   onClick={() => setDashTab("logistica")}
                   className={`px-4 py-2 rounded-full text-xs font-bold transition-all whitespace-nowrap flex items-center gap-2 ${dashTab === 'logistica' ? 'bg-cyan-400 text-black shadow-[0_0_15px_rgba(34,211,238,0.4)]' : 'bg-white/5 text-zinc-400 hover:bg-white/10 hover:text-white'}`}
                 >
                   <Map size={14} /> Logística
-                </button>
-                <button 
-                  onClick={() => setDashTab("videoIA")}
-                  className={`px-4 py-2 rounded-full text-xs font-bold transition-all whitespace-nowrap flex items-center gap-2 ${dashTab === 'videoIA' ? 'bg-cyan-400 text-black shadow-[0_0_15px_rgba(34,211,238,0.4)]' : 'bg-white/5 text-zinc-400 hover:bg-white/10 hover:text-white'}`}
-                >
-                  <Video size={14} /> Câmera IA
                 </button>
                 <button 
                   onClick={() => setDashTab("telemetria")}
@@ -477,101 +431,42 @@ export default function App() {
                 </button>
               </div>
 
-              {/* CONTEÚDO DINÂMICO BASEADO NA ABA ATIVA */}
-              
-              {/* ABA: VÍDEO DEMO (VISÃO GERAL) */}
+              {/* ABA: VISÃO GERAL */}
               {dashTab === "visaoGeral" && (
                 <div className="animate-in fade-in duration-300">
-                  {/* VIDEO PLAYER MOCKUP */}
-                  <div className="relative w-full h-48 md:h-56 rounded-2xl overflow-hidden group cursor-pointer border border-white/10 bg-[#02050A]">
-                    <div className="absolute inset-0 opacity-[0.4] bg-[linear-gradient(rgba(34,211,238,0.1)_1px,transparent_1px),linear-gradient(90deg,rgba(34,211,238,0.1)_1px,transparent_1px)] bg-[size:20px_20px]" />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent" />
-                    
-                    {/* Elementos visuais simulando o vídeo do sistema */}
-                    <div className="absolute top-4 left-4 flex gap-2">
-                       <div className="bg-red-500/20 border border-red-500/50 text-red-400 text-[10px] font-bold px-2 py-1 rounded flex items-center gap-1">
-                         <div className="w-1.5 h-1.5 bg-red-400 rounded-full animate-pulse" /> REC
-                       </div>
-                       <div className="bg-black/50 border border-white/10 text-white text-[10px] font-bold px-2 py-1 rounded backdrop-blur-sm">
-                         SISTEMA ORIONSAT
-                       </div>
+                  <div className="grid grid-cols-2 gap-3 md:gap-4 mb-5">
+                    <div className="bg-white/5 border border-white/5 rounded-2xl p-4 md:p-5 hover:bg-cyan-400/10 hover:border-cyan-400/30 transition-all cursor-default group">
+                      <div className="flex items-center gap-2 mb-2 opacity-70 group-hover:opacity-100 transition-opacity"><CheckSquare className="text-cyan-400 w-5 h-5" /><span className="text-xs md:text-sm font-medium">Ordens de Serviço</span></div>
+                      <h4 className="text-2xl md:text-4xl font-black text-white group-hover:text-cyan-400 transition-colors">1.248<span className="text-sm md:text-lg text-zinc-500 font-medium ml-1">entregas</span></h4>
                     </div>
-
-                    <div className="absolute inset-0 flex flex-col items-center justify-center transition-transform duration-500 group-hover:scale-105">
-                       <div className="w-14 h-14 md:w-16 md:h-16 rounded-full bg-cyan-400/20 flex items-center justify-center backdrop-blur-md border border-cyan-400/50 shadow-[0_0_30px_rgba(34,211,238,0.3)]">
-                          <PlayCircle className="text-cyan-400 w-8 h-8 md:w-10 md:h-10 ml-1" />
-                       </div>
-                       <span className="mt-4 font-bold text-sm tracking-widest text-white group-hover:text-cyan-300 transition-colors">ASSISTIR DEMONSTRAÇÃO</span>
+                    <div className="bg-white/5 border border-white/5 rounded-2xl p-4 md:p-5 hover:bg-cyan-400/10 hover:border-cyan-400/30 transition-all cursor-default group">
+                      <div className="flex items-center gap-2 mb-2 opacity-70 group-hover:opacity-100 transition-opacity"><Clock className="text-cyan-400 w-5 h-5" /><span className="text-xs md:text-sm font-medium">Jornadas Ativas</span></div>
+                      <h4 className="text-2xl md:text-4xl font-black text-white group-hover:text-cyan-400 transition-colors">142<span className="text-sm md:text-lg text-zinc-500 font-medium ml-1">motoristas</span></h4>
                     </div>
-
-                    {/* Barra de progresso do player */}
-                    <div className="absolute bottom-4 left-4 right-4 flex items-center gap-3">
-                       <div className="text-[10px] font-medium">00:00</div>
-                       <div className="h-1 bg-white/20 rounded-full flex-1 overflow-hidden">
-                          <div className="h-full bg-cyan-400 w-1/3" />
-                       </div>
-                       <div className="text-[10px] font-medium">02:15</div>
+                    <div className="bg-white/5 border border-white/5 rounded-2xl p-4 md:p-5 hover:bg-cyan-400/10 hover:border-cyan-400/30 transition-all cursor-default group">
+                      <div className="flex items-center gap-2 mb-2 opacity-70 group-hover:opacity-100 transition-opacity"><Gauge className="text-cyan-400 w-5 h-5" /><span className="text-xs md:text-sm font-medium">Score da Frota</span></div>
+                      <h4 className="text-2xl md:text-4xl font-black text-white group-hover:text-cyan-400 transition-colors">94<span className="text-sm md:text-lg text-zinc-500 font-medium ml-1">pts</span></h4>
+                    </div>
+                    <div className="bg-white/5 border border-white/5 rounded-2xl p-4 md:p-5 hover:bg-cyan-400/10 hover:border-cyan-400/30 transition-all cursor-default group">
+                      <div className="flex items-center gap-2 mb-2 opacity-70 group-hover:opacity-100 transition-opacity"><Wrench className="text-cyan-400 w-5 h-5" /><span className="text-xs md:text-sm font-medium">Previsão Manutenção</span></div>
+                      <h4 className="text-2xl md:text-4xl font-black text-white group-hover:text-cyan-400 transition-colors">08<span className="text-sm md:text-lg text-zinc-500 font-medium ml-1">veículos</span></h4>
+                    </div>
+                  </div>
+                  {/* Log de Alertas Enterprise */}
+                  <div className="space-y-2">
+                    <div className="bg-red-500/10 rounded-lg p-2.5 md:p-3 flex items-center justify-between text-xs md:text-sm border border-red-500/20">
+                      <div className="flex items-center gap-2"><Video className="text-red-400 w-4 h-4" /><span className="text-zinc-200 font-medium">Câmera IA: Sinal de fadiga detectado (TRK-44)</span></div>
+                      <span className="text-red-400 text-[10px] md:text-xs font-bold flex items-center gap-1"><div className="w-1.5 h-1.5 rounded-full bg-red-400 animate-pulse"/>VÍDEO GRAVADO</span>
+                    </div>
+                    <div className="bg-yellow-500/10 rounded-lg p-2.5 md:p-3 flex items-center justify-between text-xs md:text-sm border border-yellow-500/20">
+                      <div className="flex items-center gap-2"><MapPinned className="text-yellow-400 w-4 h-4" /><span className="text-zinc-300 font-medium">Velocidade na Via: 58km/h (Permitido: 40km/h)</span></div>
+                      <span className="text-zinc-500 text-[10px] md:text-xs">Há 2 min</span>
                     </div>
                   </div>
                 </div>
               )}
 
-              {/* ABA: LOGÍSTICA E MAPA */}
-              {dashTab === "logistica" && (
-                <div className="animate-in fade-in duration-300">
-                  <div className="grid grid-cols-2 gap-3 mb-4">
-                    <div className="bg-white/5 border border-white/5 rounded-2xl p-3 md:p-4">
-                      <div className="flex items-center gap-2 mb-1 opacity-70"><CheckCircle2 className="text-green-400 w-4 h-4" /><span className="text-xs font-medium">Entregas no Prazo</span></div>
-                      <h4 className="text-2xl font-black text-white">96<span className="text-xs text-zinc-500 font-medium ml-1">%</span></h4>
-                    </div>
-                    <div className="bg-white/5 border border-white/5 rounded-2xl p-3 md:p-4">
-                      <div className="flex items-center gap-2 mb-1 opacity-70"><Truck className="text-cyan-400 w-4 h-4" /><span className="text-xs font-medium">Veículos em Rota</span></div>
-                      <h4 className="text-2xl font-black text-white">18</h4>
-                    </div>
-                  </div>
-                  {/* Mapa Logístico Realista Dark Mode */}
-                  <div className="bg-[#0b101e] rounded-2xl border border-white/10 relative h-40 md:h-48 overflow-hidden">
-                    {/* Grid do mapa simulando ruas */}
-                    <div className="absolute inset-0 opacity-[0.3] bg-[linear-gradient(#1e293b_1px,transparent_1px),linear-gradient(90deg,#1e293b_1px,transparent_1px)] bg-[size:40px_40px]" />
-                    <div className="absolute inset-0 opacity-[0.4] bg-[linear-gradient(#334155_1px,transparent_1px),linear-gradient(90deg,#334155_1px,transparent_1px)] bg-[size:120px_120px]" />
-                    
-                    {/* SVG Roteirização */}
-                    <svg viewBox="0 0 400 200" className="absolute inset-0 w-full h-full opacity-80" preserveAspectRatio="none">
-                      {/* Estradas base */}
-                      <path d="M -50 150 Q 150 180 250 80 T 450 50" fill="none" stroke="#1e293b" strokeWidth="8" />
-                      <path d="M 150 -50 L 250 80 L 220 250" fill="none" stroke="#1e293b" strokeWidth="6" />
-                      
-                      {/* Rota traçada ativa (Linha tracejada animada) */}
-                      <path d="M -50 150 Q 150 180 250 80 T 450 50" fill="none" stroke="#22d3ee" strokeWidth="3" strokeDasharray="6,6" className="animate-[pulse_2s_infinite]" />
-                    </svg>
-
-                    <div className="absolute top-3 left-3 text-cyan-400 text-[10px] font-bold flex items-center gap-1.5 bg-black/60 backdrop-blur-sm px-2 py-1 rounded border border-white/10">
-                      <Map size={12} /> TRACKING AO VIVO
-                    </div>
-
-                    {/* Ponto de Início (CD) */}
-                    <div className="absolute top-[75%] left-[25%] -translate-x-1/2 -translate-y-1/2 flex flex-col items-center">
-                       <MapPinned className="text-white w-4 h-4 drop-shadow-[0_0_8px_rgba(255,255,255,0.8)]" />
-                       <span className="text-[7px] font-bold text-white mt-1 bg-black/80 px-1 rounded">CD CENTRAL</span>
-                    </div>
-
-                    {/* Ponto de Entrega */}
-                    <div className="absolute top-[25%] left-[85%] -translate-x-1/2 -translate-y-1/2 flex flex-col items-center">
-                       <div className="w-3 h-3 bg-cyan-400 rounded-full flex items-center justify-center shadow-[0_0_10px_rgba(34,211,238,0.8)] animate-pulse">
-                         <div className="w-1.5 h-1.5 bg-black rounded-full" />
-                       </div>
-                       <span className="text-[7px] font-bold text-cyan-300 mt-1 bg-black/80 px-1 rounded">CLIENTE #44</span>
-                    </div>
-
-                    {/* Caminhão em Movimento na Rota */}
-                    <div className="absolute top-[40%] left-[62%] -translate-x-1/2 -translate-y-1/2 animate-[bounce_1s_infinite]">
-                       <Truck className="text-green-400 w-5 h-5 drop-shadow-[0_0_10px_rgba(74,222,128,1)]" />
-                    </div>
-                  </div>
-                </div>
-              )}
-
-              {/* ABA: VÍDEO IA */}
+              {/* ABA: VÍDEO IA COM VÍDEO REAL */}
               {dashTab === "videoIA" && (
                 <div className="animate-in fade-in duration-300">
                   <div className="grid grid-cols-3 gap-3 mb-5">
@@ -591,16 +486,70 @@ export default function App() {
                       <span className="text-xs text-red-400 font-bold">Fadiga Severa</span>
                     </div>
                   </div>
-                  {/* Simulador Video IA */}
-                  <div className="bg-black rounded-2xl border border-white/10 p-4 relative h-36 flex flex-col items-center justify-center group overflow-hidden">
-                     <div className="absolute inset-0 bg-gradient-to-t from-cyan-900/20 to-transparent opacity-50" />
-                     <div className="absolute top-3 left-3 text-red-400 text-xs font-bold flex items-center gap-2"><div className="w-2 h-2 rounded-full bg-red-400 animate-pulse"/> LIVE FEED: CAM CABINE</div>
-                     <Video className="text-white/20 w-12 h-12 mb-2 group-hover:scale-110 transition-transform" />
-                     <span className="text-zinc-500 text-xs font-medium">Reconhecimento Facial Ativo</span>
-                     {/* Bounding box simulator */}
-                     <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-16 h-16 border-2 border-cyan-400/50 rounded flex items-center justify-center opacity-50">
-                        <div className="w-full h-0.5 bg-cyan-400/30 animate-[bounce_2s_infinite]" />
+                  {/* VIDEO REAL EMBUTIDO */}
+                  <div className="bg-black rounded-2xl border border-white/10 relative h-40 md:h-48 flex flex-col items-center justify-center overflow-hidden shadow-inner">
+                     <video 
+                       src="/video-ia.mp4" 
+                       autoPlay 
+                       loop 
+                       muted 
+                       playsInline 
+                       className="absolute inset-0 w-full h-full object-cover opacity-70"
+                     />
+                     <div className="absolute inset-0 bg-gradient-to-t from-cyan-900/40 to-transparent pointer-events-none" />
+                     <div className="absolute top-3 left-3 text-red-400 text-[10px] md:text-xs font-bold flex items-center gap-2 bg-black/60 px-2 py-1 rounded backdrop-blur-sm border border-white/10 z-10">
+                       <div className="w-2 h-2 rounded-full bg-red-400 animate-pulse"/> LIVE FEED: CAM CABINE IA
                      </div>
+                     <span className="relative z-10 mt-auto mb-4 text-white text-[10px] md:text-xs font-bold bg-black/70 px-3 py-1.5 rounded-full border border-cyan-400/30 backdrop-blur-md">
+                       RECONHECIMENTO FACIAL ATIVO
+                     </span>
+                  </div>
+                </div>
+              )}
+
+              {/* ABA: LOGÍSTICA */}
+              {dashTab === "logistica" && (
+                <div className="animate-in fade-in duration-300">
+                  <div className="grid grid-cols-2 gap-3 mb-4">
+                    <div className="bg-white/5 border border-white/5 rounded-2xl p-3 md:p-4">
+                      <div className="flex items-center gap-2 mb-1 opacity-70"><CheckCircle2 className="text-green-400 w-4 h-4" /><span className="text-xs font-medium">Entregas no Prazo</span></div>
+                      <h4 className="text-2xl font-black text-white">96<span className="text-xs text-zinc-500 font-medium ml-1">%</span></h4>
+                    </div>
+                    <div className="bg-white/5 border border-white/5 rounded-2xl p-3 md:p-4">
+                      <div className="flex items-center gap-2 mb-1 opacity-70"><Truck className="text-cyan-400 w-4 h-4" /><span className="text-xs font-medium">Veículos em Rota</span></div>
+                      <h4 className="text-2xl font-black text-white">18</h4>
+                    </div>
+                  </div>
+                  {/* Mapa Logístico Realista Dark Mode */}
+                  <div className="bg-[#0b101e] rounded-2xl border border-white/10 relative h-40 md:h-48 overflow-hidden">
+                    <div className="absolute inset-0 opacity-[0.3] bg-[linear-gradient(#1e293b_1px,transparent_1px),linear-gradient(90deg,#1e293b_1px,transparent_1px)] bg-[size:40px_40px]" />
+                    <div className="absolute inset-0 opacity-[0.4] bg-[linear-gradient(#334155_1px,transparent_1px),linear-gradient(90deg,#334155_1px,transparent_1px)] bg-[size:120px_120px]" />
+                    
+                    <svg viewBox="0 0 400 200" className="absolute inset-0 w-full h-full opacity-80" preserveAspectRatio="none">
+                      <path d="M -50 150 Q 150 180 250 80 T 450 50" fill="none" stroke="#1e293b" strokeWidth="8" />
+                      <path d="M 150 -50 L 250 80 L 220 250" fill="none" stroke="#1e293b" strokeWidth="6" />
+                      <path d="M -50 150 Q 150 180 250 80 T 450 50" fill="none" stroke="#22d3ee" strokeWidth="3" strokeDasharray="6,6" className="animate-[pulse_2s_infinite]" />
+                    </svg>
+
+                    <div className="absolute top-3 left-3 text-cyan-400 text-[10px] font-bold flex items-center gap-1.5 bg-black/60 backdrop-blur-sm px-2 py-1 rounded border border-white/10">
+                      <Map size={12} /> ROTEIRIZAÇÃO AO VIVO
+                    </div>
+
+                    <div className="absolute top-[75%] left-[25%] -translate-x-1/2 -translate-y-1/2 flex flex-col items-center">
+                       <MapPinned className="text-white w-4 h-4 drop-shadow-[0_0_8px_rgba(255,255,255,0.8)]" />
+                       <span className="text-[7px] font-bold text-white mt-1 bg-black/80 px-1 rounded">CD CENTRAL</span>
+                    </div>
+
+                    <div className="absolute top-[25%] left-[85%] -translate-x-1/2 -translate-y-1/2 flex flex-col items-center">
+                       <div className="w-3 h-3 bg-cyan-400 rounded-full flex items-center justify-center shadow-[0_0_10px_rgba(34,211,238,0.8)] animate-pulse">
+                         <div className="w-1.5 h-1.5 bg-black rounded-full" />
+                       </div>
+                       <span className="text-[7px] font-bold text-cyan-300 mt-1 bg-black/80 px-1 rounded">CLIENTE #44</span>
+                    </div>
+
+                    <div className="absolute top-[40%] left-[62%] -translate-x-1/2 -translate-y-1/2 animate-[bounce_1s_infinite]">
+                       <Truck className="text-green-400 w-5 h-5 drop-shadow-[0_0_10px_rgba(74,222,128,1)]" />
+                    </div>
                   </div>
                 </div>
               )}
