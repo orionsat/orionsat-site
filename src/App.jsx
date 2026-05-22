@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   Activity,
   Bell,
@@ -27,7 +27,7 @@ import {
   Eye,
   Camera,
   Layers,
-  Battery,
+  Fuel,
   Map,
   CheckSquare
 } from "lucide-react";
@@ -53,6 +53,24 @@ export default function App() {
 
   // ESTADO PARA CONTROLAR AS ABAS DO DASHBOARD INTERATIVO
   const [dashTab, setDashTab] = useState("visaoGeral");
+
+  // EFEITO PARA TROCAR AS ABAS AUTOMATICAMENTE A CADA 5 SEGUNDOS
+  useEffect(() => {
+    if (docAtivo) return; // Pausa a animação se um documento legal estiver aberto
+
+    const abas = ["visaoGeral", "videoIA", "logistica", "telemetria"];
+    
+    const intervalo = setInterval(() => {
+      setDashTab((abaAtual) => {
+        const indexAtual = abas.indexOf(abaAtual);
+        const proximoIndex = (indexAtual + 1) % abas.length;
+        return abas[proximoIndex];
+      });
+    }, 5000); // 5000 milissegundos = 5 segundos
+
+    // Limpa o cronômetro para evitar bugs se o componente recarregar
+    return () => clearInterval(intervalo);
+  }, [docAtivo, dashTab]); // O "dashTab" aqui faz o cronômetro reiniciar se o usuário clicar manualmente
 
   const alternarDocumento = (tipo) => {
     setDocAtivo(tipo);
@@ -152,7 +170,6 @@ export default function App() {
     },
   ];
 
-  // RENDERIZAÇÃO DAS PÁGINAS LEGAIS
   if (docAtivo) {
     return (
       <div className="bg-[#020817] text-white min-h-screen py-24 px-6 relative overflow-hidden font-sans">
@@ -290,7 +307,7 @@ export default function App() {
   return (
     <div className="bg-[#020817] text-white overflow-x-hidden font-sans">
       
-      {/* INJEÇÃO DE CSS DA ANIMAÇÃO E SCROLL BAR */}
+      {/* INJEÇÃO DE CSS */}
       <style>{`
         @keyframes float {
           0% { transform: translateY(0px); }
@@ -366,10 +383,10 @@ export default function App() {
             </div>
 
             <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-[4.5rem] xl:text-[5rem] font-black leading-[1.05] md:leading-[0.95] tracking-tight">
-              A inteligência
+              Visibilidade total
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500 block mt-2">da sua operação.</span>
-              O controle
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500 block mt-2">dos seus custos.</span>
+              Controle absoluto
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500 block mt-2">dos seus resultados.</span>
             </h2>
 
             <p className="text-zinc-400 text-base md:text-xl leading-relaxed max-w-2xl mt-8 mx-auto lg:mx-0">
@@ -416,6 +433,21 @@ export default function App() {
             
             <div className="relative bg-[#050B1A]/90 border border-white/10 rounded-3xl md:rounded-[36px] p-5 md:p-8 backdrop-blur-2xl shadow-[0_20px_50px_rgba(0,0,0,0.5)] overflow-hidden transition-all duration-500 hover:border-cyan-400/40">
               
+              <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-8">
+                <div>
+                  <p className="text-cyan-400 font-bold tracking-widest text-[10px] md:text-xs mb-1 uppercase">Centro de Controle Operacional</p>
+                  <h3 className="text-xl md:text-2xl font-black text-white flex items-center gap-2">
+                    <Activity className="text-cyan-400 animate-pulse" size={24} />
+                    ORIONSAT DASHBOARD
+                  </h3>
+                </div>
+                <div className="flex items-center gap-2 text-green-400 bg-green-400/10 px-3 py-1.5 rounded-full border border-green-400/20 text-xs md:text-sm font-bold">
+                  <div className="w-2 h-2 md:w-2.5 md:h-2.5 rounded-full bg-green-400 animate-ping absolute opacity-75" />
+                  <div className="w-2 h-2 md:w-2.5 md:h-2.5 rounded-full bg-green-400 relative" />
+                  CONECTADO
+                </div>
+              </div>
+
               {/* TABS INTERATIVAS */}
               <div className="flex items-center gap-2 mb-6 overflow-x-auto pb-2 hide-scrollbar border-b border-white/10">
                 <button 
@@ -444,37 +476,35 @@ export default function App() {
                 </button>
               </div>
 
-              {/* CONTEÚDO DINÂMICO BASEADO NA ABA ATIVA */}
-              
               {/* ABA: VISÃO GERAL */}
               {dashTab === "visaoGeral" && (
                 <div className="animate-in fade-in duration-300">
                   <div className="grid grid-cols-2 gap-3 md:gap-4 mb-5">
-                    <div className="bg-white/5 border border-white/5 rounded-2xl p-4 md:p-5 hover:bg-cyan-400/10 hover:border-cyan-400/30 transition-all cursor-default">
-                      <div className="flex items-center gap-2 mb-2 opacity-70"><CheckSquare className="text-cyan-400 w-5 h-5" /><span className="text-xs md:text-sm font-medium">Entregas</span></div>
-                      <h4 className="text-2xl md:text-4xl font-black text-white">1.248</h4>
+                    <div className="bg-white/5 border border-white/5 rounded-2xl p-4 md:p-5 hover:bg-cyan-400/10 hover:border-cyan-400/30 transition-all cursor-default group">
+                      <div className="flex items-center gap-2 mb-2 opacity-70 group-hover:opacity-100 transition-opacity"><RouteIcon className="text-cyan-400 w-5 h-5" /><span className="text-xs md:text-sm font-medium">Ordens de Serviço</span></div>
+                      <h4 className="text-2xl md:text-4xl font-black text-white group-hover:text-cyan-400 transition-colors">1.248<span className="text-sm md:text-lg text-zinc-500 font-medium ml-1">entregas</span></h4>
                     </div>
-                    <div className="bg-white/5 border border-white/5 rounded-2xl p-4 md:p-5 hover:bg-cyan-400/10 hover:border-cyan-400/30 transition-all cursor-default">
-                      <div className="flex items-center gap-2 mb-2 opacity-70"><Clock className="text-cyan-400 w-5 h-5" /><span className="text-xs md:text-sm font-medium">Jornadas Ativas</span></div>
-                      <h4 className="text-2xl md:text-4xl font-black text-white">142</h4>
+                    <div className="bg-white/5 border border-white/5 rounded-2xl p-4 md:p-5 hover:bg-cyan-400/10 hover:border-cyan-400/30 transition-all cursor-default group">
+                      <div className="flex items-center gap-2 mb-2 opacity-70 group-hover:opacity-100 transition-opacity"><Clock className="text-cyan-400 w-5 h-5" /><span className="text-xs md:text-sm font-medium">Jornadas Ativas</span></div>
+                      <h4 className="text-2xl md:text-4xl font-black text-white group-hover:text-cyan-400 transition-colors">142<span className="text-sm md:text-lg text-zinc-500 font-medium ml-1">motoristas</span></h4>
                     </div>
-                    <div className="bg-white/5 border border-white/5 rounded-2xl p-4 md:p-5 hover:bg-cyan-400/10 hover:border-cyan-400/30 transition-all cursor-default">
-                      <div className="flex items-center gap-2 mb-2 opacity-70"><Gauge className="text-cyan-400 w-5 h-5" /><span className="text-xs md:text-sm font-medium">Score Médio</span></div>
-                      <h4 className="text-2xl md:text-4xl font-black text-white">94<span className="text-sm text-zinc-500 font-medium ml-1">pts</span></h4>
+                    <div className="bg-white/5 border border-white/5 rounded-2xl p-4 md:p-5 hover:bg-cyan-400/10 hover:border-cyan-400/30 transition-all cursor-default group">
+                      <div className="flex items-center gap-2 mb-2 opacity-70 group-hover:opacity-100 transition-opacity"><Gauge className="text-cyan-400 w-5 h-5" /><span className="text-xs md:text-sm font-medium">Score da Frota</span></div>
+                      <h4 className="text-2xl md:text-4xl font-black text-white group-hover:text-cyan-400 transition-colors">94<span className="text-sm md:text-lg text-zinc-500 font-medium ml-1">pts</span></h4>
                     </div>
-                    <div className="bg-red-500/10 border border-red-500/20 rounded-2xl p-4 md:p-5 hover:bg-red-500/20 transition-all cursor-default">
-                      <div className="flex items-center gap-2 mb-2 opacity-90 text-red-400"><AlertTriangle className="w-5 h-5 animate-[bounce_2s_infinite]" /><span className="text-xs md:text-sm font-bold">Alertas Ativos</span></div>
-                      <h4 className="text-2xl md:text-4xl font-black text-white">03</h4>
+                    <div className="bg-white/5 border border-white/5 rounded-2xl p-4 md:p-5 hover:bg-cyan-400/10 hover:border-cyan-400/30 transition-all cursor-default group">
+                      <div className="flex items-center gap-2 mb-2 opacity-70 group-hover:opacity-100 transition-opacity"><Wrench className="text-cyan-400 w-5 h-5" /><span className="text-xs md:text-sm font-medium">Previsão Manutenção</span></div>
+                      <h4 className="text-2xl md:text-4xl font-black text-white group-hover:text-cyan-400 transition-colors">08<span className="text-sm md:text-lg text-zinc-500 font-medium ml-1">veículos</span></h4>
                     </div>
                   </div>
                   {/* Log de Alertas Enterprise */}
                   <div className="space-y-2">
                     <div className="bg-red-500/10 rounded-lg p-2.5 md:p-3 flex items-center justify-between text-xs md:text-sm border border-red-500/20">
-                      <div className="flex items-center gap-2"><Video className="text-red-400 w-4 h-4" /><span className="text-zinc-200 font-medium">Sinal de fadiga detectado (TRK-44)</span></div>
-                      <span className="text-red-400 text-[10px] md:text-xs font-bold flex items-center gap-1"><div className="w-1.5 h-1.5 rounded-full bg-red-400 animate-pulse"/>GRAVANDO</span>
+                      <div className="flex items-center gap-2"><Video className="text-red-400 w-4 h-4" /><span className="text-zinc-200 font-medium">Câmera IA: Sinal de fadiga detectado (TRK-44)</span></div>
+                      <span className="text-red-400 text-[10px] md:text-xs font-bold flex items-center gap-1"><div className="w-1.5 h-1.5 rounded-full bg-red-400 animate-pulse"/>VÍDEO GRAVADO</span>
                     </div>
                     <div className="bg-yellow-500/10 rounded-lg p-2.5 md:p-3 flex items-center justify-between text-xs md:text-sm border border-yellow-500/20">
-                      <div className="flex items-center gap-2"><MapPinned className="text-yellow-400 w-4 h-4" /><span className="text-zinc-300 font-medium">Velocidade na Via: 58km/h (Permitido: 40km/h)</span></div>
+                      <div className="flex items-center gap-2"><MapPinned className="text-yellow-400 w-4 h-4" /><span className="text-zinc-300 font-medium">Velocidade na Via: 58km/h em trecho de 40km/h (RTA-12)</span></div>
                       <span className="text-zinc-500 text-[10px] md:text-xs">Há 2 min</span>
                     </div>
                   </div>
@@ -651,7 +681,7 @@ export default function App() {
             </div>
             <div className="grid grid-cols-2 gap-3 md:gap-5">
               {[
-                { icon: <Video size={28} />, title: "Integração Hikvision e Jimi" },
+                { icon: <Video size={28} />, title: "Homologação de Câmeras de Ponta" },
                 { icon: <Database size={28} />, title: "Big Data e Nuvem Criptografada" },
                 { icon: <Server size={28} />, title: "Disponibilidade de Servidor 99.9%" },
                 { icon: <Globe size={28} />, title: "Integrações ERP via API Rest" },
@@ -748,7 +778,7 @@ export default function App() {
           
           <div className="relative z-10">
             <h2 className="text-3xl md:text-5xl lg:text-6xl font-black max-w-4xl mx-auto leading-[1.1] tracking-tight text-white">
-              Gestão de ponta aplicável à sua realidade.
+              Gestão de ponta acessível para a sua realidade.
             </h2>
             <p className="text-zinc-300 text-base md:text-xl mt-6 max-w-2xl mx-auto leading-relaxed">
               Não espere os custos e os passivos saírem do controle para agir. Agende uma consultoria estratégica e entenda como otimizar a sua operação hoje.
