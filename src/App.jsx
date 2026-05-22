@@ -21,15 +21,7 @@ import {
   Navigation2,
   AlertTriangle,
   TrendingUp,
-  Video,
-  Clock,
-  Wrench,
-  Eye,
-  Camera,
-  Layers,
-  Fuel,
-  Map,
-  CheckSquare
+  Video
 } from "lucide-react";
 
 import "./App.css";
@@ -56,9 +48,9 @@ export default function App() {
 
   // EFEITO PARA TROCAR AS ABAS AUTOMATICAMENTE A CADA 7 SEGUNDOS
   useEffect(() => {
-    if (docAtivo) return; // Pausa a animação se um documento legal estiver aberto
+    if (docAtivo) return; 
 
-    const abas = ["visaoGeral", "videoIA", "logistica", "telemetria"];
+    const abas = ["visaoGeral", "logistica", "videoIA", "telemetria"];
     
     const intervalo = setInterval(() => {
       setDashTab((abaAtual) => {
@@ -68,8 +60,9 @@ export default function App() {
       });
     }, 7000); 
 
+    // Limpa o cronômetro com segurança
     return () => clearInterval(intervalo);
-  }, [docAtivo, dashTab]); 
+  }, [docAtivo]); 
 
   const alternarDocumento = (tipo) => {
     setDocAtivo(tipo);
@@ -116,7 +109,7 @@ export default function App() {
       desc: "Gestão inteligente de entregas e coletas. Programe itinerários, acompanhe ordens de serviço e automatize a logística de campo de ponta a ponta.",
     },
     {
-      icon: <Clock size={34} />,
+      icon: <Smartphone size={34} />,
       title: "Jornada de Trabalho",
       desc: "Conformidade total com a Lei do Motorista. Apontamento preciso de horas trabalhadas, intervalos e espera via App Onboard ou RFID, mitigando passivos.",
     },
@@ -131,7 +124,7 @@ export default function App() {
       desc: "Dashboard de eficiência operacional. Meça acelerações, freadas bruscas, uso de RPM e crie rankings de condução para reduzir o desperdício.",
     },
     {
-      icon: <Wrench size={34} />,
+      icon: <ShieldCheck size={34} />,
       title: "Manutenção e Abastecimento",
       desc: "Aumente a disponibilidade da frota. Defina planos de manutenção preditiva e corretiva com base no hodômetro real e monitore custos de consumo.",
     },
@@ -229,23 +222,62 @@ export default function App() {
             </div>
           )}
 
-          {/* COOKIES E TERMOS (OCULTADOS PARA RESUMIR O BLOCO) */}
+          {/* COOKIES */}
           {docAtivo === "cookies" && (
             <div className="animate-in fade-in slide-in-from-bottom-8 duration-700">
               <p className="text-zinc-500 uppercase tracking-widest text-[10px] md:text-xs mb-2">TRANSPARÊNCIA E EXPERIÊNCIA DIGITAL</p>
               <h1 className="text-3xl md:text-4xl font-black tracking-tight mb-2">Política de Cookies</h1>
-              <div className="space-y-8 text-zinc-400 text-base md:text-lg leading-relaxed mt-8">
-                <p>Cookies são pequenos arquivos temporários inseridos no navegador do usuário para viabilizar logins estáveis e guardar preferências de exibição.</p>
+              <p className="text-zinc-500 mb-8 md:mb-12 text-sm">Versão Premium Final | Atualização: Maio de 2026</p>
+
+              <div className="space-y-8 text-zinc-400 text-base md:text-lg leading-relaxed">
+                <section>
+                  <h2 className="text-xl md:text-2xl font-bold text-cyan-400 mb-3">1. Escopo e Conceito</h2>
+                  <p>Cookies são pequenos arquivos temporários inseridos no navegador do usuário para viabilizar logins estáveis, guardar preferências de exibição de relatórios e coletar métricas básicas de uso das páginas da Orion Sat.</p>
+                </section>
+                <section>
+                  <h2 className="text-xl md:text-2xl font-bold text-cyan-400 mb-3">2. Gerenciamento Técnico pelo Usuário</h2>
+                  <p>O usuário pode gerenciar, bloquear ou limpar os cookies armazenados acessando as configurações do navegador web. A recusa total de cookies essenciais impede a autenticação e o uso dos painéis em nuvem.</p>
+                </section>
+                <section className="border-t border-white/10 pt-8">
+                  <h2 className="text-xl md:text-2xl font-bold text-cyan-400 mb-3">3. Contato</h2>
+                  <p className="mt-4 text-cyan-400 font-bold text-lg md:text-xl bg-white/5 p-5 rounded-2xl border border-white/10 break-words">
+                    privacidade@orionsatgestao.com.br
+                  </p>
+                </section>
               </div>
             </div>
           )}
 
+          {/* TERMOS DE USO */}
           {docAtivo === "termos" && (
             <div className="animate-in fade-in slide-in-from-bottom-8 duration-700">
               <p className="text-zinc-500 uppercase tracking-widest text-[10px] md:text-xs mb-2">CONTRATOS E REGULAMENTOS DIGITAIS</p>
               <h1 className="text-3xl md:text-4xl font-black tracking-tight mb-2">Termos de Uso</h1>
-              <div className="space-y-8 text-zinc-400 text-base md:text-lg leading-relaxed mt-8">
-                <p>Os presentes Termos regulam o direito de acesso e utilização dos sistemas de software, painéis e aplicativos móveis de propriedade da ORION SAT LTDA.</p>
+              <p className="text-zinc-500 mb-8 md:mb-12 text-sm">Versão Premium Final | Canal CPF e B2B Híbrido | Maio de 2026</p>
+
+              <div className="space-y-8 text-zinc-400 text-base md:text-lg leading-relaxed">
+                <section>
+                  <h2 className="text-xl md:text-2xl font-bold text-cyan-400 mb-3">1. Escopo das Soluções de Software</h2>
+                  <p>Os presentes Termos regulam o direito de acesso e utilização dos sistemas de software, painéis e aplicativos móveis de propriedade da ORION SAT LTDA.</p>
+                </section>
+                <section className="bg-red-500/5 border border-red-500/20 p-5 md:p-6 rounded-2xl">
+                  <h2 className="text-xl md:text-2xl font-bold text-red-400 mb-3">2. Delimitação Tecnológica Importante</h2>
+                  <p className="text-sm text-zinc-400 leading-relaxed">
+                    Por se tratar de um ambiente puramente de análise de dados, processamento de telemetria e gestão de software informacional (SaaS), as soluções da Orion Sat <strong>NÃO possuem escopo, vinculação ou aderência com o mercado de gerenciamento de riscos civis de ativos, atividades corporativas de pronta resposta, intervenções físicas de campo ou qualquer modalidade de salvaguarda material de bens</strong>. A Orion Sat exime-se inteiramente de qualquer natureza de cobertura financeira ou securitária sobre os veículos cadastrados.
+                  </p>
+                </section>
+                <section>
+                  <h2 className="text-xl md:text-2xl font-bold text-cyan-400 mb-3">3. Responsabilidade Operacional e Uso</h2>
+                  <p>As credenciais de acesso possuem caráter pessoal e intransferível. Compete exclusivamente ao usuário (físico ou jurídico) a guarda segura de suas chaves.</p>
+                </section>
+                <section>
+                  <h2 className="text-xl md:text-2xl font-bold text-cyan-400 mb-3">4. Propriedade Intelectual e Suspensão</h2>
+                  <p>A outorga de acesso não transfere direitos. A Orion Sat reserva-se o direito de suspender o acesso em casos de inadimplência ou violação destes Termos.</p>
+                </section>
+                <section className="border-t border-white/10 pt-8">
+                  <h2 className="text-xl md:text-2xl font-bold text-cyan-400 mb-3">5. Foro de Eleição</h2>
+                  <p>As partes elegem o foro da Comarca de <strong>Itaquaquecetuba/SP</strong> como competente para dirimir controvérsias técnicas.</p>
+                </section>
               </div>
             </div>
           )}
@@ -267,7 +299,7 @@ export default function App() {
   return (
     <div className="bg-[#020817] text-white overflow-x-hidden font-sans">
       
-      {/* INJEÇÃO DE CSS DA ANIMAÇÃO E SCROLL BAR */}
+      {/* INJEÇÃO DE CSS */}
       <style>{`
         @keyframes float {
           0% { transform: translateY(0px); }
@@ -333,15 +365,15 @@ export default function App() {
           {/* Hero Texto */}
           <div className="text-center lg:text-left">
             <div className="inline-flex items-center gap-2 md:gap-3 px-4 py-2 md:px-5 md:py-3 rounded-full border border-cyan-400/30 bg-cyan-400/10 text-cyan-300 text-xs md:text-sm mb-8 mx-auto lg:mx-0 font-medium backdrop-blur-sm shadow-[0_0_15px_rgba(34,211,238,0.1)]">
-              <Layers size={16} className="animate-pulse" />
+              <Server size={16} className="animate-pulse" />
               Ecossistema Definitivo de Gestão Operacional
             </div>
 
             <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-[4.5rem] xl:text-[5rem] font-black leading-[1.05] md:leading-[0.95] tracking-tight">
-              Visibilidade total
+              A inteligência
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500 block mt-2">da sua operação.</span>
-              Controle absoluto
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500 block mt-2">dos seus resultados.</span>
+              O controle
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500 block mt-2">dos seus custos.</span>
             </h2>
 
             <p className="text-zinc-400 text-base md:text-xl leading-relaxed max-w-2xl mt-8 mx-auto lg:mx-0">
@@ -415,13 +447,13 @@ export default function App() {
                   onClick={() => setDashTab("videoIA")}
                   className={`px-4 py-2 rounded-full text-xs font-bold transition-all whitespace-nowrap flex items-center gap-2 ${dashTab === 'videoIA' ? 'bg-cyan-400 text-black shadow-[0_0_15px_rgba(34,211,238,0.4)]' : 'bg-white/5 text-zinc-400 hover:bg-white/10 hover:text-white'}`}
                 >
-                  <Camera size={14} /> Câmera IA
+                  <Video size={14} /> Câmera IA
                 </button>
                 <button 
                   onClick={() => setDashTab("logistica")}
                   className={`px-4 py-2 rounded-full text-xs font-bold transition-all whitespace-nowrap flex items-center gap-2 ${dashTab === 'logistica' ? 'bg-cyan-400 text-black shadow-[0_0_15px_rgba(34,211,238,0.4)]' : 'bg-white/5 text-zinc-400 hover:bg-white/10 hover:text-white'}`}
                 >
-                  <Map size={14} /> Logística
+                  <RouteIcon size={14} /> Logística
                 </button>
                 <button 
                   onClick={() => setDashTab("telemetria")}
@@ -436,11 +468,11 @@ export default function App() {
                 <div className="animate-in fade-in duration-300">
                   <div className="grid grid-cols-2 gap-3 md:gap-4 mb-5">
                     <div className="bg-white/5 border border-white/5 rounded-2xl p-4 md:p-5 hover:bg-cyan-400/10 hover:border-cyan-400/30 transition-all cursor-default group">
-                      <div className="flex items-center gap-2 mb-2 opacity-70 group-hover:opacity-100 transition-opacity"><CheckSquare className="text-cyan-400 w-5 h-5" /><span className="text-xs md:text-sm font-medium">Ordens de Serviço</span></div>
+                      <div className="flex items-center gap-2 mb-2 opacity-70 group-hover:opacity-100 transition-opacity"><CheckCircle2 className="text-cyan-400 w-5 h-5" /><span className="text-xs md:text-sm font-medium">Ordens de Serviço</span></div>
                       <h4 className="text-2xl md:text-4xl font-black text-white group-hover:text-cyan-400 transition-colors">1.248<span className="text-sm md:text-lg text-zinc-500 font-medium ml-1">entregas</span></h4>
                     </div>
                     <div className="bg-white/5 border border-white/5 rounded-2xl p-4 md:p-5 hover:bg-cyan-400/10 hover:border-cyan-400/30 transition-all cursor-default group">
-                      <div className="flex items-center gap-2 mb-2 opacity-70 group-hover:opacity-100 transition-opacity"><Clock className="text-cyan-400 w-5 h-5" /><span className="text-xs md:text-sm font-medium">Jornadas Ativas</span></div>
+                      <div className="flex items-center gap-2 mb-2 opacity-70 group-hover:opacity-100 transition-opacity"><Smartphone className="text-cyan-400 w-5 h-5" /><span className="text-xs md:text-sm font-medium">Jornadas Ativas</span></div>
                       <h4 className="text-2xl md:text-4xl font-black text-white group-hover:text-cyan-400 transition-colors">142<span className="text-sm md:text-lg text-zinc-500 font-medium ml-1">motoristas</span></h4>
                     </div>
                     <div className="bg-white/5 border border-white/5 rounded-2xl p-4 md:p-5 hover:bg-cyan-400/10 hover:border-cyan-400/30 transition-all cursor-default group">
@@ -448,7 +480,7 @@ export default function App() {
                       <h4 className="text-2xl md:text-4xl font-black text-white group-hover:text-cyan-400 transition-colors">94<span className="text-sm md:text-lg text-zinc-500 font-medium ml-1">pts</span></h4>
                     </div>
                     <div className="bg-white/5 border border-white/5 rounded-2xl p-4 md:p-5 hover:bg-cyan-400/10 hover:border-cyan-400/30 transition-all cursor-default group">
-                      <div className="flex items-center gap-2 mb-2 opacity-70 group-hover:opacity-100 transition-opacity"><Wrench className="text-cyan-400 w-5 h-5" /><span className="text-xs md:text-sm font-medium">Previsão Manutenção</span></div>
+                      <div className="flex items-center gap-2 mb-2 opacity-70 group-hover:opacity-100 transition-opacity"><ShieldCheck className="text-cyan-400 w-5 h-5" /><span className="text-xs md:text-sm font-medium">Previsão Manutenção</span></div>
                       <h4 className="text-2xl md:text-4xl font-black text-white group-hover:text-cyan-400 transition-colors">08<span className="text-sm md:text-lg text-zinc-500 font-medium ml-1">veículos</span></h4>
                     </div>
                   </div>
@@ -471,12 +503,12 @@ export default function App() {
                 <div className="animate-in fade-in duration-300">
                   <div className="grid grid-cols-3 gap-3 mb-5">
                     <div className="bg-white/5 border border-white/5 rounded-xl p-4 text-center">
-                      <Camera className="text-cyan-400 w-6 h-6 mx-auto mb-2" />
+                      <MonitorSmartphone className="text-cyan-400 w-6 h-6 mx-auto mb-2" />
                       <h4 className="text-2xl font-black text-white">42</h4>
                       <span className="text-xs text-zinc-500">Câmeras Online</span>
                     </div>
                     <div className="bg-white/5 border border-white/5 rounded-xl p-4 text-center">
-                      <Eye className="text-yellow-400 w-6 h-6 mx-auto mb-2" />
+                      <Radar className="text-yellow-400 w-6 h-6 mx-auto mb-2" />
                       <h4 className="text-2xl font-black text-white">04</h4>
                       <span className="text-xs text-zinc-500">Eventos Distração</span>
                     </div>
@@ -507,7 +539,7 @@ export default function App() {
                 </div>
               )}
 
-              {/* ABA: LOGÍSTICA */}
+              {/* ABA: LOGÍSTICA E MAPA */}
               {dashTab === "logistica" && (
                 <div className="animate-in fade-in duration-300">
                   <div className="grid grid-cols-2 gap-3 mb-4">
@@ -516,7 +548,7 @@ export default function App() {
                       <h4 className="text-2xl font-black text-white">96<span className="text-xs text-zinc-500 font-medium ml-1">%</span></h4>
                     </div>
                     <div className="bg-white/5 border border-white/5 rounded-2xl p-3 md:p-4">
-                      <div className="flex items-center gap-2 mb-1 opacity-70"><Truck className="text-cyan-400 w-4 h-4" /><span className="text-xs font-medium">Veículos em Rota</span></div>
+                      <div className="flex items-center gap-2 mb-1 opacity-70"><Car className="text-cyan-400 w-4 h-4" /><span className="text-xs font-medium">Veículos em Rota</span></div>
                       <h4 className="text-2xl font-black text-white">18</h4>
                     </div>
                   </div>
@@ -532,7 +564,7 @@ export default function App() {
                     </svg>
 
                     <div className="absolute top-3 left-3 text-cyan-400 text-[10px] font-bold flex items-center gap-1.5 bg-black/60 backdrop-blur-sm px-2 py-1 rounded border border-white/10">
-                      <Map size={12} /> ROTEIRIZAÇÃO AO VIVO
+                      <MapPinned size={12} /> ROTEIRIZAÇÃO AO VIVO
                     </div>
 
                     <div className="absolute top-[75%] left-[25%] -translate-x-1/2 -translate-y-1/2 flex flex-col items-center">
@@ -548,7 +580,7 @@ export default function App() {
                     </div>
 
                     <div className="absolute top-[40%] left-[62%] -translate-x-1/2 -translate-y-1/2 animate-[bounce_1s_infinite]">
-                       <Truck className="text-green-400 w-5 h-5 drop-shadow-[0_0_10px_rgba(74,222,128,1)]" />
+                       <Car className="text-green-400 w-5 h-5 drop-shadow-[0_0_10px_rgba(74,222,128,1)]" />
                     </div>
                   </div>
                 </div>
@@ -564,7 +596,7 @@ export default function App() {
                       <span className="text-xs text-zinc-500">Km/L (Média)</span>
                     </div>
                     <div className="bg-white/5 border border-white/5 rounded-xl p-4 text-center">
-                      <Wrench className="text-yellow-400 w-6 h-6 mx-auto mb-2" />
+                      <ShieldCheck className="text-yellow-400 w-6 h-6 mx-auto mb-2" />
                       <h4 className="text-2xl font-black text-white">05</h4>
                       <span className="text-xs text-zinc-500">Revisões Próximas</span>
                     </div>
@@ -578,7 +610,7 @@ export default function App() {
                   <div className="bg-black/30 rounded-2xl border border-white/5 p-4 h-36 flex flex-col justify-center">
                     <div className="flex justify-between items-center mb-4">
                       <span className="text-xs font-bold text-zinc-400">DESEMPENHO DE CONSUMO (FROTA)</span>
-                      <Fuel size={14} className="text-cyan-400" />
+                      <Database size={14} className="text-cyan-400" />
                     </div>
                     <div className="space-y-3">
                       <div className="w-full bg-white/5 h-2 rounded-full relative">
