@@ -53,7 +53,7 @@ export default function App() {
   const [dashTab, setDashTab] = useState("visaoGeral");
   const [moduloAtivo, setModuloAtivo] = useState("video");
 
-  // CARROSSEL AUTOMÁTICO RECONFIGURADO PARA 13 SEGUNDOS
+  // CARROSSEL AUTOMÁTICO AJUSTADO PARA 13 SEGUNDOS (SEM LOOPS DE CONFLITO)
   useEffect(() => {
     if (docAtivo) return; 
     const abas = ["visaoGeral", "logistica", "videoIA", "telemetria"];
@@ -65,7 +65,7 @@ export default function App() {
       });
     }, 13000); 
     return () => clearInterval(intervalo);
-  }, [docAtivo, dashTab]); 
+  }, [docAtivo]); 
 
   const alternarDocumento = (tipo) => {
     setDocAtivo(tipo);
@@ -98,11 +98,11 @@ export default function App() {
     "Pequenos Frotistas e Autônomos",
   ];
 
-  // CENTRALIZAÇÃO DOS MÓDULOS (EVITA CÓDIGO REPETIDO E TRAVAMENTOS)
-  const ecossistemaModulos = [
+  // ARRAY DE DETALHES DOS MÓDULOS SINCRONIZADO COM O JSX
+  const detalhesModulos = [
     {
       id: "video",
-      icon: <Video size={34} />,
+      icon: <Video size={24} />,
       title: "Videotelemetria com IA",
       subtitle: "Seus olhos dentro e fora da cabine, prevenindo acidentes.",
       desc: "Auditoria visual em tempo real. Câmeras com Inteligência Artificial que detectam fadiga, distração, uso de celular e garantem a segurança da operação.",
@@ -111,7 +111,7 @@ export default function App() {
     },
     {
       id: "logistics",
-      icon: <MapPinned size={34} />,
+      icon: <MapPinned size={24} />,
       title: "Logistics e Roteirização",
       subtitle: "Do planejamento à entrega final, de forma digital.",
       desc: "Gestão inteligente de entregas e coletas. Programe itinerários, acompanhe ordens de serviço e automatize a logística de campo de ponta a ponta.",
@@ -120,7 +120,7 @@ export default function App() {
     },
     {
       id: "jornada",
-      icon: <Clock size={34} />,
+      icon: <Clock size={24} />,
       title: "Jornada de Trabalho",
       subtitle: "Sua blindagem jurídica contra passivos trabalhistas.",
       desc: "Conformidade total com a Lei do Motorista. Apontamento preciso de horas trabalhadas, intervalos e espera via App Onboard ou RFID, mitigando passivos.",
@@ -129,7 +129,7 @@ export default function App() {
     },
     {
       id: "telemetria",
-      icon: <Gauge size={34} />,
+      icon: <Gauge size={24} />,
       title: "Telemetria e Velocidade na Via",
       subtitle: "O controle absoluto sobre o combustível e as multas.",
       desc: "Dashboard de eficiência operacional. Meça acelerações, freadas bruscas, uso de RPM e limite de velocidade por rua mapeada em tempo real.",
@@ -138,19 +138,22 @@ export default function App() {
     },
     {
       id: "manutencao",
-      icon: <Wrench size={34} />,
+      icon: <Wrench size={24} />,
       title: "Manutenção e Abastecimento",
       subtitle: "Gestão inteligente da vida útil da sua frota.",
       desc: "Aumente a disponibilidade da frota. Defina planos de manutenção preditiva e corretiva com base no hodômetro real e monitore custos de consumo.",
-      description: "Controle preventivo total automatizado. Esqueça as anotações físicas para trocas de óleo, filtros ou pastilhas: configure alertas baseados no hodômetro real lido do veículo. No módulo de abastecimento, o sistema cruza os cupons fiscais com os quilômetros rodados para gerar relatórios detalhados de Km/L, captando desvios e fraudes.",
+      description: "Controle preventivo total automatizado. Esqueça as anotações físicas para trocas de óleo, filtros ou pastilhas: configure alertas baseados no hodômetro real lido do veículo. No módulo de abastecimento, o sistema cruza os cupons fiscais com os quilômetros rodados para gerar relatórios detalhados de Km/L, identificando desvios e fraudes.",
       topics: ["Avisos automatizados de manutenções preventivas preventivas", "Redução de quebras inesperadas e paradas operacionais", "Auditoria exata de gastos com combustível e oficinas"]
     }
   ];
 
-  const faq = [
-    { pergunta: "A Orion Sat atua como um sistema integrado (ERP Logístico)?", resposta: "Sim. Nosso maior diferencial é entregar um ecossistema completo. Você não precisa de um sistema para câmeras, outro para roteirização de entregas e outro para a Lei do Motorista. A plataforma Orion Sat centraliza Videotelemetria, Logistics, Jornada, Manutenção e Telemetria em um único painel de controle." },
-    { pergunta: "A plataforma é acessível para frotas de menor porte e veículos particulares?", resposta: "Sim. Nossa tecnologia Enterprise foi desenhada para ser totalmente escalável. Pequenos frotistas, locadoras menores e até profissionais autônomos têm acesso à mesma inteligência operacional utilizada por grandes transportadoras, pagando apenas pelas licenças ativas na sua rotina." },
-    { pergunta: "Qual o prazo de implantação da plataforma?", resposta: "A implantação inicial do painel é rápida, ocorrendo logo após a ativação dos equipamentos ou aplicativos. O tempo total varia conforme o tamanho da frota e os módulos escolhidos, mas nossa equipe acompanha você em todo o processo para garantir uma transição sem dores de cabeça." }
+  const beneficios = [
+    "Ecossistema unificado: elimine a necessidade de contratar múltiplos softwares",
+    "Mitigação drástica do passivo de multas (Velocidade na Via) e riscos trabalhistas (Jornada)",
+    "Redução comprovada de custos com combustível e manutenções corretivas",
+    "Controle total e auditoria visual da operação via Videomonitoramento IA",
+    "Tomada de decisão baseada em dados reais (Big Data e Telemetria Avançada)",
+    "Arquitetura escalável: atende com excelência desde 1 até 5.000 veículos",
   ];
 
   if (docAtivo) {
@@ -159,7 +162,7 @@ export default function App() {
         <div className="max-w-3xl mx-auto relative z-10">
           <button
             onClick={() => alternarDocumento(null)}
-            className="inline-flex items-center gap-2 text-cyan-400 hover:text-cyan-300 font-bold mb-8 transition-all duration-300 group cursor-pointer"
+            className="inline-flex items-center gap-2 text-cyan-400 hover:text-cyan-300 font-bold mb-8 transition-all duration-300 group"
           >
             <ArrowRight className="rotate-180 transition-transform duration-300 group-hover:-translate-x-2" size={20} />
             Voltar para o site principal
@@ -184,7 +187,7 @@ export default function App() {
               <p className="text-zinc-500 mb-8 text-sm">Transparência e Governança | Atualização: Maio de 2026</p>
               <div className="space-y-6 text-zinc-400 text-sm md:text-base leading-relaxed">
                 <p><strong>1. Escopo Técnico:</strong> Cookies são pequenos arquivos temporários inseridos no navegador do usuário com o objetivo exclusivo de otimizar a experiência técnica e segurança nas nossas plataformas de software.</p>
-                <p><strong>2. Cookies Essenciais:</strong> Utilizados para manter sessões seguras e estáveis de usuários e administradores logados nos dashboards de telemetria logicial em nuvem.</p>
+                <p><strong>2. Cookies Essenciais:</strong> Utilizados para manter sessões segues e estáveis de usuários e administradores logados nos dashboards de telemetria em nuvem.</p>
                 <p><strong>3. Cookies Analíticos e Funcionais:</strong> Armazenam de forma anônima as preferências de layout de mapas, filtros de relatórios e métricas de desempenho de carregamento do site.</p>
               </div>
             </div>
@@ -273,7 +276,7 @@ export default function App() {
             </div>
           </div>
 
-          {/* DASHBOARD MOCKUP (SEMPRE ATIVO NO PC E NO CELULAR) */}
+          {/* DASHBOARD MOCKUP */}
           <div className="w-full lg:col-span-5 animate-float">
             <div className="absolute inset-0 bg-cyan-400/20 blur-[60px] rounded-full animate-pulse" />
             <div className="relative bg-[#050B1A]/90 border border-white/10 rounded-3xl p-4 md:p-6 backdrop-blur-2xl shadow-2xl overflow-hidden">
@@ -303,7 +306,7 @@ export default function App() {
                     <div className="bg-white/5 border border-white/5 rounded-xl p-3"><span className="text-[10px] font-medium text-zinc-400 flex items-center gap-1.5"><CheckSquare className="text-cyan-400 w-3.5 h-3.5" /> Ordens</span><h4 className="text-lg md:text-2xl font-black text-white mt-1">1.248 <span className="text-[9px] font-normal text-zinc-500">entregas</span></h4></div>
                     <div className="bg-white/5 border border-white/5 rounded-xl p-3"><span className="text-[10px] font-medium text-zinc-400 flex items-center gap-1.5"><Clock className="text-cyan-400 w-3.5 h-3.5" /> Jornadas</span><h4 className="text-lg md:text-2xl font-black text-white mt-1">142 <span className="text-[9px] font-normal text-zinc-500">mot.</span></h4></div>
                     <div className="bg-white/5 border border-white/5 rounded-xl p-3"><span className="text-[10px] font-medium text-zinc-400 flex items-center gap-1.5"><Gauge className="text-cyan-400 w-3.5 h-3.5" /> Eficiência</span><h4 className="text-lg md:text-2xl font-black text-white mt-1">94 <span className="text-[9px] font-normal text-zinc-500">pts</span></h4></div>
-                    <div className="bg-white/5 border border-white/5 rounded-xl p-3"><span className="text-[10px] font-medium text-zinc-400 flex items-center gap-1.5"><Wrench className="text-cyan-400 w-3.5 h-3.5" /> Manutenção</span><h4 className="text-lg md:text-2xl font-black text-white mt-1">08 <span className="text-[9px] font-normal text-zinc-500">veíc.</span></h4></div>
+                    <div className="bg-white/5 border border-white/5 rounded-xl p-3"><span className="text-[10px] font-medium text-zinc-400 flex items-center gap-1.5"><Wrench className="text-cyan-400 w-3.5 h-3.5" /> Manutenção</span><h4 className="text-lg md:text-2xl font-black text-white mt-1">08 <span className="text-[9px] font-normal text-zinc-500">veic.</span></h4></div>
                   </div>
                   <div className="bg-red-500/10 rounded-lg p-2.5 flex items-center justify-between text-[10px] border border-red-500/20">
                     <div className="flex items-center gap-2"><Video className="text-red-400 w-4 h-4 flex-shrink-0" /><span className="text-zinc-200 font-medium line-clamp-1">Alerta: Fadiga detectada (TRK-44)</span></div>
@@ -314,8 +317,9 @@ export default function App() {
 
               {dashTab === "videoIA" && (
                 <div className="animate-in fade-in duration-300">
-                  <div className="bg-black rounded-2xl border border-white/10 relative h-36 md:h-44 flex flex-col items-center justify-center overflow-hidden">
+                  <div className="bg-black rounded-2xl border border-white/10 relative h-36 md:h-44 flex flex-col items-center justify-center overflow-hidden shadow-inner">
                      <video src="/video-ia.mp4" autoPlay loop muted playsInline className="absolute inset-0 w-full h-full object-cover opacity-70" />
+                     <div className="absolute inset-0 bg-gradient-to-t from-cyan-900/40 to-transparent pointer-events-none" />
                      <div className="absolute top-2 left-2 text-red-400 text-[9px] font-bold flex items-center gap-1 bg-black/60 px-2 py-0.5 rounded border border-white/10 z-10">LIVE FEED: CABINE IA</div>
                      <span className="relative z-10 mt-auto mb-3 text-white text-[8px] font-bold bg-black/70 px-3 py-1 rounded-full border border-cyan-400/30 backdrop-blur-md">RECONHECIMENTO FACIAL ATIVO</span>
                   </div>
@@ -372,7 +376,7 @@ export default function App() {
         </div>
       </section>
 
-      {/* SEÇÃO NOVIDADE: MÓDULOS DETALHADOS INTERATIVOS */}
+      {/* SEÇÃO EXPLICAÇÃO INTERATIVA COMPLETA */}
       <section id="modulos-detalhados" className="max-w-7xl mx-auto px-4 md:px-6 pb-20 relative z-10">
         <div className="text-center mb-12">
           <p className="text-cyan-400 font-bold uppercase tracking-widest text-xs mb-3">Funcionalidades na Prática</p>
@@ -380,7 +384,7 @@ export default function App() {
         </div>
         <div className="grid lg:grid-cols-12 gap-8 bg-white/5 border border-white/10 rounded-[32px] p-4 md:p-10">
           <div className="lg:col-span-4 flex flex-col gap-2.5">
-            {ecossistemaModulos.map((modulo) => (
+            {detalhesModulos.map((modulo) => (
               <button
                 key={modulo.id}
                 onClick={() => setModuloAtivo(modulo.id)}
@@ -393,7 +397,7 @@ export default function App() {
             ))}
           </div>
           <div className="lg:col-span-8 bg-[#02050A] rounded-2xl p-5 md:p-10 border border-white/5 min-h-[320px] flex flex-col justify-center">
-            {ecossistemaModulos.map((modulo) => moduloAtivo === modulo.id && (
+            {detalhesModulos.map((modulo) => moduloAtivo === modulo.id && (
               <div key={modulo.id} className="animate-in fade-in duration-300">
                 <h3 className="text-xl md:text-3xl font-black mb-3 text-white">{modulo.subtitle}</h3>
                 <p className="text-zinc-400 text-sm md:text-base mb-6 leading-relaxed">{modulo.description}</p>
