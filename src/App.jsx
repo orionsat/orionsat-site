@@ -109,7 +109,7 @@ export default function App() {
     "Pequenos Frotistas e Autônomos",
   ];
 
-  // DADOS DETALHADOS PARA A NOVA SEÇÃO EXPLICATIVA
+  // DADOS DETALHADOS PARA A SEÇÃO EXPLICATIVA E CARDS DE SOLUÇÕES
   const detalhesModulos = [
     {
       id: "video",
@@ -180,6 +180,9 @@ export default function App() {
     }
   ];
 
+  // ==========================================
+  // RENDERIZAÇÃO DOS DOCUMENTOS LEGAIS
+  // ==========================================
   if (docAtivo) {
     return (
       <div className="bg-[#020817] text-white min-h-screen py-24 px-6 relative overflow-hidden font-sans">
@@ -196,24 +199,113 @@ export default function App() {
             Voltar para o site principal
           </button>
 
-          {/* MANTIVE AS TELAS DE DOCUMENTAÇÃO EXATAMENTE COMO ESTAVAM */}
+          {/* POLÍTICA DE PRIVACIDADE COMPLETA */}
           {docAtivo === "privacidade" && (
             <div className="animate-in fade-in slide-in-from-bottom-8 duration-700">
+              <p className="text-zinc-500 uppercase tracking-widest text-[10px] md:text-xs mb-2">GOVERNANÇA CORPORATIVA E TI</p>
               <h1 className="text-3xl md:text-4xl font-black tracking-tight mb-2">Política de Privacidade</h1>
               <p className="text-zinc-500 mb-8 md:mb-12 text-sm">Versão Premium Final | Atualização: Maio de 2026</p>
+
               <div className="space-y-8 text-zinc-400 text-base md:text-lg leading-relaxed">
                 <section>
                   <h2 className="text-xl md:text-2xl font-bold text-cyan-400 mb-3">1. Introdução</h2>
-                  <p>A ORION SAT LTDA ("Orion Sat") é uma corporação de tecnologia dedicada exclusivamente ao desenvolvimento de inteligência operacional, sob as estritas diretrizes da Lei Geral de Proteção de Dados Pessoais (LGPD).</p>
+                  <p>A ORION SAT LTDA ("Orion Sat") é uma corporação de tecnologia dedicada exclusivamente ao desenvolvimento de inteligência operacional, conectividade avançada, telemetria analítica e soluções para a gestão inteligente de frotas, motoristas independentes, operações individuais e usuários autônomos. Nossos sistemas atuam sob as estritas diretrizes da Lei Geral de Proteção de Dados Pessoais (LGPD - Lei nº 13.709/2018) e do Marco Civil da Internet (Lei nº 12.965/2014).</p>
+                </section>
+                <section>
+                  <h2 className="text-xl md:text-2xl font-bold text-cyan-400 mb-3">2. Categorias de Dados Tratados</h2>
+                  <ul className="list-disc list-inside space-y-3 text-zinc-300 pl-2">
+                    <li><strong>Dados Cadastrais:</strong> Nome do gestor ou usuário, e-mail, telefone e dados documentais (CPF/CNPJ).</li>
+                    <li><strong>Dados de Telemetria e Videomonitoramento:</strong> Indicadores técnicos do veículo, imagens captadas por câmeras embarcadas, velocidade, RPM e padrões de condução.</li>
+                    <li><strong>Dados Logísticos:</strong> Coordenadas de geolocalização coletadas para roteirização e gestão operacional.</li>
+                    <li><strong>Dados Técnicos:</strong> Registros obrigatórios de conexão (logs) e identificadores de hardware.</li>
+                  </ul>
+                </section>
+                <section>
+                  <h2 className="text-xl md:text-2xl font-bold text-cyan-400 mb-3">3. Finalidade e Justificativas Jurídicas</h2>
+                  <p>O tratamento estrutura-se nas bases legais de: Execução de Contrato (operação estável do software), Cumprimento de Obrigação Legal (guarda de logs por 6 meses) e Legítimo Interesse para segurança cibernética e operacional.</p>
+                </section>
+                <section>
+                  <h2 className="text-xl md:text-2xl font-bold text-cyan-400 mb-3">4. Diretrizes de Compartilhamento</h2>
+                  <p>A Orion Sat adota uma política corporativa inflexível de não comercialização de dados. O fluxo limita-se ao armazenamento criptografado em nuvem global e fornecimento direto para a pessoa ou empresa contratante legítima da licença.</p>
+                </section>
+                <section>
+                  <h2 className="text-xl md:text-2xl font-bold text-cyan-400 mb-3">5. Direitos do Titular</h2>
+                  <p>Asseguramos todos os direitos previstos no Art. 18 da LGPD, viabilizando o acesso facilitado, retificação e exclusão definitiva, observados os prazos fiscais e cíveis obrigatórios.</p>
+                </section>
+                <section className="border-t border-white/10 pt-8">
+                  <h2 className="text-xl md:text-2xl font-bold text-cyan-400 mb-3">6. Contato</h2>
+                  <p className="mt-4 text-zinc-300 font-medium bg-white/5 p-5 rounded-2xl border border-white/10 text-sm md:text-base break-words">
+                    <strong className="text-white text-lg">ORION SAT LTDA</strong><br />
+                    E-mail Oficial: <span className="text-cyan-400">privacidade@orionsatgestao.com.br</span>
+                  </p>
                 </section>
               </div>
             </div>
           )}
-          {/* Outros documentos omitidos por brevidade visual aqui, mas devem continuar intactos se você for expandir. */}
-          
+
+          {/* POLÍTICA DE COOKIES COMPLETA */}
+          {docAtivo === "cookies" && (
+            <div className="animate-in fade-in slide-in-from-bottom-8 duration-700">
+              <p className="text-zinc-500 uppercase tracking-widest text-[10px] md:text-xs mb-2">TRANSPARÊNCIA E EXPERIÊNCIA DIGITAL</p>
+              <h1 className="text-3xl md:text-4xl font-black tracking-tight mb-2">Política de Cookies</h1>
+              <p className="text-zinc-500 mb-8 md:mb-12 text-sm">Versão Premium Final | Atualização: Maio de 2026</p>
+
+              <div className="space-y-8 text-zinc-400 text-base md:text-lg leading-relaxed">
+                <section>
+                  <h2 className="text-xl md:text-2xl font-bold text-cyan-400 mb-3">1. Escopo e Conceito</h2>
+                  <p>Cookies são pequenos arquivos temporários inseridos no navegador do usuário para viabilizar logins estáveis, guardar preferências de exibição de relatórios e coletar métricas básicas de uso das páginas da Orion Sat.</p>
+                </section>
+                <section>
+                  <h2 className="text-xl md:text-2xl font-bold text-cyan-400 mb-3">2. Gerenciamento Técnico pelo Usuário</h2>
+                  <p>O usuário pode gerenciar, bloquear ou limpar os cookies armazenados acessando as configurações do navegador web. A recusa total de cookies essenciais impede a autenticação e o uso dos painéis em nuvem.</p>
+                </section>
+                <section className="border-t border-white/10 pt-8">
+                  <h2 className="text-xl md:text-2xl font-bold text-cyan-400 mb-3">3. Contato</h2>
+                  <p className="mt-4 text-cyan-400 font-bold text-lg md:text-xl bg-white/5 p-5 rounded-2xl border border-white/10 break-words">
+                    privacidade@orionsatgestao.com.br
+                  </p>
+                </section>
+              </div>
+            </div>
+          )}
+
+          {/* TERMOS DE USO COMPLETOS */}
+          {docAtivo === "termos" && (
+            <div className="animate-in fade-in slide-in-from-bottom-8 duration-700">
+              <p className="text-zinc-500 uppercase tracking-widest text-[10px] md:text-xs mb-2">CONTRATOS E REGULAMENTOS DIGITAIS</p>
+              <h1 className="text-3xl md:text-4xl font-black tracking-tight mb-2">Termos de Uso</h1>
+              <p className="text-zinc-500 mb-8 md:mb-12 text-sm">Versão Premium Final | Canal B2B e Autônomos | Maio de 2026</p>
+
+              <div className="space-y-8 text-zinc-400 text-base md:text-lg leading-relaxed">
+                <section>
+                  <h2 className="text-xl md:text-2xl font-bold text-cyan-400 mb-3">1. Escopo das Soluções de Software</h2>
+                  <p>Os presentes Termos regulam o direito de acesso e utilização dos sistemas de software, painéis e aplicativos móveis de propriedade da ORION SAT LTDA.</p>
+                </section>
+                <section className="bg-red-500/5 border border-red-500/20 p-5 md:p-6 rounded-2xl">
+                  <h2 className="text-xl md:text-2xl font-bold text-red-400 mb-3">2. Delimitação Tecnológica Importante</h2>
+                  <p className="text-sm text-zinc-400 leading-relaxed">
+                    Por se tratar de um ambiente puramente de análise de dados, processamento de telemetria e gestão de software informacional (SaaS), as soluções da Orion Sat <strong>NÃO possuem escopo, vinculação ou aderência com o mercado de gerenciamento de riscos civis de ativos, atividades corporativas de pronta resposta, intervenções físicas de campo ou qualquer modalidade de salvaguarda material de bens</strong>. A Orion Sat exime-se inteiramente de qualquer natureza de cobertura financeira ou securitária sobre os veículos cadastrados na plataforma.
+                  </p>
+                </section>
+                <section>
+                  <h2 className="text-xl md:text-2xl font-bold text-cyan-400 mb-3">3. Responsabilidade Operacional e Uso</h2>
+                  <p>As credenciais de acesso possuem caráter pessoal e intransferível. Compete exclusivamente ao usuário (físico ou jurídico) a guarda segura de suas chaves de acesso.</p>
+                </section>
+                <section>
+                  <h2 className="text-xl md:text-2xl font-bold text-cyan-400 mb-3">4. Propriedade Intelectual e Suspensão</h2>
+                  <p>A outorga de acesso não transfere direitos. A Orion Sat reserva-se o direito de suspender o acesso em casos de inadimplência ou violação destes Termos.</p>
+                </section>
+                <section className="border-t border-white/10 pt-8">
+                  <h2 className="text-xl md:text-2xl font-bold text-cyan-400 mb-3">5. Foro de Eleição</h2>
+                  <p>As partes elegem o foro da Comarca de <strong>Itaquaquecetuba/SP</strong> como competente para dirimir quaisquer controvérsias técnicas.</p>
+                </section>
+              </div>
+            </div>
+          )}
+
           <button
             onClick={() => alternarDocumento(null)}
-            className="w-full md:w-auto flex items-center justify-center gap-2 bg-white/5 border border-white/10 hover:border-cyan-400/50 hover:bg-white/10 hover:shadow-[0_0_20px_rgba(34,211,238,0.2)] px-6 py-4 md:py-3 rounded-xl font-bold mt-12 mb-8 transition-all duration-300 cursor-pointer"
+            className="w-full md:w-auto flex items-center justify-center gap-2 bg-white/5 border border-white/10 hover:border-cyan-400/50 hover:bg-white/10 px-6 py-4 md:py-3 rounded-xl font-bold mt-12 mb-8 transition-all duration-300 cursor-pointer"
           >
             Fechar janela legal e retornar ao site
           </button>
@@ -417,13 +509,15 @@ export default function App() {
                       <h4 className="text-2xl md:text-4xl font-black text-white group-hover:text-cyan-400 transition-colors">08<span className="text-sm md:text-lg text-zinc-500 font-medium ml-1">veículos</span></h4>
                     </div>
                   </div>
+                  
+                  {/* Log de Alertas Enterprise */}
                   <div className="space-y-2">
                     <div className="bg-red-500/10 rounded-lg p-2.5 md:p-3 flex items-center justify-between text-xs md:text-sm border border-red-500/20">
                       <div className="flex items-center gap-2"><Video className="text-red-400 w-4 h-4" /><span className="text-zinc-200 font-medium">Câmera IA: Sinal de fadiga detectado (TRK-44)</span></div>
                       <span className="text-red-400 text-[10px] md:text-xs font-bold flex items-center gap-1"><div className="w-1.5 h-1.5 rounded-full bg-red-400 animate-pulse"/>VÍDEO GRAVADO</span>
                     </div>
                     <div className="bg-yellow-500/10 rounded-lg p-2.5 md:p-3 flex items-center justify-between text-xs md:text-sm border border-yellow-500/20">
-                      <div className="flex items-center gap-2"><MapPinned className="text-yellow-400 w-4 h-4" /><span className="text-zinc-300 font-medium">Velocidade na Via: 58km/h (Permitido: 40km/h)</span></div>
+                      <div className="flex items-center gap-2"><MapPinned className="text-yellow-400 w-4 h-4" /><span className="text-zinc-300 font-medium">Velocidade na Via: 58km/h em trecho de 40km/h (RTA-12)</span></div>
                       <span className="text-zinc-500 text-[10px] md:text-xs">Há 2 min</span>
                     </div>
                   </div>
@@ -450,6 +544,7 @@ export default function App() {
                       <span className="text-xs text-red-400 font-bold">Fadiga Severa</span>
                     </div>
                   </div>
+                  {/* VIDEO REAL EMBUTIDO */}
                   <div className="bg-black rounded-2xl border border-white/10 relative h-40 md:h-48 flex flex-col items-center justify-center overflow-hidden shadow-inner">
                      <video 
                        src="/video-ia.mp4" 
@@ -483,9 +578,10 @@ export default function App() {
                       <h4 className="text-2xl font-black text-white">18</h4>
                     </div>
                   </div>
+                  {/* Mapa Logístico Realista Dark Mode */}
                   <div className="bg-[#0b101e] rounded-2xl border border-white/10 relative h-40 md:h-48 overflow-hidden">
-                    <div className="absolute inset-0 opacity-[0.3] bg-[linear-gradient(#1e293b_1px,transparent_1px),linear-gradient(90deg,#1e293b_1px,transparent_1px)] bg-[size:40px_40px]" />
-                    <div className="absolute inset-0 opacity-[0.4] bg-[linear-gradient(#334155_1px,transparent_1px),linear-gradient(90deg,#334155_1px,transparent_1px)] bg-[size:120px_120px]" />
+                    <div className="absolute inset-0 opacity-[0.3] bg-[linear-gradient(#1e293b_1px,transparent_1px),linear-gradient(90deg(#1e293b_1px,transparent_1px))] bg-[size:40px_40px]" />
+                    <div className="absolute inset-0 opacity-[0.4] bg-[linear-gradient(#334155_1px,transparent_1px),linear-gradient(90deg(#334155_1px,transparent_1px))] bg-[size:120px_120px]" />
                     
                     <svg viewBox="0 0 400 200" className="absolute inset-0 w-full h-full opacity-80" preserveAspectRatio="none">
                       <path d="M -50 150 Q 150 180 250 80 T 450 50" fill="none" stroke="#1e293b" strokeWidth="8" />
@@ -603,7 +699,7 @@ export default function App() {
         </div>
       </section>
 
-      {/* SEÇÃO DE MÓDULOS DETALHADOS (NOVIDADE: ENTENDA A FUNDO) */}
+      {/* SEÇÃO DE MÓDULOS DETALHADOS INTERATIVOS */}
       <section id="modulos-detalhados" className="max-w-7xl mx-auto px-4 md:px-6 pb-20 md:pb-32 relative z-10">
         <div className="text-center mb-12 md:mb-20">
           <p className="text-cyan-400 font-bold uppercase tracking-[0.2em] md:tracking-[0.3em] text-xs md:text-sm mb-3 md:mb-4">Funcionalidades na Prática</p>
