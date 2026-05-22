@@ -14,7 +14,6 @@ import {
   Database,
   Server,
   Radar,
-  MonitorSmartphone,
   Gauge,
   Navigation2,
   AlertTriangle,
@@ -54,7 +53,7 @@ export default function App() {
   const [dashTab, setDashTab] = useState("visaoGeral");
   const [moduloAtivo, setModuloAtivo] = useState("video");
 
-  // CARROSSEL AUTOMÁTICO DE 13 SEGUNDOS
+  // CARROSSEL AUTOMÁTICO RECONFIGURADO PARA 13 SEGUNDOS
   useEffect(() => {
     if (docAtivo) return; 
     const abas = ["visaoGeral", "logistica", "videoIA", "telemetria"];
@@ -66,7 +65,7 @@ export default function App() {
       });
     }, 13000); 
     return () => clearInterval(intervalo);
-  }, [docAtivo]); 
+  }, [docAtivo, dashTab]); 
 
   const alternarDocumento = (tipo) => {
     setDocAtivo(tipo);
@@ -99,65 +98,53 @@ export default function App() {
     "Pequenos Frotistas e Autônomos",
   ];
 
-  const detalhesModulos = [
+  // CENTRALIZAÇÃO DOS MÓDULOS (EVITA CÓDIGO REPETIDO E TRAVAMENTOS)
+  const ecossistemaModulos = [
     {
       id: "video",
-      icon: <Video size={24} />,
+      icon: <Video size={34} />,
       title: "Videotelemetria com IA",
       subtitle: "Seus olhos dentro e fora da cabine, prevenindo acidentes.",
-      description: "Esqueça as câmeras comuns que apenas gravam. Nosso sistema utiliza Inteligência Artificial embarcada (Edge AI) para ler o rosto do motorista e o ambiente. Ele identifica sinais de sono (bocejos, olhos fechando), uso de celular, cigarro ou ausência de cinto. O motorista recebe um alerta sonoro instantâneo para evitar o acidente, e a central recebe o vídeo do evento salvo na nuvem.",
-      topics: ["Prevenção ativa de acidentes e tombamentos", "Auditoria de sinistros (prova em vídeo irrefutável)", "Melhoria contínua do comportamento da equipe"]
+      desc: "Auditoria visual em tempo real. Câmeras com Inteligência Artificial que detectam fadiga, distração, uso de celular e garantem a segurança da operação.",
+      description: "Esqueça as câmeras comuns que apenas gravam. Nosso sistema utiliza Inteligência Artificial embarcada (Edge AI) para ler o rosto do motorista e o ambiente. Ele identifica sinais de sono (bocejos, olhos fechando), uso de celular, cigarro ou ausência de cinto. O motorista recebe um alerta sonoro instantâneo para evitar acidentes, e a central recebe o vídeo recortado do evento na nuvem.",
+      topics: ["Prevenção ativa de acidentes e sinistros graves", "Auditoria completa com prova em vídeo irrefutável", "Melhoria e ranking do comportamento da equipe ao volante"]
     },
     {
       id: "logistics",
-      icon: <RouteIcon size={24} />,
+      icon: <MapPinned size={34} />,
       title: "Logistics e Roteirização",
-      subtitle: "Do planejamento à entrega final, sem usar papel.",
-      description: "Um módulo focado em acabar com o telefone sem fio entre a base e o motorista. Você importa seus pontos de entrega/coleta, e o sistema traça a rota mais inteligente. O motorista acessa tudo pelo App, dá o 'check-in' no local, coleta assinaturas ou tira fotos do canhoto. Se algo der errado (cliente ausente), ele registra o motivo na hora.",
-      topics: ["Redução drástica de quilometragem rodada em falso", "Comprovação digital de entregas em tempo real", "Controle exato de pontualidade (SLA)"]
+      subtitle: "Do planejamento à entrega final, de forma digital.",
+      desc: "Gestão inteligente de entregas e coletas. Programe itinerários, acompanhe ordens de serviço e automatize a logística de campo de ponta a ponta.",
+      description: "Elimine o telefone sem fio entre a base operacional e o motorista de campo. Importe seus pontos de parada diretamente no sistema e deixe a inteligência artificial traçar as rotas mais curtas e econômicas. O motorista acompanha tudo pelo aplicativo, realiza check-ins, coleta assinaturas digitais ou anexa fotos dos canhotos de entrega concluídos.",
+      topics: ["Otimização de rotas com redução drástica de Km rodado", "Comprovação de entregas e coletas em tempo real", "Controle de janelas de entrega e metas de pontualidade (SLA)"]
     },
     {
       id: "jornada",
-      icon: <Clock size={24} />,
+      icon: <Clock size={34} />,
       title: "Jornada de Trabalho",
-      subtitle: "Sua blindagem contra passivos trabalhistas.",
-      description: "Adequar-se à Lei do Motorista não precisa ser uma dor de cabeça. Nossa plataforma automatiza o apontamento de horas. O motorista inicia o expediente via App ou crachá (RFID). O sistema registra automaticamente o tempo de direção, paradas para descanso, refeição, horas de espera e horas extras, gerando folhas de ponto precisas e auditáveis.",
-      topics: ["Adequação rigorosa à legislação vigente", "Fim das planilhas manuais e erros de apontamento", "Alertas para o motorista realizar suas pausas obrigatórias"]
+      subtitle: "Sua blindagem jurídica contra passivos trabalhistas.",
+      desc: "Conformidade total com a Lei do Motorista. Apontamento preciso de horas trabalhadas, intervalos e espera via App Onboard ou RFID, mitigando passivos.",
+      description: "Adequar sua operação à Lei do Motorista não precisa ser complexo. Nossa plataforma automatiza o ciclo completo de apontamentos de horas. O motorista registra o início de expediente, tempos de direção, paradas de descanso, refeição e espera diretamente no App ou via leitor no painel, gerando relatórios 100% auditáveis.",
+      topics: ["Adequação rigorosa à Lei do Motorista vigente", "Fim do preenchimento manual de diários de bordo", "Redução de custos com horas extras indevidas"]
     },
     {
       id: "telemetria",
-      icon: <Gauge size={24} />,
+      icon: <Gauge size={34} />,
       title: "Telemetria e Velocidade na Via",
-      subtitle: "O fim do desperdício de combustível e das multas surpresa.",
-      description: "Nós lemos a 'mente' do veículo. Monitoramos a RPM (conta-giros), acelerações, freadas bruscas e curvas acentuadas. O grande diferencial é o módulo 'Velocidade na Via': o GPS cruza a posição do carro com os limites de velocidade reais de cada rua (placas). Se a via é de 40km/h e o motorista passa a 60km/h, a central fica sabendo na hora.",
-      topics: ["Redução de até 65% em multas de trânsito", "Ranking de motoristas baseado em direção econômica", "Diminuição do desgaste prematuro de freios e pneus"]
+      subtitle: "O controle absoluto sobre o combustível e as multas.",
+      desc: "Dashboard de eficiência operacional. Meça acelerações, freadas bruscas, uso de RPM e limite de velocidade por rua mapeada em tempo real.",
+      description: "Monitore o comportamento técnico de condução. Nosso software avalia excessos de RPM, acelerações desnecessárias, frenagens e curvas bruscas. O pilar 'Velocidade na Via' cruza os dados do GPS com a velocidade regulamentada de cada rua do Brasil. Se o condutor exceder o limite daquela via específica, o alerta é gerado instantaneamente.",
+      topics: ["Redução de até 65% em multas por excesso de velocidade", "Construção de rankings automáticos de motoristas econômicos", "Economia direta em combustível, pneus e componentes de freio"]
     },
     {
       id: "manutencao",
-      icon: <Wrench size={24} />,
+      icon: <Wrench size={34} />,
       title: "Manutenção e Abastecimento",
-      subtitle: "Gestão inteligente da saúde da sua frota.",
-      description: "Não dependa da memória da equipe para trocar óleo ou pastilhas. Crie planos preventivos baseados no hodômetro ou horímetro real lido pela plataforma. Além disso, o módulo cruza as informações de litragem abastecida com a quilometragem rodada para te dar o custo real de Km/L, identificando imediatamente fraudes ou veículos com defeito.",
-      topics: ["Aumento da disponibilidade operacional dos veículos", "Avisos automáticos de manutenções vencidas e a vencer", "Controle de notas fiscais e custos de oficinas"]
+      subtitle: "Gestão inteligente da vida útil da sua frota.",
+      desc: "Aumente a disponibilidade da frota. Defina planos de manutenção preditiva e corretiva com base no hodômetro real e monitore custos de consumo.",
+      description: "Controle preventivo total automatizado. Esqueça as anotações físicas para trocas de óleo, filtros ou pastilhas: configure alertas baseados no hodômetro real lido do veículo. No módulo de abastecimento, o sistema cruza os cupons fiscais com os quilômetros rodados para gerar relatórios detalhados de Km/L, captando desvios e fraudes.",
+      topics: ["Avisos automatizados de manutenções preventivas preventivas", "Redução de quebras inesperadas e paradas operacionais", "Auditoria exata de gastos com combustível e oficinas"]
     }
-  ];
-
-  const funcionalidades = [
-    { icon: <Video size={34} />, title: "Videotelemetria com IA", desc: "Auditoria visual em tempo real. Câmeras com Inteligência Artificial que detectam fadiga, distração, uso de celular e garantem a segurança da operação." },
-    { icon: <RouteIcon size={34} />, title: "Logistics e Roteirização", desc: "Gestão inteligente de entregas e coletas. Programe itinerários, acompanhe ordens de serviço e automatize a logística de campo de ponta a ponta." },
-    { icon: <Smartphone size={34} />, title: "Jornada de Trabalho", desc: "Conformidade total com a Lei do Motorista. Apontamento preciso de horas trabalhadas, intervalos e espera via App Onboard ou RFID, mitigando passivos." },
-    { icon: <MapPinned size={34} />, title: "Velocidade na Via", desc: "Reduza multas em até 65%. O sistema mapeia o limite regulamentado de cada rua ou rodovia e cruza com a telemetria do veículo instantaneamente." },
-    { icon: <Gauge size={34} />, title: "Telemetria Avançada", desc: "Dashboard de eficiência operacional. Meça acelerações, freadas bruscas, uso de RPM e crie rankings de condução para reduzir o desperdício." },
-    { icon: <ShieldCheck size={34} />, title: "Manutenção e Abastecimento", desc: "Aumente a disponibilidade da frota. Defina planos de manutenção preditiva e corretiva com base no hodômetro real e monitore custos de consumo." },
-  ];
-
-  const beneficios = [
-    "Ecossistema unificado: elimine a necessidade de contratar múltiplos softwares",
-    "Mitigação drástica do passivo de multas (Velocidade na Via) e riscos trabalhistas (Jornada)",
-    "Redução comprovada de custos com combustível e manutenções corretivas",
-    "Controle total e auditoria visual da operação via Videomonitoramento IA",
-    "Tomada de decisão baseada em dados reais (Big Data e Telemetria Avançada)",
-    "Arquitetura escalável: atende com excelência desde 1 até 5.000 veículos",
   ];
 
   const faq = [
@@ -166,14 +153,13 @@ export default function App() {
     { pergunta: "Qual o prazo de implantação da plataforma?", resposta: "A implantação inicial do painel é rápida, ocorrendo logo após a ativação dos equipamentos ou aplicativos. O tempo total varia conforme o tamanho da frota e os módulos escolhidos, mas nossa equipe acompanha você em todo o processo para garantir uma transição sem dores de cabeça." }
   ];
 
-  // TEXTOS CORPORATIVOS E JURÍDICOS COMPLETOS
   if (docAtivo) {
     return (
       <div className="bg-[#020817] text-white min-h-screen py-24 px-6 relative overflow-hidden font-sans">
         <div className="max-w-3xl mx-auto relative z-10">
           <button
             onClick={() => alternarDocumento(null)}
-            className="inline-flex items-center gap-2 text-cyan-400 hover:text-cyan-300 font-bold mb-8 transition-all duration-300 group cursor-pointer hover:bg-cyan-400/10 px-4 py-2 rounded-xl"
+            className="inline-flex items-center gap-2 text-cyan-400 hover:text-cyan-300 font-bold mb-8 transition-all duration-300 group cursor-pointer"
           >
             <ArrowRight className="rotate-180 transition-transform duration-300 group-hover:-translate-x-2" size={20} />
             Voltar para o site principal
@@ -184,10 +170,10 @@ export default function App() {
               <h1 className="text-3xl md:text-4xl font-black tracking-tight mb-2">Política de Privacidade</h1>
               <p className="text-zinc-500 mb-8 text-sm">Versão Premium Corporativa | Atualização: Maio de 2026</p>
               <div className="space-y-6 text-zinc-400 text-sm md:text-base leading-relaxed">
-                <p><strong>1. Escopo:</strong> A ORION SAT LTDA está totalmente comprometida com a privacidade e proteção de dados de seus clientes, parceiros e motoristas operacionais, atuando em estrita conformidade com a Lei Geral de Proteção de Dados (LGPD - Lei nº 13.709/2018).</p>
-                <p><strong>2. Coleta de Informações:</strong> Nossos softwares coletam registros analíticos de telemetria, posicionamento geográfico em primeiro e segundo plano (essencial para módulos de rotas e jornada de trabalho), além de dados de mídia gerados pela videotelemetria veicular proativa.</p>
-                <p><strong>3. Finalidade:</strong> Todas as informações processadas possuem finalidade única e exclusiva de execução contratual logística, auditoria operacional e fornecimento de inteligência corporativa para os contratantes das licenças de uso.</p>
-                <p><strong>4. Não Comercialização:</strong> A Orion Sat adota uma política inflexível de segurança: nenhum dado coletado em nossos servidores, logs de navegação ou imagens de videotelemetria são comercializados, alugados ou compartilhados com terceiros para fins publicitários.</p>
+                <p><strong>1. Diretrizes de Proteção:</strong> A ORION SAT LTDA está totalmente comprometida com a privacidade e proteção de dados de seus clientes, parceiros e operadores veiculares, atuando em estrita conformidade com a Lei Geral de Proteção de Dados (LGPD - Lei nº 13.709/2018).</p>
+                <p><strong>2. Coleta de Informações Operacionais:</strong> Nossos sistemas realizam o processamento analítico de indicadores de telemetria, posicionamento geográfico em primeiro e segundo plano (essencial para módulos de rotas e jornada de trabalho), além de dados de mídia gerados pela videotelemetria veicular proativa.</p>
+                <p><strong>3. Finalidade Estrita:</strong> Todas as informações processadas possuem finalidade única de execução contratual logística, auditoria operacional e fornecimento de inteligência corporativa para os contratantes das licenças de uso.</p>
+                <p><strong>4. Compromisso de Não Comercialização:</strong> A Orion Sat adota uma política corporativa inflexível: nenhum dado coletado em nossos servidores, logs de navegação ou imagens de videotelemetria são comercializados, alugados ou compartilhados com terceiros para fins comerciais.</p>
               </div>
             </div>
           )}
@@ -197,7 +183,7 @@ export default function App() {
               <h1 className="text-3xl md:text-4xl font-black tracking-tight mb-2">Política de Cookies</h1>
               <p className="text-zinc-500 mb-8 text-sm">Transparência e Governança | Atualização: Maio de 2026</p>
               <div className="space-y-6 text-zinc-400 text-sm md:text-base leading-relaxed">
-                <p><strong>1. O que são Cookies:</strong> São pequenos arquivos temporários inseridos no navegador do usuário com o objetivo exclusivo de otimizar a experiência técnica e segurança nas nossas plataformas.</p>
+                <p><strong>1. Escopo Técnico:</strong> Cookies são pequenos arquivos temporários inseridos no navegador do usuário com o objetivo exclusivo de otimizar a experiência técnica e segurança nas nossas plataformas de software.</p>
                 <p><strong>2. Cookies Essenciais:</strong> Utilizados para manter sessões seguras e estáveis de usuários e administradores logados nos dashboards de telemetria logicial em nuvem.</p>
                 <p><strong>3. Cookies Analíticos e Funcionais:</strong> Armazenam de forma anônima as preferências de layout de mapas, filtros de relatórios e métricas de desempenho de carregamento do site.</p>
               </div>
@@ -211,7 +197,7 @@ export default function App() {
               <div className="space-y-6 text-zinc-400 text-sm md:text-base leading-relaxed">
                 <p><strong>1. Natureza do Serviço (SaaS):</strong> A Orion Sat é uma plataforma de software como serviço dedicada exclusivamente ao fornecimento de dados analíticos, telemetria avançada, otimização de frotas e gerenciamento de jornadas trabalhistas de equipes de campo.</p>
                 <div className="bg-red-500/10 border border-red-500/20 p-4 rounded-xl text-zinc-300">
-                  <p><strong>2. CLÁUSULA DE ESCOPO TECNOLÓGICO RESTRITO:</strong> Por se tratar de um ambiente focado em análise informacional de dados operacionais, as soluções Orion Sat <strong>NÃO possuem escopo de gerenciamento de riscos civis patrimoniais, atividades de pronta resposta tática, escoltas ou salvaguarda material de ativos corporativos</strong>. Nossos sistemas não dão coberturas securitárias ou financeiras de qualquer natureza sobre os bens cadastrados.</p>
+                  <p><strong>2. CLÁUSULA DE ESCOPO TECNOLÓGICO RESTRITO:</strong> Por se tratar de um ambiente focado em análise informacional de dados operacionais, as soluções Orion Sat <strong>NÃO possuem escopo de gerenciamento de riscos civis patrimoniais, atividades de pronta resposta tática, escoltas ou salvaguarda material de ativos corporativos</strong>. Nossos sistemas não dão coberturas securitárias ou financeiras de qualquer natureza sobre os veículos cadastrados.</p>
                 </div>
                 <p><strong>3. Responsabilidade de Uso:</strong> O usuário e o contratante corporativo são os únicos responsáveis pela guarda segura de suas chaves e credenciais de acesso, bem como pela conformidade na coleta de imagens de sua equipe nos termos da lei.</p>
               </div>
@@ -227,10 +213,29 @@ export default function App() {
   return (
     <div className="bg-[#020817] text-white overflow-x-hidden font-sans">
       
+      {/* INJEÇÃO DE ESTILOS CSS */}
+      <style>{`
+        .animate-float { animation: float 6s ease-in-out infinite; }
+        .animate-slow-pulse { animation: slow-pulse 8s ease-in-out infinite; }
+        .blend-logo { mix-blend-mode: screen; }
+        .animate-bar { animation: slideRight 1.5s cubic-bezier(0.22, 1, 0.36, 1) forwards; }
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        @keyframes float { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(-10px); } }
+        @keyframes slow-pulse { 0%, 100% { opacity: 0.15; transform: scale(1); } 50% { opacity: 0.3; transform: scale(1.05); } }
+        @keyframes slideRight { from { transform: scaleX(0); transform-origin: left; } to { transform: scaleX(1); transform-origin: left; } }
+      `}</style>
+
+      {/* BACKGROUND GRAPHICS */}
+      <div className="fixed inset-0 pointer-events-none z-0">
+        <div className="absolute top-0 left-1/2 md:left-1/3 w-[300px] md:w-[800px] h-[300px] md:h-[800px] bg-cyan-400 blur-[120px] md:blur-[200px] -translate-x-1/2 md:-translate-x-0 animate-slow-pulse" />
+        <div className="absolute bottom-0 right-0 md:right-1/4 w-[300px] md:w-[800px] h-[300px] md:h-[800px] bg-blue-700 blur-[120px] md:blur-[200px] animate-slow-pulse" style={{ animationDelay: '4s' }} />
+      </div>
+
       {/* NAVBAR */}
       <header className="fixed top-0 left-0 w-full z-40 border-b border-white/5 backdrop-blur-2xl bg-[#020817]/70 transition-all duration-300">
         <div className="max-w-7xl mx-auto px-4 md:px-6 py-4 flex items-center justify-between">
-          <div onClick={voltarAoTopo} className="flex items-center gap-3 md:gap-4 hover:scale-105 transition-transform duration-300 cursor-pointer">
+          <div onClick={voltarAoTopo} className="flex items-center gap-3 md:gap-4 hover:scale-105 active:scale-95 transition-transform duration-300 cursor-pointer">
             <img src={logo} alt="ORIONSAT" className="w-10 h-10 md:w-14 md:h-14 object-contain" />
             <div>
               <h1 className="font-black text-xl md:text-3xl tracking-tight leading-none bg-gradient-to-r from-white to-zinc-400 bg-clip-text text-transparent">ORIONSAT</h1>
@@ -243,120 +248,107 @@ export default function App() {
             <a href="#tecnologia" className="hover:text-cyan-400 transition-colors">Infraestrutura</a>
             <a href="#clientes" className="hover:text-cyan-400 transition-colors">Clientes</a>
           </nav>
-          <a href="https://linktr.ee/orionsatgestao" target="_blank" rel="noopener noreferrer" className="bg-cyan-400 text-black px-5 py-2.5 rounded-xl font-bold text-sm transition-all hover:scale-105">Acessar Sistema</a>
+          <a href="https://linktr.ee/orionsatgestao" target="_blank" rel="noopener noreferrer" className="bg-cyan-400 text-black px-5 py-2.5 rounded-xl font-bold text-sm transition-all hover:scale-105 active:scale-95">Acessar Sistema</a>
         </div>
       </header>
 
-      {/* HERO & DASHBOARD INTERATIVO */}
+      {/* HERO & DASHBOARD */}
       <section className="min-h-[100dvh] flex items-center pt-28 md:pt-36 pb-20 relative z-10">
-        <div className="max-w-7xl mx-auto px-4 md:px-6 grid lg:grid-cols-2 gap-12 md:gap-24 items-center w-full">
-          <div className="text-center lg:text-left">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-cyan-400/30 bg-cyan-400/10 text-cyan-300 text-xs mb-8 mx-auto lg:mx-0 font-medium backdrop-blur-sm shadow-[0_0_15px_rgba(34,211,238,0.1)]">
+        <div className="max-w-7xl mx-auto px-4 md:px-6 grid lg:grid-cols-12 gap-12 items-center w-full">
+          
+          <div className="text-center lg:text-left lg:col-span-7">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-cyan-400/30 bg-cyan-400/10 text-cyan-300 text-xs mb-8 mx-auto lg:mx-0 font-medium backdrop-blur-sm shadow-md">
               <Layers size={16} className="animate-pulse" /> Ecossistema Definitivo de Gestão Operacional
             </div>
-            <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-[4.5rem] font-black leading-tight tracking-tight mb-4">
-              Visibilidade total <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500 block">da sua operação.</span>
-              Controle absoluto <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500 block">dos seus resultados.</span>
+            <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-[4.2rem] font-black leading-tight tracking-tight mb-4">
+              Inteligência exata na <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500 block">sua operação.</span>
+              Corte definitivo nos <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500 block">seus custos.</span>
             </h2>
             <p className="text-zinc-400 text-base md:text-xl leading-relaxed max-w-2xl mt-8 mx-auto lg:mx-0">
               Integração total em uma única plataforma Enterprise. Videotelemetria com IA, roteirização logística, controle de jornada trabalhista e telemetria avançada. Escale sua frota com eficiência e segurança comprovada.
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 mt-10">
-              <a href="https://wa.me/5511911021692" target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto bg-cyan-400 text-black px-8 py-4 rounded-2xl font-bold flex items-center justify-center gap-3 transition-all hover:scale-105 shadow-[0_0_30px_rgba(34,211,238,0.5)]">Solicitar Demonstração <ArrowRight size={20} /></a>
-              <a href="#modulos-detalhados" className="w-full sm:w-auto border border-white/10 bg-white/5 backdrop-blur-sm hover:border-cyan-400/50 px-8 py-4 rounded-2xl transition-all text-center">Conhecer Módulos</a>
+              <a href="https://wa.me/5511911021692" target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto bg-cyan-400 text-black px-8 py-4 rounded-2xl font-bold flex items-center justify-center gap-3 transition-all active:scale-95 shadow-[0_0_30px_rgba(34,211,238,0.5)]">Solicitar Demonstração <ArrowRight size={20} /></a>
+              <a href="#modulos-detalhados" className="w-full sm:w-auto border border-white/10 bg-white/5 backdrop-blur-sm hover:border-cyan-400/50 active:bg-white/10 px-8 py-4 rounded-2xl transition-all text-center">Conhecer Módulos</a>
             </div>
           </div>
 
-          {/* DASHBOARD MOCKUP FUNCIONAL NO PC E NO CELULAR */}
-          <div className="relative w-full mt-10 lg:mt-0 animate-float">
-            <div className="absolute inset-0 bg-cyan-400/20 blur-[80px] rounded-full animate-pulse" />
-            <div className="relative bg-[#050B1A]/90 border border-white/10 rounded-3xl p-4 md:p-8 backdrop-blur-2xl shadow-2xl overflow-hidden">
-              <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 mb-6">
+          {/* DASHBOARD MOCKUP (SEMPRE ATIVO NO PC E NO CELULAR) */}
+          <div className="w-full lg:col-span-5 animate-float">
+            <div className="absolute inset-0 bg-cyan-400/20 blur-[60px] rounded-full animate-pulse" />
+            <div className="relative bg-[#050B1A]/90 border border-white/10 rounded-3xl p-4 md:p-6 backdrop-blur-2xl shadow-2xl overflow-hidden">
+              
+              <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 mb-5">
                 <div>
-                  <p className="text-cyan-400 font-bold tracking-widest text-[9px] md:text-xs uppercase">Centro de Controle Operacional</p>
-                  <h3 className="text-lg md:text-2xl font-black text-white flex items-center gap-2"><Activity className="text-cyan-400" size={20} /> ORIONSAT DASHBOARD</h3>
+                  <p className="text-cyan-400 font-bold tracking-widest text-[9px] uppercase">Centro de Controle Operacional</p>
+                  <h3 className="text-base md:text-xl font-black text-white flex items-center gap-2"><Activity className="text-cyan-400" size={20} /> ORIONSAT DASHBOARD</h3>
                 </div>
-                <div className="text-green-400 bg-green-400/10 px-3 py-1.5 rounded-full border border-green-400/20 text-[10px] md:text-sm font-bold flex items-center gap-2">
-                  <div className="w-2 h-2 rounded-full bg-green-400 animate-ping absolute opacity-75" />
-                  <div className="w-2 h-2 rounded-full bg-green-400 relative" /> CONECTADO
+                <div className="text-green-400 bg-green-400/10 px-3 py-1 rounded-full border border-green-400/20 text-[10px] font-bold flex items-center gap-2 flex-shrink-0">
+                  <div className="w-1.5 h-1.5 rounded-full bg-green-400 animate-ping absolute opacity-75" />
+                  <div className="w-1.5 h-1.5 rounded-full bg-green-400 relative" /> CONECTADO
                 </div>
               </div>
 
               {/* TABS DO DASHBOARD */}
-              <div className="flex items-center gap-2 mb-6 overflow-x-auto pb-2 hide-scrollbar border-b border-white/10">
-                <button onClick={() => setDashTab("visaoGeral")} className={`px-3 md:px-4 py-2 rounded-full text-[10px] md:text-xs font-bold transition-all whitespace-nowrap flex items-center gap-1.5 ${dashTab === 'visaoGeral' ? 'bg-cyan-400 text-black shadow-md' : 'bg-white/5 text-zinc-400'}`}><Activity size={14} /> Visão Geral</button>
-                <button onClick={() => setDashTab("videoIA")} className={`px-3 md:px-4 py-2 rounded-full text-[10px] md:text-xs font-bold transition-all whitespace-nowrap flex items-center gap-1.5 ${dashTab === 'videoIA' ? 'bg-cyan-400 text-black shadow-md' : 'bg-white/5 text-zinc-400'}`}><Video size={14} /> Câmera IA</button>
-                <button onClick={() => setDashTab("logistica")} className={`px-3 md:px-4 py-2 rounded-full text-[10px] md:text-xs font-bold transition-all whitespace-nowrap flex items-center gap-1.5 ${dashTab === 'logistica' ? 'bg-cyan-400 text-black shadow-md' : 'bg-white/5 text-zinc-400'}`}><Map size={14} /> Logística</button>
-                <button onClick={() => setDashTab("telemetria")} className={`px-3 md:px-4 py-2 rounded-full text-[10px] md:text-xs font-bold transition-all whitespace-nowrap flex items-center gap-1.5 ${dashTab === 'telemetria' ? 'bg-cyan-400 text-black shadow-md' : 'bg-white/5 text-zinc-400'}`}><Gauge size={14} /> Telemetria</button>
+              <div className="flex items-center gap-2 mb-5 overflow-x-auto pb-2 hide-scrollbar border-b border-white/10">
+                <button onClick={() => setDashTab("visaoGeral")} className={`px-3 py-1.5 rounded-full text-[10px] font-bold transition-all flex items-center gap-1.5 active:scale-95 ${dashTab === 'visaoGeral' ? 'bg-cyan-400 text-black shadow-md' : 'bg-white/5 text-zinc-400'}`}><Activity size={12} /> Geral</button>
+                <button onClick={() => setDashTab("videoIA")} className={`px-3 py-1.5 rounded-full text-[10px] font-bold transition-all flex items-center gap-1.5 active:scale-95 ${dashTab === 'videoIA' ? 'bg-cyan-400 text-black shadow-md' : 'bg-white/5 text-zinc-400'}`}><Video size={12} /> Vídeo IA</button>
+                <button onClick={() => setDashTab("logistica")} className={`px-3 py-1.5 rounded-full text-[10px] font-bold transition-all flex items-center gap-1.5 active:scale-95 ${dashTab === 'logistica' ? 'bg-cyan-400 text-black shadow-md' : 'bg-white/5 text-zinc-400'}`}><Map size={12} /> Logística</button>
+                <button onClick={() => setDashTab("telemetria")} className={`px-3 py-1.5 rounded-full text-[10px] font-bold transition-all flex items-center gap-1.5 active:scale-95 ${dashTab === 'telemetria' ? 'bg-cyan-400 text-black shadow-md' : 'bg-white/5 text-zinc-400'}`}><Gauge size={12} /> Telemetria</button>
               </div>
 
               {dashTab === "visaoGeral" && (
                 <div className="animate-in fade-in duration-300">
-                  <div className="grid grid-cols-2 gap-3 md:gap-4 mb-5">
-                    <div className="bg-white/5 border border-white/5 rounded-xl md:rounded-2xl p-3 md:p-5">
-                      <span className="text-[10px] md:text-sm font-medium text-zinc-400 flex items-center gap-2"><CheckSquare className="text-cyan-400 w-4 h-4" /> Ordens de Serviço</span>
-                      <h4 className="text-xl md:text-4xl font-black text-white mt-1">1.248 <span className="text-[9px] md:text-sm font-normal text-zinc-500">entregas</span></h4>
-                    </div>
-                    <div className="bg-white/5 border border-white/5 rounded-xl md:rounded-2xl p-3 md:p-5">
-                      <span className="text-[10px] md:text-sm font-medium text-zinc-400 flex items-center gap-2"><Clock className="text-cyan-400 w-4 h-4" /> Jornadas Ativas</span>
-                      <h4 className="text-xl md:text-4xl font-black text-white mt-1">142 <span className="text-[9px] md:text-sm font-normal text-zinc-500">mot.</span></h4>
-                    </div>
-                    <div className="bg-white/5 border border-white/5 rounded-xl md:rounded-2xl p-3 md:p-5">
-                      <span className="text-[10px] md:text-sm font-medium text-zinc-400 flex items-center gap-2"><Gauge className="text-cyan-400 w-4 h-4" /> Score da Frota</span>
-                      <h4 className="text-xl md:text-4xl font-black text-white mt-1">94 <span className="text-[9px] md:text-sm font-normal text-zinc-500">pts</span></h4>
-                    </div>
-                    <div className="bg-white/5 border border-white/5 rounded-xl md:rounded-2xl p-3 md:p-5">
-                      <span className="text-[10px] md:text-sm font-medium text-zinc-400 flex items-center gap-2"><Wrench className="text-cyan-400 w-4 h-4" /> Preventivas</span>
-                      <h4 className="text-xl md:text-4xl font-black text-white mt-1">08 <span className="text-[9px] md:text-sm font-normal text-zinc-500">veíc.</span></h4>
-                    </div>
+                  <div className="grid grid-cols-2 gap-3 mb-4">
+                    <div className="bg-white/5 border border-white/5 rounded-xl p-3"><span className="text-[10px] font-medium text-zinc-400 flex items-center gap-1.5"><CheckSquare className="text-cyan-400 w-3.5 h-3.5" /> Ordens</span><h4 className="text-lg md:text-2xl font-black text-white mt-1">1.248 <span className="text-[9px] font-normal text-zinc-500">entregas</span></h4></div>
+                    <div className="bg-white/5 border border-white/5 rounded-xl p-3"><span className="text-[10px] font-medium text-zinc-400 flex items-center gap-1.5"><Clock className="text-cyan-400 w-3.5 h-3.5" /> Jornadas</span><h4 className="text-lg md:text-2xl font-black text-white mt-1">142 <span className="text-[9px] font-normal text-zinc-500">mot.</span></h4></div>
+                    <div className="bg-white/5 border border-white/5 rounded-xl p-3"><span className="text-[10px] font-medium text-zinc-400 flex items-center gap-1.5"><Gauge className="text-cyan-400 w-3.5 h-3.5" /> Eficiência</span><h4 className="text-lg md:text-2xl font-black text-white mt-1">94 <span className="text-[9px] font-normal text-zinc-500">pts</span></h4></div>
+                    <div className="bg-white/5 border border-white/5 rounded-xl p-3"><span className="text-[10px] font-medium text-zinc-400 flex items-center gap-1.5"><Wrench className="text-cyan-400 w-3.5 h-3.5" /> Manutenção</span><h4 className="text-lg md:text-2xl font-black text-white mt-1">08 <span className="text-[9px] font-normal text-zinc-500">veíc.</span></h4></div>
                   </div>
-                  <div className="space-y-2">
-                    <div className="bg-red-500/10 rounded-lg p-2.5 flex items-center justify-between text-[10px] md:text-sm border border-red-500/20">
-                      <div className="flex items-center gap-2"><Video className="text-red-400 w-4 h-4" /><span className="text-zinc-200 font-medium line-clamp-1">Câmera IA: Sinal de fadiga (TRK-44)</span></div>
-                      <span className="text-red-400 font-bold flex items-center gap-1 flex-shrink-0"><div className="w-1.5 h-1.5 rounded-full bg-red-400 animate-pulse"/>GRAVANDO</span>
-                    </div>
+                  <div className="bg-red-500/10 rounded-lg p-2.5 flex items-center justify-between text-[10px] border border-red-500/20">
+                    <div className="flex items-center gap-2"><Video className="text-red-400 w-4 h-4 flex-shrink-0" /><span className="text-zinc-200 font-medium line-clamp-1">Alerta: Fadiga detectada (TRK-44)</span></div>
+                    <span className="text-red-400 font-bold flex items-center gap-1 flex-shrink-0"><div className="w-1.5 h-1.5 rounded-full bg-red-400 animate-pulse"/>GRAVANDO</span>
                   </div>
                 </div>
               )}
 
               {dashTab === "videoIA" && (
                 <div className="animate-in fade-in duration-300">
-                  <div className="bg-black rounded-2xl border border-white/10 relative h-36 md:h-48 flex flex-col items-center justify-center overflow-hidden shadow-inner">
+                  <div className="bg-black rounded-2xl border border-white/10 relative h-36 md:h-44 flex flex-col items-center justify-center overflow-hidden">
                      <video src="/video-ia.mp4" autoPlay loop muted playsInline className="absolute inset-0 w-full h-full object-cover opacity-70" />
-                     <div className="absolute inset-0 bg-gradient-to-t from-cyan-900/40 to-transparent pointer-events-none" />
-                     <div className="absolute top-2 left-2 md:top-3 md:left-3 text-red-400 text-[8px] md:text-[10px] font-bold flex items-center gap-1.5 bg-black/60 px-2 py-1 rounded border border-white/10 z-10">LIVE FEED: CABINE IA</div>
-                     <span className="relative z-10 mt-auto mb-3 text-white text-[8px] md:text-[10px] font-bold bg-black/70 px-3 py-1 rounded-full border border-cyan-400/30 backdrop-blur-md">RECONHECIMENTO FACIAL ATIVO</span>
+                     <div className="absolute top-2 left-2 text-red-400 text-[9px] font-bold flex items-center gap-1 bg-black/60 px-2 py-0.5 rounded border border-white/10 z-10">LIVE FEED: CABINE IA</div>
+                     <span className="relative z-10 mt-auto mb-3 text-white text-[8px] font-bold bg-black/70 px-3 py-1 rounded-full border border-cyan-400/30 backdrop-blur-md">RECONHECIMENTO FACIAL ATIVO</span>
                   </div>
                 </div>
               )}
 
               {dashTab === "logistica" && (
                 <div className="animate-in fade-in duration-300">
-                  <div className="bg-[#0b101e] rounded-xl md:rounded-2xl border border-white/10 relative h-36 md:h-48 overflow-hidden">
-                    <div className="absolute inset-0 opacity-[0.3] bg-[linear-gradient(#1e293b_1px,transparent_1px),linear-gradient(90deg,#1e293b_1px,transparent_1px)] bg-[size:40px_40px]" />
+                  <div className="bg-[#0b101e] rounded-xl border border-white/10 relative h-36 md:h-44 overflow-hidden">
+                    <div className="absolute inset-0 opacity-[0.2] bg-[linear-gradient(#1e293b_1px,transparent_1px),linear-gradient(90deg,#1e293b_1px,transparent_1px)] bg-[size:30px_30px]" />
                     <svg viewBox="0 0 400 200" className="absolute inset-0 w-full h-full opacity-80" preserveAspectRatio="none">
-                      <path d="M -50 150 Q 150 180 250 80 T 450 50" fill="none" stroke="#22d3ee" strokeWidth="3" strokeDasharray="6,6" />
+                      <path d="M -50 150 Q 150 180 250 80 T 450 50" fill="none" stroke="#22d3ee" strokeWidth="2" strokeDasharray="5,5" />
                     </svg>
-                    <div className="absolute top-2 left-2 text-cyan-400 text-[8px] md:text-[10px] font-bold bg-black/60 px-2 py-1 rounded border border-white/10">ROTEIRIZAÇÃO AO VIVO</div>
-                    <div className="absolute top-[40%] left-[62%] animate-bounce"><Truck className="text-green-400 w-4 h-4 md:w-5 md:h-5 drop-shadow-md" /></div>
+                    <div className="absolute top-2 left-2 text-cyan-400 text-[9px] font-bold bg-black/60 px-2 py-0.5 rounded border border-white/10">ROTEIRIZAÇÃO AO VIVO</div>
+                    <div className="absolute top-[40%] left-[62%] animate-bounce"><Truck className="text-green-400 w-5 h-5 drop-shadow-md" /></div>
                   </div>
                 </div>
               )}
 
               {dashTab === "telemetria" && (
                 <div className="animate-in fade-in duration-500">
-                  <div className="bg-black/40 rounded-xl md:rounded-2xl border border-white/5 p-3.5 space-y-2.5">
+                  <div className="bg-black/40 rounded-xl border border-white/5 p-3 space-y-2">
                     <div>
-                      <div className="flex justify-between text-[8px] md:text-[9px] mb-1 font-medium text-zinc-300"><span>Excesso de Velocidade</span><span className="text-red-400">12 Ocorrências</span></div>
-                      <div className="w-full bg-white/5 h-1.5 rounded-full overflow-hidden"><div className="bg-red-400 h-full rounded-full animate-bar" style={{ width: '85%' }} /></div>
+                      <div className="flex justify-between text-[8px] mb-0.5 font-medium text-zinc-300"><span>Excesso de Velocidade</span><span className="text-red-400">12</span></div>
+                      <div className="w-full bg-white/5 h-1 rounded-full overflow-hidden"><div className="bg-red-400 h-full rounded-full animate-bar" style={{ width: '85%' }} /></div>
                     </div>
                     <div>
-                      <div className="flex justify-between text-[8px] md:text-[9px] mb-1 font-medium text-zinc-300"><span>Freada Brusca</span><span className="text-yellow-400">04 Ocorrências</span></div>
-                      <div className="w-full bg-white/5 h-1.5 rounded-full overflow-hidden"><div className="bg-yellow-400 h-full rounded-full animate-bar" style={{ width: '30%' }} /></div>
+                      <div className="flex justify-between text-[8px] mb-0.5 font-medium text-zinc-300"><span>Freada Brusca</span><span className="text-yellow-400">04</span></div>
+                      <div className="w-full bg-white/5 h-1 rounded-full overflow-hidden"><div className="bg-yellow-400 h-full rounded-full animate-bar" style={{ width: '30%' }} /></div>
                     </div>
                     <div>
-                      <div className="flex justify-between text-[8px] md:text-[9px] mb-1 font-medium text-zinc-300"><span>Curva Acidentada</span><span className="text-orange-400">02 Ocorrências</span></div>
-                      <div className="w-full bg-white/5 h-1.5 rounded-full overflow-hidden"><div className="bg-orange-400 h-full rounded-full animate-bar" style={{ width: '15%' }} /></div>
+                      <div className="flex justify-between text-[8px] mb-0.5 font-medium text-zinc-300"><span>Curva Acidentada</span><span className="text-orange-400">02</span></div>
+                      <div className="w-full bg-white/5 h-1 rounded-full overflow-hidden"><div className="bg-orange-400 h-full rounded-full animate-bar" style={{ width: '15%' }} /></div>
                     </div>
                   </div>
                 </div>
@@ -375,12 +367,12 @@ export default function App() {
             <h2 className="text-3xl md:text-5xl font-black leading-tight">O fim dos softwares fragmentados na sua operação.</h2>
           </div>
           <div className="space-y-4 text-zinc-400 text-base md:text-lg leading-relaxed">
-            <p>O mercado logístico e de transportes sofre com a falta de centralização. Uma ferramenta para câmeras, outra para rastreamento, planilhas para manutenção e papéis para a jornada do motorista. <strong>A ORIONSAT unifica todos os pilares da sua gestão.</strong></p>
+            <p>O mercado logístico e de transportes sofre com a falta de centralização. Uma ferramenta para câmeras, outra para rastreamento, planilhas para manutenção e papéis para a jornada do motorista. <strong className="text-white">A ORIONSAT unifica todos os pilares da sua gestão.</strong></p>
           </div>
         </div>
       </section>
 
-      {/* SEÇÃO EXPLICAÇÃO COMPLETA */}
+      {/* SEÇÃO NOVIDADE: MÓDULOS DETALHADOS INTERATIVOS */}
       <section id="modulos-detalhados" className="max-w-7xl mx-auto px-4 md:px-6 pb-20 relative z-10">
         <div className="text-center mb-12">
           <p className="text-cyan-400 font-bold uppercase tracking-widest text-xs mb-3">Funcionalidades na Prática</p>
@@ -388,7 +380,7 @@ export default function App() {
         </div>
         <div className="grid lg:grid-cols-12 gap-8 bg-white/5 border border-white/10 rounded-[32px] p-4 md:p-10">
           <div className="lg:col-span-4 flex flex-col gap-2.5">
-            {detalhesModulos.map((modulo) => (
+            {ecossistemaModulos.map((modulo) => (
               <button
                 key={modulo.id}
                 onClick={() => setModuloAtivo(modulo.id)}
@@ -401,7 +393,7 @@ export default function App() {
             ))}
           </div>
           <div className="lg:col-span-8 bg-[#02050A] rounded-2xl p-5 md:p-10 border border-white/5 min-h-[320px] flex flex-col justify-center">
-            {detalhesModulos.map((modulo) => moduloAtivo === modulo.id && (
+            {ecossistemaModulos.map((modulo) => moduloAtivo === modulo.id && (
               <div key={modulo.id} className="animate-in fade-in duration-300">
                 <h3 className="text-xl md:text-3xl font-black mb-3 text-white">{modulo.subtitle}</h3>
                 <p className="text-zinc-400 text-sm md:text-base mb-6 leading-relaxed">{modulo.description}</p>
@@ -416,7 +408,7 @@ export default function App() {
         </div>
       </section>
 
-      {/* ARQUITETURA DE REDE & IMPACTO FINANCEIRO */}
+      {/* INFRAESTRUTURA & IMPACTO FINANCEIRO */}
       <section id="tecnologia" className="max-w-7xl mx-auto px-4 md:px-6 pb-20 relative z-10">
         <div className="grid lg:grid-cols-2 gap-16">
           <div>
@@ -454,19 +446,6 @@ export default function App() {
           {empresas.map((empresa, i) => (
             <div key={i} className="bg-white/5 border border-white/10 rounded-xl px-4 py-4 flex items-center justify-center w-full max-w-[140px] md:max-w-[180px] h-20 md:h-24 group">
               <img src={empresa.logo} alt={empresa.nome} className="max-h-full max-w-full object-contain md:opacity-70 group-hover:opacity-100 transition-all duration-300 blend-logo" />
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* FAQ */}
-      <section id="faq" className="max-w-4xl mx-auto px-4 md:px-6 pb-20 relative z-10">
-        <h2 className="text-center text-3xl font-black mb-10">Perguntas Frequentes</h2>
-        <div className="space-y-4">
-          {faq.map((item, i) => (
-            <div key={i} className="bg-white/5 border border-white/10 rounded-2xl p-6">
-              <h3 className="text-lg font-bold text-white mb-2">{item.pergunta}</h3>
-              <p className="text-zinc-400 text-sm leading-relaxed">{item.resposta}</p>
             </div>
           ))}
         </div>
