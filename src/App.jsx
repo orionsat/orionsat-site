@@ -203,7 +203,7 @@ export default function App() {
             <div className="animate-in fade-in slide-in-from-bottom-8 duration-700">
               <p className="text-zinc-500 uppercase tracking-widest text-[10px] md:text-xs mb-2">GOVERNANÇA CORPORATIVA E GOVERNANÇA DE TI</p>
               <h1 className="text-3xl md:text-4xl font-black tracking-tight mb-2">Política de Privacidade</h1>
-              <p className="text-zinc-500 mb-8 md:mb-12 text-sm">Versão Premium Final | Atualização: Maio de 2026</p>
+              <p className="text-zinc-500 mb-8 md:mb-12 text-sm">Atualização: Maio de 2026</p>
 
               <div className="space-y-8 text-zinc-400 text-sm md:text-base leading-relaxed">
                 <section>
