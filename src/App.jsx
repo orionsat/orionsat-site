@@ -30,7 +30,14 @@ import {
 } from "lucide-react";
 
 import "./App.css";
+
+// IMPORTAÇÃO DAS LOGOS DOS CLIENTES E DA ORIONSAT
 import logo from "./assets/logo.png";
+import logoAdvance from "./assets/advance.jpg";
+import logoFenix from "./assets/fenix.png";
+import logoNanis from "./assets/nanis.jpg";
+import logoNevinho from "./assets/nevinho.jpeg";
+import logoZls from "./assets/zls.jpeg";
 
 export default function App() {
   const [docAtivo, setDocAtivo] = useState(() => {
@@ -53,12 +60,13 @@ export default function App() {
     }
   };
 
+  // ARRAY DE CLIENTES ATUALIZADO COM AS IMAGENS
   const empresas = [
-    "Advance Facilities",
-    "Fênix Telecom",
-    "Nanis Car Locações",
-    "Nevinho Car Locações",
-    "ZLS Transportes",
+    { nome: "Advance Facilities", logo: logoAdvance },
+    { nome: "Fênix Telecom", logo: logoFenix },
+    { nome: "Nanis Car Locações", logo: logoNanis },
+    { nome: "Nevinho Car Locações", logo: logoNevinho },
+    { nome: "ZLS Transportes", logo: logoZls },
   ];
 
   const segmentos = [
@@ -70,7 +78,6 @@ export default function App() {
     "Locadoras de Veículos",
   ];
 
-  // FUNCIONALIDADES ATUALIZADAS COM BASE NO ECOSSISTEMA SYSTEM SAT
   const funcionalidades = [
     {
       icon: <Video size={34} />,
@@ -136,9 +143,6 @@ export default function App() {
     },
   ];
 
-  // ==========================================
-  // RENDERIZAÇÃO DAS PÁGINAS LEGAIS
-  // ==========================================
   if (docAtivo) {
     return (
       <div className="bg-[#020817] text-white min-h-screen py-24 px-6 relative overflow-hidden font-sans">
@@ -332,7 +336,7 @@ export default function App() {
   return (
     <div className="bg-[#020817] text-white overflow-x-hidden font-sans">
       
-      {/* INJEÇÃO DE CSS DE ANIMAÇÃO NATIVA */}
+      {/* INJEÇÃO DE CSS DE ANIMAÇÃO NATIVA E BLEND MODE */}
       <style>{`
         @keyframes float {
           0% { transform: translateY(0px); }
@@ -349,6 +353,9 @@ export default function App() {
         }
         .animate-slow-pulse {
           animation: slow-pulse 8s ease-in-out infinite;
+        }
+        .blend-logo {
+          mix-blend-mode: screen;
         }
       `}</style>
 
@@ -373,7 +380,7 @@ export default function App() {
             <a href="#sobre" className="hover:text-cyan-400 hover:-translate-y-0.5 transition-all duration-300">Sobre</a>
             <a href="#plataforma" className="hover:text-cyan-400 hover:-translate-y-0.5 transition-all duration-300">Soluções</a>
             <a href="#tecnologia" className="hover:text-cyan-400 hover:-translate-y-0.5 transition-all duration-300">Tecnologia</a>
-            <a href="#clientes" className="hover:text-cyan-400 hover:-translate-y-0.5 transition-all duration-300">Segmentos</a>
+            <a href="#clientes" className="hover:text-cyan-400 hover:-translate-y-0.5 transition-all duration-300">Clientes</a>
             <a href="#faq" className="hover:text-cyan-400 hover:-translate-y-0.5 transition-all duration-300">FAQ</a>
           </nav>
 
@@ -444,7 +451,7 @@ export default function App() {
             </div>
           </div>
 
-          {/* DASHBOARD MOCKUP FLUTUANTE (AGORA COM VIDEO IA) */}
+          {/* DASHBOARD MOCKUP FLUTUANTE */}
           <div className="relative w-full mt-10 lg:mt-0 animate-float perspective-1000">
             <div className="absolute inset-0 bg-cyan-400/20 blur-[80px] md:blur-[120px] rounded-full animate-pulse" />
             <div className="relative bg-[#050B1A]/80 border border-white/10 rounded-3xl md:rounded-[36px] p-5 md:p-8 backdrop-blur-2xl shadow-[0_20px_50px_rgba(0,0,0,0.5)] overflow-hidden transition-all duration-500 hover:border-cyan-400/30">
@@ -499,7 +506,6 @@ export default function App() {
                 </div>
               </div>
 
-              {/* Simulação de Mapa e Rastreamento */}
               <div className="bg-[#02050A] rounded-2xl border border-white/10 p-1 relative overflow-hidden h-40 md:h-48 group">
                 <div className="absolute inset-0 opacity-[0.15] bg-[linear-gradient(rgba(255,255,255,1)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,1)_1px,transparent_1px)] bg-[size:20px_20px] md:bg-[size:30px_30px] transition-transform duration-1000 group-hover:scale-105" />
                 <div className="absolute top-3 left-4 text-[10px] md:text-xs font-bold text-zinc-400 tracking-wider flex items-center gap-2 z-10 bg-black/60 backdrop-blur-sm px-2 py-1 rounded border border-white/10">
@@ -529,7 +535,6 @@ export default function App() {
                 </div>
               </div>
 
-              {/* Log de Eventos Rápido */}
               <div className="mt-4 md:mt-5 space-y-2">
                 <div className="bg-red-500/10 rounded-lg p-2.5 md:p-3 flex items-center justify-between text-xs md:text-sm border border-red-500/20 hover:bg-red-500/20 transition-colors cursor-default">
                   <div className="flex items-center gap-2 md:gap-3">
@@ -658,10 +663,10 @@ export default function App() {
         </div>
       </section>
 
-      {/* CLIENTES */}
+      {/* CLIENTES - COM AS LOGOS DE IMAGEM */}
       <section id="clientes" className="max-w-7xl mx-auto px-4 md:px-6 pb-20 md:pb-32 relative z-10">
         <div className="text-center mb-12 md:mb-16">
-          <p className="text-cyan-400 font-bold uppercase tracking-[0.2em] md:tracking-[0.3em] text-xs md:text-sm mb-3 md:mb-4">Ecosistema Logístico</p>
+          <p className="text-cyan-400 font-bold uppercase tracking-[0.2em] md:tracking-[0.3em] text-xs md:text-sm mb-3 md:mb-4">Ecossistema Logístico</p>
           <h2 className="text-3xl md:text-5xl font-black">Operações que confiam em nós</h2>
         </div>
 
@@ -669,9 +674,13 @@ export default function App() {
           {empresas.map((empresa, index) => (
             <div
               key={index}
-              className="bg-white/5 border border-white/10 rounded-xl md:rounded-2xl px-6 py-4 md:px-8 md:py-6 text-center hover:border-cyan-400/50 hover:bg-cyan-400/10 hover:shadow-[0_0_20px_rgba(34,211,238,0.2)] hover:-translate-y-1 transition-all duration-300 flex-grow max-w-[200px] md:max-w-[240px] cursor-default"
+              className="bg-white/5 border border-white/10 rounded-xl md:rounded-2xl px-6 py-4 md:px-8 md:py-6 flex items-center justify-center text-center hover:border-cyan-400/50 hover:bg-cyan-400/5 hover:shadow-[0_0_20px_rgba(34,211,238,0.2)] hover:-translate-y-1 transition-all duration-300 flex-grow max-w-[200px] md:max-w-[240px] cursor-default group h-24 md:h-32"
             >
-              <p className="font-bold text-zinc-200 text-sm md:text-base">{empresa}</p>
+              <img
+                src={empresa.logo}
+                alt={`Cliente ${empresa.nome}`}
+                className="max-h-full max-w-full object-contain grayscale opacity-50 blend-logo group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500"
+              />
             </div>
           ))}
         </div>
