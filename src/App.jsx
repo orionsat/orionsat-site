@@ -198,51 +198,6 @@ export default function App() {
             <ArrowRight className="rotate-180 transition-transform duration-300 group-hover:-translate-x-2" size={20} />
             Voltar para o site principal
           </button>
-
-          {/* POLÍTICA DE PRIVACIDADE COMPLETA */}
-          {docAtivo === "privacidade" && (
-            <div className="animate-in fade-in slide-in-from-bottom-8 duration-700">
-              <p className="text-zinc-500 uppercase tracking-widest text-[10px] md:text-xs mb-2">GOVERNANÇA CORPORATIVA E TI</p>
-              <h1 className="text-3xl md:text-4xl font-black tracking-tight mb-2">Política de Privacidade</h1>
-              <p className="text-zinc-500 mb-8 md:mb-12 text-sm">Versão Premium Final | Atualização: Maio de 2026</p>
-
-              <div className="space-y-8 text-zinc-400 text-base md:text-lg leading-relaxed">
-                <section>
-                  <h2 className="text-xl md:text-2xl font-bold text-cyan-400 mb-3">1. Introdução</h2>
-                  <p>A ORION SAT LTDA ("Orion Sat") é uma corporação de tecnologia dedicada exclusivamente ao desenvolvimento de inteligência operacional, conectividade avançada, telemetria analítica e soluções para a gestão inteligente de frotas, motoristas independentes, operações individuais e usuários autônomos. Nossos sistemas atuam sob as estritas diretrizes da Lei Geral de Proteção de Dados Pessoais (LGPD - Lei nº 13.709/2018) e do Marco Civil da Internet (Lei nº 12.965/2014).</p>
-                </section>
-                <section>
-                  <h2 className="text-xl md:text-2xl font-bold text-cyan-400 mb-3">2. Categorias de Dados Tratados</h2>
-                  <ul className="list-disc list-inside space-y-3 text-zinc-300 pl-2">
-                    <li><strong>Dados Cadastrais:</strong> Nome do gestor ou usuário, e-mail, telefone e dados documentais (CPF/CNPJ).</li>
-                    <li><strong>Dados de Telemetria e Videomonitoramento:</strong> Indicadores técnicos do veículo, imagens captadas por câmeras embarcadas, velocidade, RPM e padrões de condução.</li>
-                    <li><strong>Dados Logísticos:</strong> Coordenadas de geolocalização coletadas para roteirização e gestão operacional.</li>
-                    <li><strong>Dados Técnicos:</strong> Registros obrigatórios de conexão (logs) e identificadores de hardware.</li>
-                  </ul>
-                </section>
-                <section>
-                  <h2 className="text-xl md:text-2xl font-bold text-cyan-400 mb-3">3. Finalidade e Justificativas Jurídicas</h2>
-                  <p>O tratamento estrutura-se nas bases legais de: Execução de Contrato (operação estável do software), Cumprimento de Obrigação Legal (guarda de logs por 6 meses) e Legítimo Interesse para segurança cibernética e operacional.</p>
-                </section>
-                <section>
-                  <h2 className="text-xl md:text-2xl font-bold text-cyan-400 mb-3">4. Diretrizes de Compartilhamento</h2>
-                  <p>A Orion Sat adota uma política corporativa inflexível de não comercialização de dados. O fluxo limita-se ao armazenamento criptografado em nuvem global e fornecimento direto para a pessoa ou empresa contratante legítima da licença.</p>
-                </section>
-                <section>
-                  <h2 className="text-xl md:text-2xl font-bold text-cyan-400 mb-3">5. Direitos do Titular</h2>
-                  <p>Asseguramos todos os direitos previstos no Art. 18 da LGPD, viabilizando o acesso facilitado, retificação e exclusão definitiva, observados os prazos fiscais e cíveis obrigatórios.</p>
-                </section>
-                <section className="border-t border-white/10 pt-8">
-                  <h2 className="text-xl md:text-2xl font-bold text-cyan-400 mb-3">6. Contato</h2>
-                  <p className="mt-4 text-zinc-300 font-medium bg-white/5 p-5 rounded-2xl border border-white/10 text-sm md:text-base break-words">
-                    <strong className="text-white text-lg">ORION SAT LTDA</strong><br />
-                    E-mail Oficial: <span className="text-cyan-400">privacidade@orionsatgestao.com.br</span>
-                  </p>
-                </section>
-              </div>
-            </div>
-          )}
-
           {/* POLÍTICA DE PRIVACIDADE COMPLETA (BASEADA NO PDF) */}
           {docAtivo === "privacidade" && (
             <div className="animate-in fade-in slide-in-from-bottom-8 duration-700">
