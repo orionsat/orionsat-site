@@ -20,7 +20,13 @@ import {
   Gauge,
   Navigation2,
   AlertTriangle,
-  TrendingUp
+  TrendingUp,
+  Video,
+  Clock,
+  Fuel,
+  Wrench,
+  Eye,
+  Camera
 } from "lucide-react";
 
 import "./App.css";
@@ -56,76 +62,77 @@ export default function App() {
   ];
 
   const segmentos = [
-    "Transportadoras",
-    "Locadoras",
-    "Facilities",
-    "Operações Técnicas",
-    "Máquinas e Equipamentos",
-    "Operações Náuticas",
+    "Transportadoras e Logística",
+    "Frotas de Valor Agregado",
+    "Transporte de Passageiros",
+    "Facilities e Serviços",
+    "Máquinas e Agronegócio",
+    "Locadoras de Veículos",
   ];
 
+  // FUNCIONALIDADES ATUALIZADAS COM BASE NO ECOSSISTEMA SYSTEM SAT
   const funcionalidades = [
     {
-      icon: <MapPinned size={34} />,
-      title: "Geolocalização Inteligente",
-      desc: "Rastreamento operacional em tempo real com precisão e histórico completo.",
+      icon: <Video size={34} />,
+      title: "Videomonitoramento com IA",
+      desc: "Câmeras veiculares com Inteligência Artificial para detecção de fadiga, uso de celular e ausência de cinto de segurança em tempo real.",
     },
     {
       icon: <Gauge size={34} />,
-      title: "Telemetria Avançada",
-      desc: "Análise comportamental (RPM, frenagens, aceleração) e performance de frota.",
+      title: "Performance e Telemetria",
+      desc: "Ranking de motoristas baseado em RPM, acelerações, curvas e freadas bruscas. Identifique quem gera lucro e quem gera risco.",
     },
     {
-      icon: <MonitorSmartphone size={34} />,
-      title: "Plataforma Web + Mobile",
-      desc: "Controle completo através de dashboard web e aplicativos Android/iOS.",
+      icon: <MapPinned size={34} />,
+      title: "Controle de Velocidade na Via",
+      desc: "Reduza multas em até 65%. O sistema lê os limites de velocidade reais de cada rua (placas) e alerta violações instantaneamente.",
     },
     {
-      icon: <AlertTriangle size={34} />,
-      title: "Alertas Operacionais",
-      desc: "Notificações inteligentes sobre desvios de rota, ignição e violações em tempo real.",
+      icon: <RouteIcon size={34} />,
+      title: "Logistics e Roteirização",
+      desc: "Gestão completa de coletas e entregas. Planejamento de rotas, acompanhamento de ordens de serviço e motivos de cancelamento.",
     },
     {
-      icon: <BarChart3 size={34} />,
-      title: "Dashboards & Relatórios",
-      desc: "Indicadores estratégicos de economia de combustível e produtividade.",
+      icon: <Clock size={34} />,
+      title: "Jornada de Trabalho",
+      desc: "Adequação total à Lei do Motorista. Controle de horas extras, intervalos de descanso e espera via app Onboard ou RFID.",
     },
     {
-      icon: <ShieldCheck size={34} />,
-      title: "Monitoramento 24/7",
-      desc: "Operação contínua com alta disponibilidade de servidores e segurança criptografada.",
+      icon: <Wrench size={34} />,
+      title: "Manutenção e Abastecimento",
+      desc: "Ciclos automatizados de manutenção preventiva, metas de consumo (Km/L) e relatórios de variação do nível do tanque.",
     },
   ];
 
   const beneficios = [
-    "Redução de custos com combustível e manutenção",
-    "Maior controle logístico e de produtividade",
-    "Centralização operacional em uma única tela",
-    "Auditoria completa de condução dos motoristas",
-    "Prevenção inteligente de acidentes e desgastes",
-    "Tomada de decisão baseada em dados em tempo real",
+    "Redução drástica de multas com alertas de Velocidade na Via",
+    "Prevenção de acidentes com Videotelemetria e detecção de fadiga",
+    "Garantia de conformidade trabalhista (Lei do Motorista)",
+    "Economia comprovada de combustível e manutenção preventiva",
+    "Auditoria visual: saiba exatamente o que aconteceu em caso de sinistro",
+    "Centralização total: rotas, imagens e telemetria na mesma tela",
   ];
 
   const faq = [
     {
-      pergunta: "A plataforma possui aplicativo mobile?",
+      pergunta: "Como funciona a Videotelemetria com Inteligência Artificial?",
       resposta:
-        "Sim. Possuímos uma plataforma web completa para os gestores e aplicativo Android/iOS dedicado para o acompanhamento em tempo real na palma da mão.",
+        "Utilizamos câmeras veiculares de alta tecnologia (Hikvision, Jimi) voltadas para a via e para a cabine. A IA embarcada identifica padrões de risco, como o motorista bocejando, fumando, usando celular ou sem cinto, e dispara alertas em tempo real para a central.",
     },
     {
-      pergunta: "A tecnologia funciona para frotas pesadas e máquinas?",
+      pergunta: "O controle de velocidade é por via ou um limite único?",
       resposta:
-        "Sim. Nossa arquitetura atende desde veículos de passeio leves até caminhões pesados, máquinas agrícolas, operações logísticas complexas e embarcações.",
+        "Nosso sistema possui o módulo avançado 'Velocidade na Via'. Ele não usa um limite único engessado. A plataforma cruza a posição do veículo com o mapa de limites de velocidade de cada rua/rodovia, alertando se o motorista passar de 50km/h em uma via de 40km/h, por exemplo.",
     },
     {
-      pergunta: "O que a telemetria avançada analisa?",
+      pergunta: "Como é feito o controle de Jornada de Trabalho?",
       resposta:
-        "Analisamos parâmetros críticos como excesso de velocidade, rotação do motor (RPM), curvas acentuadas, frenagens bruscas, uso em marcha lenta e estimativa de consumo.",
+        "O controle pode ser feito através do nosso aplicativo Onboard no celular do motorista, ou via identificação por iButton/RFID no painel do veículo. Ele registra o início da jornada, direção, intervalos, refeições e espera, adequando sua operação à legislação trabalhista.",
     },
     {
-      pergunta: "É possível integrar com ERPs da minha empresa?",
+      pergunta: "O sistema auxilia na redução de custos de manutenção?",
       resposta:
-        "Sim. A plataforma ORIONSAT foi desenvolvida para suportar integrações robustas via API com sistemas operacionais, ERPs e outras soluções externas de gestão.",
+        "Sim. O módulo de Manutenção permite criar ciclos contínuos (Avançada) ou pontuais (Básica). O sistema avisa automaticamente quando um veículo precisa de revisão, troca de óleo ou peças com base no hodômetro ou horímetro real lido pela telemetria.",
     },
   ];
 
@@ -165,7 +172,7 @@ export default function App() {
                   <h2 className="text-xl md:text-2xl font-bold text-cyan-400 mb-3">2. Categorias de Dados Tratados</h2>
                   <ul className="list-disc list-inside space-y-3 text-zinc-300 pl-2">
                     <li><strong>Dados Cadastrais:</strong> Nome do gestor ou usuário, e-mail comercial ou pessoal, telefone e dados cadastrais (CPF/CNPJ).</li>
-                    <li><strong>Dados de Telemetria:</strong> Indicadores técnicos do veículo como velocidade, rotação do motor (RPM), consumo estimado, frenagens abruptas e curvas acentuadas.</li>
+                    <li><strong>Dados de Telemetria e Videomonitoramento:</strong> Indicadores técnicos do veículo, imagens e vídeos da via e cabine captados por câmeras embarcadas, velocidade, rotação do motor (RPM), consumo, frenagens abruptas e curvas acentuadas.</li>
                     <li><strong>Dados de Posicionamento Logístico:</strong> Coordenadas de geolocalização coletadas em primeiro e segundo plano para roteirização automatizada.</li>
                     <li><strong>Dados de Sessão Técnica:</strong> Registros obrigatórios de conexão (logs), especificações de navegadores e identificadores de hardware.</li>
                   </ul>
@@ -173,17 +180,17 @@ export default function App() {
 
                 <section>
                   <h2 className="text-xl md:text-2xl font-bold text-cyan-400 mb-3">3. Finalidade e Justificativas Jurídicas</h2>
-                  <p>O tratamento estrutura-se nas bases legais de: Execução de Contrato (operação estável do software), Cumprimento de Obrigação Legal (guarda de logs por 6 meses) e Legítimo Interesse (segurança cibernética e prevenção contra inconsistências).</p>
+                  <p>O tratamento estrutura-se nas bases legais de: Execução de Contrato (operação estável do software de videotelemetria e gestão), Cumprimento de Obrigação Legal (guarda de logs por 6 meses) e Legítimo Interesse (segurança cibernética e prevenção contra inconsistências).</p>
                 </section>
 
                 <section>
                   <h2 className="text-xl md:text-2xl font-bold text-cyan-400 mb-3">4. Diretrizes de Compartilhamento e Não Comercialização</h2>
-                  <p>A Orion Sat adota uma política corporativa inflexível de não comercialização de dados. As informações operacionais nunca serão vendidas ou compartilhadas com terceiros para fins comerciais. O fluxo limita-se ao armazenamento criptografado em nuvem global e fornecimento direto para a empresa contratante.</p>
+                  <p>A Orion Sat adota uma política corporativa inflexível de não comercialização de dados. As informações operacionais e de videomonitoramento nunca serão vendidas ou compartilhadas com terceiros para fins comerciais. O fluxo limita-se ao armazenamento criptografado em nuvem global e fornecimento direto para a empresa contratante.</p>
                 </section>
 
                 <section>
                   <h2 className="text-xl md:text-2xl font-bold text-cyan-400 mb-3">5. Operação de Geolocalização em Segundo Plano</h2>
-                  <p>Para assegurar a continuidade dos indicadores logísticos, o aplicativo móvel requer autorização para processar dados de localização de forma ininterrupta, inclusive em segundo plano (aplicativo minimizado ou tela bloqueada). A desativação manual interrompe a análise de frotas.</p>
+                  <p>Para assegurar a continuidade dos indicadores logísticos e da jornada de trabalho, o aplicativo móvel requer autorização para processar dados de localização de forma ininterrupta, inclusive em segundo plano (aplicativo minimizado ou tela bloqueada).</p>
                 </section>
 
                 <section>
@@ -267,7 +274,7 @@ export default function App() {
               <div className="space-y-8 text-zinc-400 text-base md:text-lg leading-relaxed">
                 <section>
                   <h2 className="text-xl md:text-2xl font-bold text-cyan-400 mb-3">1. Escopo das Soluções de Software</h2>
-                  <p>Os presentes Termos regulam o direito de acesso e utilização dos sistemas de software, painéis corporativos em nuvem e aplicativos móveis de propriedade da ORION SAT LTDA. O ecossistema constitui um conjunto de ferramentas dedicadas exclusivamente à gestão inteligente de frotas, operações individuais, telemetria e roteirização comercial.</p>
+                  <p>Os presentes Termos regulam o direito de acesso e utilização dos sistemas de software, painéis corporativos em nuvem e aplicativos móveis de propriedade da ORION SAT LTDA. O ecossistema constitui um conjunto de ferramentas dedicadas exclusivamente à gestão inteligente de frotas, operações individuais, telemetria avançada, videomonitoramento e roteirização comercial.</p>
                 </section>
 
                 <section className="bg-red-500/5 border border-red-500/20 p-5 md:p-6 rounded-2xl">
@@ -286,13 +293,13 @@ export default function App() {
                 </section>
 
                 <section>
-                  <h2 className="text-xl md:text-2xl font-bold text-cyan-400 mb-3">4. Conectividade e Infraestrutura Externa</h2>
-                  <p>A exibição das informações operacionais em tempo real depende diretamente da estabilidade de redes de telecomunicações terceirizadas e captação técnica de sinais de satélite (GPS). Oscilações destas infraestruturas externas não configuram falha de software da Orion Sat.</p>
+                  <h2 className="text-xl md:text-2xl font-bold text-cyan-400 mb-3">4. Conectividade, Mídia e Infraestrutura Externa</h2>
+                  <p>A exibição das informações operacionais e a transmissão de vídeos em tempo real dependem diretamente da estabilidade de redes de telecomunicações terceirizadas e pacotes de dados de internet móvel. Oscilações destas infraestruturas externas ou limites de armazenamento de mídia em nuvem não configuram falha de software da Orion Sat.</p>
                 </section>
 
                 <section>
                   <h2 className="text-xl md:text-2xl font-bold text-cyan-400 mb-3">5. Propriedade Intelectual e Atualizações</h2>
-                  <p>A outorga de acesso não transfere direitos industriais ou intelectuais. Algoritmos de roteirização, dashboards, marcas e APIs permanecem sob domínio exclusivo da Orion Sat LTDA. O sistema poderá sofrer atualizações tecnológicas sem gerar direito a indenizações.</p>
+                  <p>A outorga de acesso não transfere direitos industriais ou intelectuais. Algoritmos de IA, roteirização, dashboards, marcas e APIs permanecem sob domínio exclusivo da Orion Sat LTDA. O sistema poderá sofrer atualizações tecnológicas sem gerar direito a indenizações.</p>
                 </section>
 
                 <section>
@@ -325,7 +332,7 @@ export default function App() {
   return (
     <div className="bg-[#020817] text-white overflow-x-hidden font-sans">
       
-      {/* INJEÇÃO DE CSS DE ANIMAÇÃO NATIVA (Sem bibliotecas externas) */}
+      {/* INJEÇÃO DE CSS DE ANIMAÇÃO NATIVA */}
       <style>{`
         @keyframes float {
           0% { transform: translateY(0px); }
@@ -364,9 +371,9 @@ export default function App() {
 
           <nav className="hidden lg:flex items-center gap-10 text-sm font-medium text-zinc-300">
             <a href="#sobre" className="hover:text-cyan-400 hover:-translate-y-0.5 transition-all duration-300">Sobre</a>
-            <a href="#plataforma" className="hover:text-cyan-400 hover:-translate-y-0.5 transition-all duration-300">Plataforma</a>
+            <a href="#plataforma" className="hover:text-cyan-400 hover:-translate-y-0.5 transition-all duration-300">Soluções</a>
             <a href="#tecnologia" className="hover:text-cyan-400 hover:-translate-y-0.5 transition-all duration-300">Tecnologia</a>
-            <a href="#clientes" className="hover:text-cyan-400 hover:-translate-y-0.5 transition-all duration-300">Clientes</a>
+            <a href="#clientes" className="hover:text-cyan-400 hover:-translate-y-0.5 transition-all duration-300">Segmentos</a>
             <a href="#faq" className="hover:text-cyan-400 hover:-translate-y-0.5 transition-all duration-300">FAQ</a>
           </nav>
 
@@ -388,8 +395,8 @@ export default function App() {
           {/* Hero Texto */}
           <div className="text-center lg:text-left">
             <div className="inline-flex items-center gap-2 md:gap-3 px-4 py-2 md:px-5 md:py-3 rounded-full border border-cyan-400/30 bg-cyan-400/10 text-cyan-300 text-xs md:text-sm mb-8 mx-auto lg:mx-0 font-medium backdrop-blur-sm shadow-[0_0_15px_rgba(34,211,238,0.1)]">
-              <Radar size={16} className="animate-spin duration-3000" />
-              Sistema avançado de telemetria e gestão de frotas
+              <Camera size={16} className="animate-pulse" />
+              ERP de Logística e Videotelemetria com IA
             </div>
 
             <h2 className="text-5xl md:text-6xl lg:text-8xl font-black leading-[1.05] md:leading-[0.95] tracking-tight">
@@ -400,7 +407,7 @@ export default function App() {
             </h2>
 
             <p className="text-zinc-400 text-base md:text-xl leading-relaxed max-w-2xl mt-8 mx-auto lg:mx-0">
-              Transforme dados em decisões. Monitoramento de ativos em tempo real, auditoria avançada de condução e controle absoluto da sua operação logística na mesma plataforma.
+              Assuma o controle com Videomonitoramento, auditoria de condução em tempo real, roteirização logística e gestão de jornadas na mesma plataforma.
             </p>
 
             <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 md:gap-5 mt-10">
@@ -417,36 +424,36 @@ export default function App() {
                 href="#plataforma"
                 className="w-full sm:w-auto border border-white/10 bg-white/5 backdrop-blur-sm hover:border-cyan-400/50 hover:bg-white/10 px-8 py-4 md:py-5 rounded-2xl transition-all duration-300 font-medium text-center hover:-translate-y-1"
               >
-                Explorar recursos
+                Explorar soluções
               </a>
             </div>
 
             <div className="grid grid-cols-3 gap-4 md:gap-8 pt-12 border-t border-white/10 mt-12 max-w-lg mx-auto lg:mx-0">
               <div className="group cursor-default">
-                <h3 className="text-3xl md:text-4xl font-black text-cyan-400 group-hover:scale-110 transition-transform origin-left">24/7</h3>
-                <p className="text-zinc-500 text-xs md:text-sm mt-1 font-medium group-hover:text-zinc-300 transition-colors">Monitoramento ativo</p>
+                <h3 className="text-3xl md:text-4xl font-black text-cyan-400 group-hover:scale-110 transition-transform origin-left">IA</h3>
+                <p className="text-zinc-500 text-xs md:text-sm mt-1 font-medium group-hover:text-zinc-300 transition-colors">Videotelemetria embarcada</p>
               </div>
               <div className="group cursor-default">
-                <h3 className="text-3xl md:text-4xl font-black text-cyan-400 group-hover:scale-110 transition-transform origin-left">IoT</h3>
-                <p className="text-zinc-500 text-xs md:text-sm mt-1 font-medium group-hover:text-zinc-300 transition-colors">Conectividade M2M</p>
+                <h3 className="text-3xl md:text-4xl font-black text-cyan-400 group-hover:scale-110 transition-transform origin-left">65%</h3>
+                <p className="text-zinc-500 text-xs md:text-sm mt-1 font-medium group-hover:text-zinc-300 transition-colors">Redução em multas</p>
               </div>
               <div className="group cursor-default">
                 <h3 className="text-3xl md:text-4xl font-black text-cyan-400 group-hover:scale-110 transition-transform origin-left">API</h3>
-                <p className="text-zinc-500 text-xs md:text-sm mt-1 font-medium group-hover:text-zinc-300 transition-colors">Integração nativa</p>
+                <p className="text-zinc-500 text-xs md:text-sm mt-1 font-medium group-hover:text-zinc-300 transition-colors">Integração ERP</p>
               </div>
             </div>
           </div>
 
-          {/* DASHBOARD MOCKUP FLUTUANTE */}
+          {/* DASHBOARD MOCKUP FLUTUANTE (AGORA COM VIDEO IA) */}
           <div className="relative w-full mt-10 lg:mt-0 animate-float perspective-1000">
             <div className="absolute inset-0 bg-cyan-400/20 blur-[80px] md:blur-[120px] rounded-full animate-pulse" />
             <div className="relative bg-[#050B1A]/80 border border-white/10 rounded-3xl md:rounded-[36px] p-5 md:p-8 backdrop-blur-2xl shadow-[0_20px_50px_rgba(0,0,0,0.5)] overflow-hidden transition-all duration-500 hover:border-cyan-400/30">
               
               <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-8">
                 <div>
-                  <p className="text-cyan-400 font-bold tracking-widest text-[10px] md:text-xs mb-1 uppercase">Central de Controle</p>
+                  <p className="text-cyan-400 font-bold tracking-widest text-[10px] md:text-xs mb-1 uppercase">Logística & Videotelemetria</p>
                   <h3 className="text-xl md:text-2xl font-black text-white flex items-center gap-2">
-                    <Activity className="text-cyan-400 animate-pulse" size={24} />
+                    <Eye className="text-cyan-400 animate-pulse" size={24} />
                     ORIONSAT DASHBOARD
                   </h3>
                 </div>
@@ -457,21 +464,22 @@ export default function App() {
                 </div>
               </div>
 
+              {/* Grid de Métricas de Telemetria */}
               <div className="grid grid-cols-2 gap-3 md:gap-4 mb-5">
                 <div className="bg-white/5 border border-white/5 rounded-2xl p-4 md:p-5 hover:bg-cyan-400/10 hover:border-cyan-400/30 hover:-translate-y-1 transition-all duration-300 cursor-default group">
                   <div className="flex items-center gap-2 md:gap-3 mb-2 md:mb-3 opacity-70 group-hover:opacity-100 transition-opacity">
-                    <Car className="text-cyan-400 w-5 h-5 md:w-6 md:h-6" />
-                    <span className="text-xs md:text-sm font-medium">Frotas Ativas</span>
+                    <Camera className="text-cyan-400 w-5 h-5 md:w-6 md:h-6" />
+                    <span className="text-xs md:text-sm font-medium">Câmeras Ativas (IA)</span>
                   </div>
-                  <h4 className="text-2xl md:text-4xl font-black tracking-tight text-white group-hover:text-cyan-400 transition-colors">248<span className="text-sm md:text-lg text-zinc-500 font-medium tracking-normal ml-1">/250</span></h4>
+                  <h4 className="text-2xl md:text-4xl font-black tracking-tight text-white group-hover:text-cyan-400 transition-colors">18<span className="text-sm md:text-lg text-zinc-500 font-medium tracking-normal ml-1">veículos</span></h4>
                 </div>
 
                 <div className="bg-white/5 border border-white/5 rounded-2xl p-4 md:p-5 hover:bg-cyan-400/10 hover:border-cyan-400/30 hover:-translate-y-1 transition-all duration-300 cursor-default group">
                   <div className="flex items-center gap-2 md:gap-3 mb-2 md:mb-3 opacity-70 group-hover:opacity-100 transition-opacity">
                     <TrendingUp className="text-cyan-400 w-5 h-5 md:w-6 md:h-6" />
-                    <span className="text-xs md:text-sm font-medium">Eficiência (Km/L)</span>
+                    <span className="text-xs md:text-sm font-medium">Eficiência / Meta</span>
                   </div>
-                  <h4 className="text-2xl md:text-4xl font-black tracking-tight text-white group-hover:text-cyan-400 transition-colors">4.2<span className="text-sm md:text-lg text-zinc-500 font-medium tracking-normal ml-1">avg</span></h4>
+                  <h4 className="text-2xl md:text-4xl font-black tracking-tight text-white group-hover:text-cyan-400 transition-colors">98<span className="text-sm md:text-lg text-zinc-500 font-medium tracking-normal ml-1">%</span></h4>
                 </div>
 
                 <div className="bg-white/5 border border-white/5 rounded-2xl p-4 md:p-5 hover:bg-cyan-400/10 hover:border-cyan-400/30 hover:-translate-y-1 transition-all duration-300 cursor-default group">
@@ -479,7 +487,7 @@ export default function App() {
                     <Gauge className="text-cyan-400 w-5 h-5 md:w-6 md:h-6" />
                     <span className="text-xs md:text-sm font-medium">Score de Condução</span>
                   </div>
-                  <h4 className="text-2xl md:text-4xl font-black tracking-tight text-white group-hover:text-cyan-400 transition-colors">96<span className="text-sm md:text-lg text-zinc-500 font-medium tracking-normal ml-1">%</span></h4>
+                  <h4 className="text-2xl md:text-4xl font-black tracking-tight text-white group-hover:text-cyan-400 transition-colors">96<span className="text-sm md:text-lg text-zinc-500 font-medium tracking-normal ml-1">pts</span></h4>
                 </div>
 
                 <div className="bg-red-500/10 border border-red-500/20 rounded-2xl p-4 md:p-5 hover:bg-red-500/20 hover:-translate-y-1 transition-all duration-300 cursor-default">
@@ -487,22 +495,23 @@ export default function App() {
                     <AlertTriangle className="w-5 h-5 md:w-6 md:h-6 animate-[bounce_2s_infinite]" />
                     <span className="text-xs md:text-sm font-bold">Alertas Críticos</span>
                   </div>
-                  <h4 className="text-2xl md:text-4xl font-black tracking-tight text-white">03</h4>
+                  <h4 className="text-2xl md:text-4xl font-black tracking-tight text-white">02</h4>
                 </div>
               </div>
 
+              {/* Simulação de Mapa e Rastreamento */}
               <div className="bg-[#02050A] rounded-2xl border border-white/10 p-1 relative overflow-hidden h-40 md:h-48 group">
                 <div className="absolute inset-0 opacity-[0.15] bg-[linear-gradient(rgba(255,255,255,1)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,1)_1px,transparent_1px)] bg-[size:20px_20px] md:bg-[size:30px_30px] transition-transform duration-1000 group-hover:scale-105" />
                 <div className="absolute top-3 left-4 text-[10px] md:text-xs font-bold text-zinc-400 tracking-wider flex items-center gap-2 z-10 bg-black/60 backdrop-blur-sm px-2 py-1 rounded border border-white/10">
                   <MapPinned size={14} className="text-cyan-400" />
-                  RASTREAMENTO AO VIVO
+                  ACOMPANHAMENTO LOGÍSTICO
                 </div>
                 
                 <div className="absolute top-1/2 left-1/4 -translate-y-1/2 flex flex-col items-center">
                   <div className="w-8 h-8 rounded-full bg-cyan-400/20 flex items-center justify-center animate-[pulse_2s_ease-in-out_infinite]">
                     <div className="w-3 h-3 bg-cyan-400 rounded-full shadow-[0_0_15px_rgba(34,211,238,1)]" />
                   </div>
-                  <span className="text-[8px] font-bold text-cyan-300 mt-1 bg-black/80 px-1.5 py-0.5 rounded border border-cyan-400/20">RTA-01</span>
+                  <span className="text-[8px] font-bold text-cyan-300 mt-1 bg-black/80 px-1.5 py-0.5 rounded border border-cyan-400/20">ROTA-01</span>
                 </div>
 
                 <div className="absolute top-1/4 right-1/3 flex flex-col items-center">
@@ -514,26 +523,27 @@ export default function App() {
 
                 <div className="absolute bottom-1/4 right-1/4 flex flex-col items-center">
                   <div className="w-8 h-8 rounded-full bg-red-500/20 flex items-center justify-center animate-[pulse_1.5s_ease-in-out_infinite]">
-                    <Navigation2 size={14} className="text-red-400 fill-red-400 -rotate-12" />
+                    <Video size={12} className="text-red-400 fill-red-400" />
                   </div>
-                  <span className="text-[8px] font-bold text-red-300 mt-1 bg-black/80 px-1.5 py-0.5 rounded border border-red-500/30 text-center">OVR-SPD<br/>110km/h</span>
+                  <span className="text-[8px] font-bold text-red-300 mt-1 bg-black/80 px-1.5 py-0.5 rounded border border-red-500/30 text-center">CAM-12<br/>FADIGA</span>
                 </div>
               </div>
 
+              {/* Log de Eventos Rápido */}
               <div className="mt-4 md:mt-5 space-y-2">
-                <div className="bg-white/5 rounded-lg p-2.5 md:p-3 flex items-center justify-between text-xs md:text-sm border border-white/5 hover:bg-white/10 transition-colors cursor-default">
+                <div className="bg-red-500/10 rounded-lg p-2.5 md:p-3 flex items-center justify-between text-xs md:text-sm border border-red-500/20 hover:bg-red-500/20 transition-colors cursor-default">
                   <div className="flex items-center gap-2 md:gap-3">
-                    <div className="w-2 h-2 rounded-full bg-red-400 shadow-[0_0_8px_rgba(248,113,113,0.8)]" />
-                    <span className="text-zinc-300 font-medium">Excesso de Velocidade detectado</span>
+                    <Video className="text-red-400 w-4 h-4 md:w-5 md:h-5" />
+                    <span className="text-zinc-200 font-medium">Sinal de fadiga detectado (Motorista 05)</span>
                   </div>
-                  <span className="text-red-400 text-[10px] md:text-xs font-bold">Agora</span>
+                  <span className="text-red-400 text-[10px] md:text-xs font-bold flex items-center gap-1"><div className="w-1.5 h-1.5 rounded-full bg-red-400 animate-pulse"/>GRAVANDO</span>
                 </div>
                 <div className="bg-white/5 rounded-lg p-2.5 md:p-3 flex items-center justify-between text-xs md:text-sm border border-white/5 hover:bg-white/10 transition-colors cursor-default">
                   <div className="flex items-center gap-2 md:gap-3">
                     <div className="w-2 h-2 rounded-full bg-yellow-400" />
-                    <span className="text-zinc-300 font-medium">Motor ocioso (RPM contínuo)</span>
+                    <span className="text-zinc-300 font-medium">Violação: Velocidade na Via (55km/h em trecho de 40km/h)</span>
                   </div>
-                  <span className="text-zinc-500 text-[10px] md:text-xs">Há 4 min</span>
+                  <span className="text-zinc-500 text-[10px] md:text-xs">Há 2 min</span>
                 </div>
               </div>
 
@@ -542,29 +552,29 @@ export default function App() {
         </div>
       </section>
 
-      {/* SEÇÃO DE SOBRE */}
+      {/* SEÇÃO DE SOBRE/DIFERENCIAL DA IA */}
       <section id="sobre" className="max-w-7xl mx-auto px-4 md:px-6 py-20 md:py-32 relative z-10">
         <div className="grid lg:grid-cols-2 gap-12 md:gap-20 items-center">
           <div>
             <p className="text-cyan-400 font-bold uppercase tracking-[0.2em] md:tracking-[0.3em] text-xs md:text-sm mb-4 md:mb-5 flex items-center gap-2">
-              <span className="w-8 h-px bg-cyan-400"></span> Governança Logística
+              <span className="w-8 h-px bg-cyan-400"></span> Inteligência Logística
             </p>
             <h2 className="text-3xl md:text-5xl font-black leading-tight">
-              Hardware e software operando em perfeita sincronia.
+              Mais do que mapa. O raio-X completo da sua operação.
             </h2>
           </div>
           <div className="space-y-4 md:space-y-6 text-zinc-400 text-base md:text-lg leading-relaxed">
             <p className="hover:text-zinc-300 transition-colors">
-              A ORIONSAT não fornece apenas posições de GPS no mapa. Entregamos um raio-X completo da sua operação. Atuamos com telemetria avançada, extraindo dados vitais direto do motor e da central eletrônica do veículo.
+              A ORIONSAT integra a <strong className="text-white">Videotelemetria com Inteligência Artificial</strong> para identificar comportamentos de risco em tempo real. Identificamos motoristas bocejando, utilizando o celular ou dirigindo sem cinto, permitindo ações corretivas imediatas.
             </p>
             <p className="hover:text-zinc-300 transition-colors">
-              Nossa missão é combater o desperdício, reduzir manutenções corretivas causadas por má condução e centralizar o despacho logístico em um painel simples, rápido e auditável.
+              Nossa missão é centralizar suas necessidades logísticas: desde o <strong className="text-white">Controle da Jornada de Trabalho</strong> (cumprindo a Lei do Motorista) até a roteirização de entregas, leitura de RPM e controle preciso do Abastecimento.
             </p>
           </div>
         </div>
       </section>
 
-      {/* FUNCIONALIDADES */}
+      {/* FUNCIONALIDADES (ATUALIZADAS) */}
       <section id="plataforma" className="max-w-7xl mx-auto px-4 md:px-6 pb-20 md:pb-32 relative z-10">
         <div className="text-center mb-12 md:mb-20">
           <p className="text-cyan-400 font-bold uppercase tracking-[0.2em] md:tracking-[0.3em] text-xs md:text-sm mb-3 md:mb-4">Módulos da Plataforma</p>
@@ -613,15 +623,15 @@ export default function App() {
           
           <div>
             <div className="mb-8 md:mb-12 text-center lg:text-left">
-              <p className="text-cyan-400 font-bold uppercase tracking-[0.2em] md:tracking-[0.3em] text-xs md:text-sm mb-3 md:mb-4">Infraestrutura</p>
-              <h2 className="text-3xl md:text-4xl font-black">Tecnologia escalável</h2>
+              <p className="text-cyan-400 font-bold uppercase tracking-[0.2em] md:tracking-[0.3em] text-xs md:text-sm mb-3 md:mb-4">Infraestrutura Multicâmeras</p>
+              <h2 className="text-3xl md:text-4xl font-black">Tecnologia de Ponta</h2>
             </div>
             <div className="grid grid-cols-2 gap-3 md:gap-5">
               {[
-                { icon: <Cpu size={28} />, title: "Processamento de alta velocidade" },
+                { icon: <Video size={28} />, title: "Integração Hikvision e Jimi" },
                 { icon: <Database size={28} />, title: "Armazenamento em Nuvem Seguro" },
                 { icon: <Server size={28} />, title: "Uptime de 99.9% garantido" },
-                { icon: <Globe size={28} />, title: "Cobertura de chips multi-operadora" },
+                { icon: <Globe size={28} />, title: "Gestão Integrada via API e ERPs" },
               ].map((item, index) => (
                 <div key={index} className="group bg-white/5 border border-white/10 rounded-xl md:rounded-2xl p-5 md:p-6 text-center hover:bg-white/10 hover:border-cyan-400/30 hover:-translate-y-1 transition-all duration-300">
                   <div className="flex justify-center text-cyan-400 mb-3 md:mb-4 bg-cyan-400/10 w-fit p-3 rounded-full mx-auto group-hover:scale-110 group-hover:bg-cyan-400/20 transition-all">{item.icon}</div>
@@ -667,6 +677,23 @@ export default function App() {
         </div>
       </section>
 
+      {/* FAQ ATUALIZADO */}
+      <section id="faq" className="max-w-4xl mx-auto px-4 md:px-6 pb-20 md:pb-32 relative z-10">
+        <div className="text-center mb-12 md:mb-16">
+          <p className="text-cyan-400 font-bold uppercase tracking-[0.2em] md:tracking-[0.3em] text-xs md:text-sm mb-3 md:mb-4">Suporte de Implantação</p>
+          <h2 className="text-3xl md:text-5xl font-black">Perguntas frequentes</h2>
+        </div>
+
+        <div className="space-y-4 md:space-y-6">
+          {faq.map((item, index) => (
+            <div key={index} className="bg-white/5 border border-white/10 rounded-2xl md:rounded-3xl p-6 md:p-8 hover:bg-white/10 transition-colors">
+              <h3 className="text-lg md:text-2xl font-bold mb-3 text-white">{item.pergunta}</h3>
+              <p className="text-zinc-400 text-sm md:text-base leading-relaxed">{item.resposta}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
       {/* CTA SECTION */}
       <section className="max-w-7xl mx-auto px-4 md:px-6 pb-20 md:pb-32 relative z-10">
         <div className="relative overflow-hidden bg-[#050B1A] border border-cyan-400/30 rounded-3xl md:rounded-[40px] p-8 md:p-16 text-center group hover:border-cyan-400/50 transition-colors duration-500 hover:shadow-[0_0_50px_rgba(34,211,238,0.15)]">
@@ -677,7 +704,7 @@ export default function App() {
               Assuma o controle total da sua operação hoje.
             </h2>
             <p className="text-zinc-300 text-base md:text-xl mt-6 max-w-2xl mx-auto leading-relaxed">
-              Agende uma demonstração gratuita do nosso painel de telemetria e veja a performance da sua frota decolar.
+              Agende uma demonstração gratuita do nosso painel de Videotelemetria e gestão e veja a performance da sua frota decolar.
             </p>
             <a
               href="https://linktr.ee/orionsatgestao"
@@ -704,17 +731,17 @@ export default function App() {
               </div>
             </div>
             <p className="text-zinc-400 text-sm md:text-base leading-relaxed max-w-sm">
-              Plataforma de inteligência logística, telemetria avançada e visibilidade operacional para frotas que exigem alta performance.
+              Plataforma de inteligência logística, videotelemetria com IA e visibilidade operacional para frotas que exigem alta performance.
             </p>
           </div>
 
           <div>
             <h4 className="font-bold text-white text-lg md:text-xl mb-4 md:mb-5">Plataforma</h4>
             <ul className="space-y-2 md:space-y-3 text-zinc-400 text-sm md:text-base">
-              <li className="hover:text-cyan-400 hover:translate-x-1 cursor-pointer transition-all">Telemetria Avançada</li>
-              <li className="hover:text-cyan-400 hover:translate-x-1 cursor-pointer transition-all">Roteirização Logística</li>
-              <li className="hover:text-cyan-400 hover:translate-x-1 cursor-pointer transition-all">Dashboard Analítico</li>
-              <li className="hover:text-cyan-400 hover:translate-x-1 cursor-pointer transition-all">Aplicativo Mobile</li>
+              <li className="hover:text-cyan-400 hover:translate-x-1 cursor-pointer transition-all">Videotelemetria IA</li>
+              <li className="hover:text-cyan-400 hover:translate-x-1 cursor-pointer transition-all">Jornada e Roteirização</li>
+              <li className="hover:text-cyan-400 hover:translate-x-1 cursor-pointer transition-all">Controle de Velocidade na Via</li>
+              <li className="hover:text-cyan-400 hover:translate-x-1 cursor-pointer transition-all">Manutenção e Abastecimento</li>
             </ul>
           </div>
 
