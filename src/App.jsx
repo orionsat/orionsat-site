@@ -2,23 +2,14 @@ import { useState, useEffect } from "react";
 import {
   Activity,
   Bell,
-  Car,
-  ShieldCheck,
-  Smartphone,
   MapPinned,
-  BarChart3,
   ArrowRight,
   CheckCircle2,
-  Cpu,
   Globe,
   Database,
-  Waves,
   Server,
-  Radar,
   Route as RouteIcon,
-  MonitorSmartphone,
   Gauge,
-  Navigation2,
   AlertTriangle,
   TrendingUp,
   Video,
@@ -27,15 +18,14 @@ import {
   Eye,
   Camera,
   Layers,
-  Fuel,
   Map,
   CheckSquare,
   Truck,
   ChevronRight,
-  Cookie
+  Cookie,
+  Menu,
+  X
 } from "lucide-react";
-
-import "./App.css";
 
 // IMPORTAÇÃO DAS LOGOS DOS CLIENTES E DA ORIONSAT
 import logo from "./assets/logo.png";
@@ -46,6 +36,7 @@ import logoNevinho from "./assets/nevinho.jpeg";
 import logoZls from "./assets/zls.jpeg";
 
 export default function App() {
+  const [menuAberto, setMenuAberto] = useState(false);
   const [docAtivo, setDocAtivo] = useState(() => {
     if (typeof window !== "undefined") {
       const params = new URLSearchParams(window.location.search);
@@ -116,24 +107,15 @@ export default function App() {
     { nome: "ZLS Transportes", logo: logoZls },
   ];
 
-  const segmentos = [
-    "Logística e Transportadoras",
-    "Frotas Corporativas e Executivas",
-    "Operações de Máquinas e Equipamentos",
-    "Locadoras e Terceirização de Frotas",
-    "Facilities e Operações de Campo",
-    "Pequenos Frotistas e Autônomos",
-  ];
-
   // DADOS DETALHADOS PARA A SEÇÃO EXPLICATIVA E CARDS DE SOLUÇÕES
   const detalhesModulos = [
     {
       id: "video",
       icon: <Video size={24} />,
       title: "Videomonitoramento com IA",
-      subtitle: "Seus olhos dentro e fora da cabine, prevenindo acidentes.",
-      description: "Esqueça as câmeras comuns que apenas gravam. Nosso sistema utiliza Inteligência Artificial embarcada (Edge AI) para ler o rosto do motorista e o ambiente. Ele identifica sinais de sono (bocejos, olhos fechando), uso de celular, cigarro ou ausência de cinto. O motorista recebe um alerta sonoro instantâneo para evitar o acidente, e a central recebe o vídeo do evento salvo na nuvem.",
-      topics: ["Prevenção ativa de acidentes e tombamentos", "Auditoria de sinistros (prova em vídeo irrefutável)", "Melhoria contínua do comportamento da equipe"]
+      subtitle: "Visibilidade de eventos críticos dentro e fora da cabine.",
+      description: "A videotelemetria combina câmeras e recursos de análise embarcada para identificar eventos configurados, como sinais de fadiga, distração, uso de celular e ausência de cinto. Os registros apoiam a gestão preventiva, a auditoria operacional e o desenvolvimento contínuo da equipe.",
+      topics: ["Apoio à prevenção de incidentes", "Registros em vídeo para auxiliar auditorias", "Melhoria contínua do comportamento da equipe"]
     },
     {
       id: "logistics",
@@ -147,17 +129,17 @@ export default function App() {
       id: "jornada",
       icon: <Clock size={24} />,
       title: "Jornada de Trabalho",
-      subtitle: "Sua blindagem contra passivos trabalhistas.",
+      subtitle: "Informações organizadas para apoiar a gestão de jornada.",
       description: "Adequar-se à Lei do Motorista não precisa ser uma dor de cabeça. Nossa plataforma automatiza o apontamento de horas. O motorista inicia o expediente via App ou crachá (RFID). O sistema registra automaticamente o tempo de direção, paradas para descanso, refeição, horas de espera e horas extras, gerando folhas de ponto precisas e auditáveis.",
-      topics: ["Adequação rigorosa à legislação vigente", "Fim das planilhas manuais e erros de apontamento", "Alertas para o motorista realizar suas pausas obrigatórias"]
+      topics: ["Apoio aos processos internos de conformidade", "Menos planilhas manuais e erros de apontamento", "Alertas configuráveis para pausas operacionais"]
     },
     {
       id: "telemetria",
       icon: <Gauge size={24} />,
       title: "Telemetria e Velocidade na Via",
-      subtitle: "O fim do desperdício de combustível e das multas surpresa.",
+      subtitle: "Indicadores para uma condução mais eficiente.",
       description: "Nós lemos a 'mente' do veículo. Monitoramos a RPM (conta-giros), acelerações, freadas bruscas e curvas acentuadas. O grande diferencial é o módulo 'Velocidade na Via': o GPS cruza a posição do carro com os limites de velocidade reais de cada rua (placas). Se a via é de 40km/h e o motorista passa a 60km/h, a central fica sabendo na hora.",
-      topics: ["Redução de até 65% em multas de trânsito", "Ranking de motoristas baseado em direção econômica", "Diminuição do desgaste prematuro de freios e pneus"]
+      topics: ["Apoio à redução de ocorrências e multas", "Ranking de motoristas baseado em direção econômica", "Indicadores de eventos que impactam freios e pneus"]
     },
     {
       id: "manutencao",
@@ -171,60 +153,16 @@ export default function App() {
 
   const beneficios = [
     "Ecossistema unificado: elimine a necessidade de contratar múltiplos softwares",
-    "Mitigação drástica do passivo de multas (Velocidade na Via) e riscos trabalhistas (Jornada)",
-    "Redução comprovada de custos com combustível e manutenções corretivas",
-    "Controle total e auditoria visual da operação via Videomonitoramento IA",
-    "Tomada de decisão baseada em dados reais (Big Data e Telemetria Avançada)",
-    "Arquitetura escalável: atende com excelência desde 1 até 5.000 veículos",
-  ];
-
-  const faq = [
-    {
-      pergunta: "A Orion Sat atua como um sistema integrado (ERP Logístico)?",
-      resposta:
-        "Sim. Nosso maior diferencial é entregar um ecossistema completo. Você não precisa de um sistema para câmeras, outro para roteirização de entregas e outro para a Lei do Motorista. A plataforma Orion Sat centraliza Videotelemetria, Logistics, Jornada, Manutenção e Telemetria em um único painel de controle.",
-    },
-    {
-      pergunta: "A plataforma é acessível para frotas de menor porte e veículos particulares?",
-      resposta:
-        "Sim. Nossa tecnologia Enterprise foi desenhada para ser totalmente escalável. Pequenos frotistas, locadoras menores e até profissionais autônomos têm acesso à mesma inteligência operacional utilizada por grandes transportadoras, pagando apenas pelas licenças ativas na sua rotina.",
-    },
-    {
-      pergunta: "Qual o prazo de implantação da plataforma?",
-      resposta:
-        "A implantação inicial do painel é rápida, ocorrendo logo após a ativação dos equipamentos ou aplicativos. O tempo total varia conforme o tamanho da frota e os módulos escolhidos, mas nossa equipe acompanha você em todo o processo para garantir uma transição sem dores de cabeça.",
-    }
+    "Indicadores para apoiar a gestão de multas, condução e jornada",
+    "Dados que ajudam a identificar oportunidades em combustível e manutenção",
+    "Auditoria visual de eventos com videotelemetria",
+    "Decisões orientadas por telemetria, históricos e indicadores operacionais",
+    "Configuração adaptável ao porte e às necessidades de cada operação",
   ];
 
   // ==========================================
   // RENDERIZAÇÃO DOS DOCUMENTOS LEGAIS
   // ==========================================
-  
-// COMPONENTE DO BANNER DE COOKIES
-  const BannerCookies = () => (
-    !cookieAceito && (
-      <div className="fixed bottom-4 left-4 right-4 md:left-6 md:right-auto md:w-[400px] z-[60] animate-in slide-in-from-bottom-10 fade-in duration-700">
-        <div className="bg-[#050B1A]/95 backdrop-blur-xl border border-white/10 rounded-2xl p-5 shadow-[0_20px_50px_rgba(0,0,0,0.5)] flex flex-col md:flex-row gap-4 items-start">
-          <div className="bg-cyan-400/10 p-2.5 rounded-full flex-shrink-0 hidden md:block">
-            <Cookie className="text-cyan-400" size={24} />
-          </div>
-          <div>
-            <div className="flex items-center gap-2 mb-2 md:hidden">
-              <Cookie className="text-cyan-400" size={18} />
-              <h4 className="text-white font-bold text-sm">Privacidade e Cookies</h4>
-            </div>
-            <h4 className="text-white font-bold text-sm mb-1 hidden md:block">Privacidade e Cookies</h4>
-            <p className="text-zinc-400 text-xs leading-relaxed mb-4">
-              Nós usamos cookies para melhorar sua experiência em nosso site. Ao continuar navegando, você concorda com a nossa <button onClick={() => alternarDocumento("cookies")} className="text-cyan-400 hover:underline">Política de Cookies</button> e <button onClick={() => alternarDocumento("privacidade")} className="text-cyan-400 hover:underline">Privacidade</button>.
-            </p>
-            <button onClick={aceitarCookies} className="bg-cyan-400 text-black px-4 py-2.5 rounded-xl text-xs font-bold hover:scale-105 transition-transform w-full shadow-[0_0_15px_rgba(34,211,238,0.2)]">
-              Aceitar e Fechar
-            </button>
-          </div>
-        </div>
-      </div>
-    )
-  );
   
   if (docAtivo) {
     return (
@@ -455,7 +393,7 @@ export default function App() {
           >
             <img src={logo} alt="ORIONSAT" className="w-10 h-10 md:w-14 md:h-14 object-contain" translate="no" />
             <div translate="no">
-              <h1 className="font-black text-xl md:text-3xl tracking-tight leading-none bg-gradient-to-r from-white to-zinc-400 bg-clip-text text-transparent">ORIONSAT</h1>
+              <p className="font-black text-xl md:text-3xl tracking-tight leading-none bg-gradient-to-r from-white to-zinc-400 bg-clip-text text-transparent">ORIONSAT</p>
               <p className="text-cyan-400 uppercase tracking-[0.2em] md:tracking-[0.35em] text-[8px] md:text-xs mt-1">Gestão Inteligente</p>
             </div>
           </div>
@@ -467,18 +405,37 @@ export default function App() {
             <a href="#clientes" className="hover:text-cyan-400 hover:-translate-y-0.5 transition-all duration-300">Clientes</a>
           </nav>
 
-          <a
-            href="https://painel.orionsatgestao.com.br"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="relative overflow-hidden group bg-cyan-400 text-black px-5 md:px-7 py-2.5 md:py-3 rounded-xl md:rounded-2xl font-bold text-sm md:text-base transition-all duration-300 hover:scale-105 hover:shadow-[0_0_20px_rgba(34,211,238,0.4)] active:scale-95"
-          >
-            <span className="relative z-10">Acessar Sistema</span>
-            <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-in-out" />
-          </a>
+          <div className="flex items-center gap-2">
+            <a
+              href="https://painel.orionsatgestao.com.br"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="relative overflow-hidden group bg-cyan-400 text-black px-4 md:px-7 py-2.5 md:py-3 rounded-xl md:rounded-2xl font-bold text-xs md:text-base transition-all duration-300 hover:scale-105 hover:shadow-[0_0_20px_rgba(34,211,238,0.4)] active:scale-95"
+            >
+              <span className="relative z-10">Acessar Sistema</span>
+            </a>
+            <button
+              type="button"
+              className="lg:hidden p-2.5 rounded-xl border border-white/10 bg-white/5 text-white"
+              onClick={() => setMenuAberto((aberto) => !aberto)}
+              aria-expanded={menuAberto}
+              aria-controls="menu-mobile"
+              aria-label={menuAberto ? "Fechar menu" : "Abrir menu"}
+            >
+              {menuAberto ? <X size={22} /> : <Menu size={22} />}
+            </button>
+          </div>
         </div>
+        {menuAberto && (
+          <nav id="menu-mobile" className="lg:hidden border-t border-white/10 bg-[#020817]/95 px-4 py-4 grid gap-2 text-zinc-200">
+            {[["Visão Geral", "#sobre"], ["Módulos", "#modulos-detalhados"], ["Tecnologia", "#tecnologia"], ["Clientes", "#clientes"]].map(([label, href]) => (
+              <a key={href} href={href} onClick={() => setMenuAberto(false)} className="px-4 py-3 rounded-xl hover:bg-white/5 hover:text-cyan-400">{label}</a>
+            ))}
+          </nav>
+        )}
       </header>
 
+      <main>
       {/* HERO SECTION */}
       <section className="min-h-[100dvh] flex items-center pt-28 md:pt-36 pb-20 relative z-10">
         <div className="max-w-7xl mx-auto px-4 md:px-6 grid lg:grid-cols-2 gap-12 md:gap-24 items-center w-full">
@@ -486,23 +443,23 @@ export default function App() {
           <div className="text-center lg:text-left">
             <div className="inline-flex items-center gap-2 md:gap-3 px-4 py-2 md:px-5 md:py-3 rounded-full border border-cyan-400/30 bg-cyan-400/10 text-cyan-300 text-xs md:text-sm mb-8 mx-auto lg:mx-0 font-medium backdrop-blur-sm shadow-[0_0_15px_rgba(34,211,238,0.1)]">
               <Layers size={16} className="animate-pulse" />
-              Ecossistema Definitivo de Gestão Operacional
+              Orion Sat — Inteligência Operacional
             </div>
 
-            <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-[4.5rem] font-black leading-tight tracking-tight mb-4">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-[4.5rem] font-black leading-tight tracking-tight mb-4">
               Inteligência exata na
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500 block">sua operação.</span>
-              Corte definitivo nos
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500 block">seus custos.</span>
-            </h2>
+              Dados que orientam
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500 block">melhores resultados.</span>
+            </h1>
 
             <p className="text-zinc-400 text-base md:text-xl leading-relaxed max-w-2xl mt-8 mx-auto lg:mx-0">
-              Integração total em uma única plataforma Enterprise. Videotelemetria com IA, roteirização logística, controle de jornada trabalhista e telemetria avançada. Escale sua frota com eficiência e segurança comprovada.
+              Plataforma integrada de rastreamento, telemetria e gestão operacional para empresas, locadoras e profissionais que precisam de visibilidade real sobre seus veículos.
             </p>
 
             <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 md:gap-5 mt-10">
               <a
-                href="https://wa.me/5511911021692"
+                href="https://wa.me/5511911021692?text=Ol%C3%A1%21%20Conheci%20a%20Orion%20Sat%20pelo%20site%20e%20gostaria%20de%20entender%20qual%20solu%C3%A7%C3%A3o%20%C3%A9%20adequada%20para%20minha%20opera%C3%A7%C3%A3o."
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-full sm:w-auto bg-cyan-400 text-black px-8 py-4 md:py-5 rounded-2xl font-bold flex items-center justify-center gap-3 transition-all duration-300 hover:scale-105 hover:bg-cyan-300 hover:shadow-[0_0_30px_rgba(34,211,238,0.5)] active:scale-95 group"
@@ -535,7 +492,7 @@ export default function App() {
           </div>
 
           {/* DASHBOARD MOCKUP INTERATIVO */}
-          <div className="relative w-full mt-10 lg:mt-0 animate-float perspective-1000 hidden md:block">
+          <div className="relative w-full mt-10 lg:mt-0 md:animate-float perspective-1000">
             <div className="absolute inset-0 bg-cyan-400/20 blur-[80px] md:blur-[120px] rounded-full animate-pulse" />
             
             <div className="relative bg-[#050B1A]/90 border border-white/10 rounded-3xl md:rounded-[36px] p-5 md:p-8 backdrop-blur-2xl shadow-[0_20px_50px_rgba(0,0,0,0.5)] overflow-hidden transition-all duration-500 hover:border-cyan-400/40">
@@ -785,10 +742,10 @@ export default function App() {
           </div>
           <div className="space-y-4 md:space-y-6 text-zinc-400 text-base md:text-lg leading-relaxed">
             <p className="hover:text-zinc-300 transition-colors">
-              O mercado logístico e de transportes sofre com a falta de centralização. Uma ferramenta para câmeras, outra para rastreamento, planilhas para manutenção e papéis para a jornada do motorista. <strong className="text-white">A ORIONSAT unifica todos os pilares da sua gestão.</strong>
+              Operações com veículos frequentemente lidam com informações dispersas entre rastreamento, planilhas, manutenção e gestão de equipes. <strong className="text-white">A Orion Sat centraliza dados essenciais para dar mais visibilidade à rotina operacional.</strong>
             </p>
             <p className="hover:text-zinc-300 transition-colors">
-              Apoiados em uma infraestrutura global, entregamos módulos interconectados. Cruzamos a telemetria avançada com a inteligência visual (câmeras IA) e a gestão de rotas e equipes. Um ecossistema de alto valor agregado, escalável para a sua realidade.
+              A plataforma conecta rastreamento, telemetria, videomonitoramento e recursos de gestão conforme a necessidade de cada cliente. O resultado é uma operação mais clara, mensurável e preparada para evoluir.
             </p>
           </div>
         </div>
@@ -800,7 +757,7 @@ export default function App() {
           <p className="text-cyan-400 font-bold uppercase tracking-[0.2em] md:tracking-[0.3em] text-xs md:text-sm mb-3 md:mb-4">Funcionalidades na Prática</p>
           <h2 className="text-3xl md:text-5xl font-black">Entenda a fundo nossas soluções</h2>
           <p className="text-zinc-400 text-base mt-4 max-w-2xl mx-auto">
-            Clique nos botões abaixo para descobrir como cada um dos nossos módulos atua silenciosamente para gerar lucro e segurança para você.
+            Explore os módulos e veja como cada recurso pode apoiar controle, produtividade e decisões orientadas por dados.
           </p>
         </div>
 
@@ -869,10 +826,10 @@ export default function App() {
             </div>
             <div className="grid grid-cols-2 gap-3 md:gap-5">
               {[
-                { icon: <Video size={28} />, title: "Homologação de Câmeras de Ponta" },
-                { icon: <Database size={28} />, title: "Big Data e Nuvem Criptografada" },
-                { icon: <Server size={28} />, title: "Disponibilidade de Servidor 99.9%" },
-                { icon: <Globe size={28} />, title: "Integrações ERP via API Rest" },
+                { icon: <Video size={28} />, title: "Câmeras e recursos integrados" },
+                { icon: <Database size={28} />, title: "Históricos e dados operacionais" },
+                { icon: <Server size={28} />, title: "Infraestrutura monitorada" },
+                { icon: <Globe size={28} />, title: "Possibilidades de integração via API" },
               ].map((item, index) => (
                 <div key={index} className="group bg-white/5 border border-white/10 rounded-xl md:rounded-2xl p-5 md:p-6 text-center hover:bg-white/10 hover:border-cyan-400/30 hover:-translate-y-1 transition-all duration-300">
                   <div className="flex justify-center text-cyan-400 mb-3 md:mb-4 bg-cyan-400/10 w-fit p-3 rounded-full mx-auto group-hover:scale-110 group-hover:bg-cyan-400/20 transition-all">{item.icon}</div>
@@ -922,6 +879,21 @@ export default function App() {
         </div>
       </section>
 
+      <section id="implantacao" className="max-w-7xl mx-auto px-4 md:px-6 pb-20 md:pb-32 relative z-10">
+        <div className="text-center mb-12">
+          <p className="text-cyan-400 font-bold uppercase tracking-[0.2em] text-xs md:text-sm mb-3">Implantação orientada</p>
+          <h2 className="text-3xl md:text-5xl font-black">Da análise à operação conectada</h2>
+        </div>
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          {["Entendimento da operação", "Definição da solução", "Instalação e configuração", "Liberação e acompanhamento"].map((etapa, index) => (
+            <div key={etapa} className="bg-white/5 border border-white/10 rounded-2xl p-6">
+              <span className="text-cyan-400 font-black text-3xl">0{index + 1}</span>
+              <h3 className="text-white font-bold text-lg mt-4">{etapa}</h3>
+            </div>
+          ))}
+        </div>
+      </section>
+
       {/* CTA SECTION */}
       <section className="max-w-7xl mx-auto px-4 md:px-6 pb-20 md:pb-32 relative z-10">
         <div className="relative overflow-hidden bg-[#050B1A] border border-cyan-400/30 rounded-3xl md:rounded-[40px] p-8 md:p-16 text-center group hover:border-cyan-400/50 transition-colors duration-500 hover:shadow-[0_0_50px_rgba(34,211,238,0.15)]">
@@ -929,13 +901,13 @@ export default function App() {
           
           <div className="relative z-10">
             <h2 className="text-3xl md:text-5xl lg:text-6xl font-black max-w-4xl mx-auto leading-[1.1] tracking-tight text-white">
-              Gestão de ponta acessível para a sua realidade.
+              Tecnologia que abre caminhos. Inteligência que entrega resultados.
             </h2>
             <p className="text-zinc-300 text-base md:text-xl mt-6 max-w-2xl mx-auto leading-relaxed">
-              Não espere os custos e os passivos saírem do controle para agir. Agende uma consultoria estratégica e entenda como otimizar a sua operação hoje.
+              Conte como funciona sua operação e receba uma orientação sobre os recursos mais adequados para os seus veículos e objetivos.
             </p>
             <a
-              href="https://wa.me/5511911021692"
+              href="https://wa.me/5511911021692?text=Ol%C3%A1%21%20Conheci%20a%20Orion%20Sat%20pelo%20site%20e%20gostaria%20de%20entender%20qual%20solu%C3%A7%C3%A3o%20%C3%A9%20adequada%20para%20minha%20opera%C3%A7%C3%A3o."
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center justify-center gap-3 w-full sm:w-auto bg-cyan-400 text-black px-8 py-4 md:py-5 rounded-xl md:rounded-2xl font-bold mt-10 transition-all duration-300 hover:scale-105 hover:bg-cyan-300 hover:shadow-[0_0_30px_rgba(34,211,238,0.5)] active:scale-95 text-base md:text-lg"
@@ -946,6 +918,7 @@ export default function App() {
           </div>
         </div>
       </section>
+      </main>
 
       {/* FOOTER */}
       <footer className="border-t border-white/10 py-12 md:py-16 bg-black/40 relative z-10">
@@ -962,7 +935,7 @@ export default function App() {
               </div>
             </div>
             <p className="text-zinc-400 text-sm md:text-base leading-relaxed max-w-sm">
-              Plataforma de inteligência logística, gestão operacional holística e videotelemetria para frotas que exigem controle total.
+              Tecnologia para rastreamento, telemetria e gestão operacional orientada por dados.
             </p>
           </div>
 
@@ -1008,7 +981,7 @@ export default function App() {
 
       {/* BOTÃO FLUTUANTE DO WHATSAPP */}
       <a
-        href="https://wa.me/5511911021692"
+        href="https://wa.me/5511911021692?text=Ol%C3%A1%21%20Conheci%20a%20Orion%20Sat%20pelo%20site%20e%20gostaria%20de%20entender%20qual%20solu%C3%A7%C3%A3o%20%C3%A9%20adequada%20para%20minha%20opera%C3%A7%C3%A3o."
         target="_blank"
         rel="noopener noreferrer"
         className="fixed bottom-6 right-6 z-50 bg-[#25D366] text-white p-3.5 md:p-4 rounded-full shadow-[0_4px_20px_rgba(37,211,102,0.5)] hover:scale-110 hover:-translate-y-1 transition-all duration-300 flex items-center justify-center group animate-bounce"
@@ -1020,8 +993,20 @@ export default function App() {
         </svg>
       </a>
 
-      {/* COMPONENTE DO BANNER RENDERIZADO AQUI */}
-      <BannerCookies />
+      {!cookieAceito && (
+        <div className="fixed bottom-4 left-4 right-20 md:left-6 md:right-auto md:w-[400px] z-[60]">
+          <div className="bg-[#050B1A]/95 backdrop-blur-xl border border-white/10 rounded-2xl p-5 shadow-[0_20px_50px_rgba(0,0,0,0.5)] flex gap-4 items-start">
+            <Cookie className="text-cyan-400 flex-shrink-0" size={22} />
+            <div>
+              <h4 className="text-white font-bold text-sm mb-1">Privacidade no site</h4>
+              <p className="text-zinc-400 text-xs leading-relaxed mb-3">
+                Este site usa apenas armazenamento local necessário para registrar este aviso. Consulte nossa <button onClick={() => alternarDocumento("cookies")} className="text-cyan-400 hover:underline">Política de Cookies</button>.
+              </p>
+              <button onClick={aceitarCookies} className="bg-cyan-400 text-black px-4 py-2 rounded-xl text-xs font-bold">Entendi</button>
+            </div>
+          </div>
+        </div>
+      )}
 
     </div>
   );
