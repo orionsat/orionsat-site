@@ -373,13 +373,28 @@ export default function App() {
         .animate-slow-pulse { animation: slow-pulse 8s ease-in-out infinite; }
         .blend-logo { mix-blend-mode: screen; }
         .animate-bar { animation: slideRight 1.5s cubic-bezier(0.22, 1, 0.36, 1) forwards; }
+        @keyframes orbitGlow {
+          0%, 100% { transform: translate3d(0, 0, 0) scale(1); opacity: .4; }
+          50% { transform: translate3d(30px, -24px, 0) scale(1.12); opacity: .75; }
+        }
+        @keyframes scanLine {
+          0% { transform: translateY(-140%); opacity: 0; }
+          15%, 85% { opacity: .65; }
+          100% { transform: translateY(900%); opacity: 0; }
+        }
+        .animate-orbit-glow { animation: orbitGlow 9s ease-in-out infinite; }
+        .animate-scan-line { animation: scanLine 8s linear infinite; }
         
         .hide-scrollbar::-webkit-scrollbar { display: none; }
         .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        @media (prefers-reduced-motion: reduce) {
+          *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; }
+        }
       `}</style>
 
       {/* BACKGROUND EFFECTS */}
       <div className="fixed inset-0 pointer-events-none z-0">
+        <div className="absolute inset-0 opacity-[0.035] bg-[linear-gradient(rgba(34,211,238,.8)_1px,transparent_1px),linear-gradient(90deg,rgba(34,211,238,.8)_1px,transparent_1px)] bg-[size:72px_72px] [mask-image:linear-gradient(to_bottom,black,transparent_78%)]" />
         <div className="absolute top-0 left-1/2 md:left-1/3 w-[400px] md:w-[800px] h-[400px] md:h-[800px] bg-cyan-400 blur-[150px] md:blur-[200px] -translate-x-1/2 md:-translate-x-0 animate-slow-pulse" />
         <div className="absolute bottom-0 right-0 md:right-1/4 w-[400px] md:w-[800px] h-[400px] md:h-[800px] bg-blue-700 blur-[150px] md:blur-[200px] animate-slow-pulse" style={{ animationDelay: '4s' }} />
       </div>
@@ -437,27 +452,27 @@ export default function App() {
 
       <main>
       {/* HERO SECTION */}
-      <section className="min-h-[100dvh] flex items-center pt-28 md:pt-36 pb-20 relative z-10">
-        <div className="max-w-7xl mx-auto px-4 md:px-6 grid lg:grid-cols-2 gap-12 md:gap-24 items-center w-full">
+      <section className="min-h-[100dvh] flex items-center pt-28 md:pt-40 pb-20 md:pb-28 relative z-10 overflow-hidden">
+        <div className="absolute top-36 left-[8%] w-40 h-40 bg-cyan-400/20 blur-[90px] rounded-full animate-orbit-glow" />
+        <div className="absolute top-56 right-[10%] w-56 h-56 bg-blue-600/20 blur-[110px] rounded-full animate-orbit-glow" style={{ animationDelay: '2s' }} />
+        <div className="max-w-7xl mx-auto px-4 md:px-6 w-full">
           {/* Hero Texto */}
-          <div className="text-center lg:text-left">
+          <div className="text-center max-w-5xl mx-auto relative">
             <div className="inline-flex items-center gap-2 md:gap-3 px-4 py-2 md:px-5 md:py-3 rounded-full border border-cyan-400/30 bg-cyan-400/10 text-cyan-300 text-xs md:text-sm mb-8 mx-auto lg:mx-0 font-medium backdrop-blur-sm shadow-[0_0_15px_rgba(34,211,238,0.1)]">
               <Layers size={16} className="animate-pulse" />
               Orion Sat — Inteligência Operacional
             </div>
 
-            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-[4.5rem] font-black leading-tight tracking-tight mb-4">
-              Inteligência exata na
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500 block">sua operação.</span>
-              Dados que orientam
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500 block">melhores resultados.</span>
+            <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-[5.6rem] font-black leading-[0.98] tracking-[-0.045em] mb-6">
+              Sua operação,
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 via-cyan-400 to-blue-500 block">vista por inteiro.</span>
             </h1>
 
-            <p className="text-zinc-400 text-base md:text-xl leading-relaxed max-w-2xl mt-8 mx-auto lg:mx-0">
+            <p className="text-zinc-400 text-base md:text-xl leading-relaxed max-w-3xl mt-7 mx-auto">
               Plataforma integrada de rastreamento, telemetria e gestão operacional para empresas, locadoras e profissionais que precisam de visibilidade real sobre seus veículos.
             </p>
 
-            <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 md:gap-5 mt-10">
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 md:gap-5 mt-9">
               <a
                 href="https://wa.me/5511911021692?text=Ol%C3%A1%21%20Conheci%20a%20Orion%20Sat%20pelo%20site%20e%20gostaria%20de%20entender%20qual%20solu%C3%A7%C3%A3o%20%C3%A9%20adequada%20para%20minha%20opera%C3%A7%C3%A3o."
                 target="_blank"
@@ -475,7 +490,7 @@ export default function App() {
               </a>
             </div>
 
-            <div className="grid grid-cols-3 gap-4 md:gap-8 pt-12 border-t border-white/10 mt-12 max-w-lg mx-auto lg:mx-0">
+            <div className="grid grid-cols-3 gap-4 md:gap-8 pt-8 border-t border-white/10 mt-10 max-w-xl mx-auto">
               <div className="group cursor-default">
                 <h3 className="text-3xl md:text-4xl font-black text-cyan-400 group-hover:scale-110 transition-transform origin-left">IA</h3>
                 <p className="text-zinc-500 text-xs md:text-sm mt-1 font-medium group-hover:text-zinc-300 transition-colors">Videotelemetria</p>
@@ -492,10 +507,19 @@ export default function App() {
           </div>
 
           {/* DASHBOARD MOCKUP INTERATIVO */}
-          <div className="relative w-full mt-10 lg:mt-0 md:animate-float perspective-1000">
-            <div className="absolute inset-0 bg-cyan-400/20 blur-[80px] md:blur-[120px] rounded-full animate-pulse" />
+          <div className="relative w-full max-w-6xl mx-auto mt-14 md:mt-20 md:animate-float perspective-1000">
+            <div className="absolute -inset-10 bg-cyan-400/15 blur-[90px] md:blur-[140px] rounded-full animate-pulse" />
+            <div className="hidden lg:flex absolute -left-16 top-24 z-20 bg-[#081224]/90 border border-cyan-400/20 backdrop-blur-xl rounded-2xl px-4 py-3 shadow-2xl items-center gap-3">
+              <div className="w-10 h-10 rounded-xl bg-green-400/10 text-green-400 grid place-items-center"><Activity size={20}/></div>
+              <div><p className="text-[10px] uppercase tracking-widest text-zinc-500">Operação ativa</p><strong className="text-sm">Dados em tempo real</strong></div>
+            </div>
+            <div className="hidden lg:flex absolute -right-14 bottom-24 z-20 bg-[#081224]/90 border border-cyan-400/20 backdrop-blur-xl rounded-2xl px-4 py-3 shadow-2xl items-center gap-3">
+              <div className="w-10 h-10 rounded-xl bg-cyan-400/10 text-cyan-400 grid place-items-center"><TrendingUp size={20}/></div>
+              <div><p className="text-[10px] uppercase tracking-widest text-zinc-500">Indicadores</p><strong className="text-sm">Decisão orientada</strong></div>
+            </div>
             
-            <div className="relative bg-[#050B1A]/90 border border-white/10 rounded-3xl md:rounded-[36px] p-5 md:p-8 backdrop-blur-2xl shadow-[0_20px_50px_rgba(0,0,0,0.5)] overflow-hidden transition-all duration-500 hover:border-cyan-400/40">
+            <div className="relative bg-[#050B1A]/95 border border-white/10 rounded-3xl md:rounded-[36px] p-5 md:p-8 backdrop-blur-2xl shadow-[0_40px_100px_rgba(0,0,0,0.65),0_0_0_1px_rgba(34,211,238,.05)] overflow-hidden transition-all duration-500 hover:border-cyan-400/40">
+              <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-cyan-300/70 to-transparent animate-scan-line pointer-events-none" />
               
               <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-6">
                 <div>
@@ -747,6 +771,42 @@ export default function App() {
             <p className="hover:text-zinc-300 transition-colors">
               A plataforma conecta rastreamento, telemetria, videomonitoramento e recursos de gestão conforme a necessidade de cada cliente. O resultado é uma operação mais clara, mensurável e preparada para evoluir.
             </p>
+          </div>
+        </div>
+      </section>
+
+      {/* PLATAFORMA EM OPERAÇÃO */}
+      <section className="max-w-7xl mx-auto px-4 md:px-6 pb-20 md:pb-32 relative z-10">
+        <div className="relative overflow-hidden rounded-[28px] md:rounded-[44px] border border-white/10 bg-[#040a16] min-h-[520px] md:min-h-[680px] shadow-[0_40px_120px_rgba(0,0,0,.55)] group">
+          <video
+            src="/video-ia.mp4"
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="absolute inset-0 w-full h-full object-cover opacity-45 group-hover:scale-[1.025] transition-transform duration-[1800ms]"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#020817] via-[#020817]/80 to-[#020817]/20" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#020817] via-transparent to-[#020817]/30" />
+          <div className="absolute inset-0 opacity-[0.08] bg-[linear-gradient(rgba(34,211,238,.8)_1px,transparent_1px),linear-gradient(90deg,rgba(34,211,238,.8)_1px,transparent_1px)] bg-[size:56px_56px]" />
+
+          <div className="relative z-10 h-full min-h-[520px] md:min-h-[680px] flex flex-col justify-between p-7 md:p-14 lg:p-20">
+            <div className="inline-flex items-center gap-2 w-fit bg-cyan-400/10 border border-cyan-400/20 text-cyan-300 rounded-full px-4 py-2 text-xs md:text-sm font-bold tracking-wide backdrop-blur-xl">
+              <span className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse" /> Plataforma em operação
+            </div>
+
+            <div className="max-w-2xl">
+              <p className="text-cyan-400 font-bold uppercase tracking-[0.25em] text-xs md:text-sm mb-5">Visibilidade operacional</p>
+              <h2 className="text-4xl md:text-6xl lg:text-7xl font-black leading-[1.02] tracking-tight mb-6">Dados que chegam prontos para decidir.</h2>
+              <p className="text-zinc-300 text-base md:text-xl leading-relaxed max-w-xl">Eventos, rotas, condução e indicadores reunidos em uma experiência visual que facilita a leitura da operação e acelera a resposta da equipe.</p>
+              <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 mt-8 max-w-2xl">
+                {["Alertas configuráveis", "Histórico operacional", "Web e aplicativo"].map((item) => (
+                  <div key={item} className="bg-black/35 border border-white/10 backdrop-blur-xl rounded-2xl p-4 text-sm font-semibold text-zinc-200 flex items-center gap-2">
+                    <CheckCircle2 size={17} className="text-cyan-400 flex-shrink-0" /> {item}
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
       </section>
