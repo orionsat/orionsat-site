@@ -32,7 +32,10 @@ import {
   CheckSquare,
   Truck,
   ChevronRight,
-  Cookie
+  Cookie,
+  Apple,
+  ExternalLink,
+  Link2
 } from "lucide-react";
 
 import "./App.css";
@@ -465,6 +468,7 @@ export default function App() {
             <a href="#modulos-detalhados" className="hover:text-cyan-400 hover:-translate-y-0.5 transition-all duration-300">Módulos</a>
             <a href="#tecnologia" className="hover:text-cyan-400 hover:-translate-y-0.5 transition-all duration-300">Infraestrutura</a>
             <a href="#clientes" className="hover:text-cyan-400 hover:-translate-y-0.5 transition-all duration-300">Clientes</a>
+            <a href="#aplicativos" className="hover:text-cyan-400 hover:-translate-y-0.5 transition-all duration-300">Aplicativos</a>
           </nav>
 
           <a
@@ -919,6 +923,97 @@ export default function App() {
               />
             </div>
           ))}
+        </div>
+      </section>
+
+      {/* APLICATIVOS E CANAIS OFICIAIS */}
+      <section id="aplicativos" className="max-w-7xl mx-auto px-4 md:px-6 pb-20 md:pb-32 relative z-10">
+        <div className="relative overflow-hidden bg-[#050B1A] border border-white/10 rounded-3xl md:rounded-[40px] p-7 md:p-12 lg:p-16">
+          <div className="absolute -top-24 -right-24 w-72 h-72 bg-cyan-400/10 blur-[90px] rounded-full pointer-events-none" />
+
+          <div className="relative z-10 grid lg:grid-cols-[0.9fr_1.1fr] gap-10 lg:gap-16 items-center">
+            <div>
+              <p className="text-cyan-400 font-bold uppercase tracking-[0.2em] md:tracking-[0.3em] text-xs md:text-sm mb-3 md:mb-4">
+                Acesso rápido
+              </p>
+              <h2 className="text-3xl md:text-5xl font-black leading-tight">
+                Sua operação também no celular.
+              </h2>
+              <p className="text-zinc-400 text-base md:text-lg mt-5 leading-relaxed max-w-xl">
+                Baixe o aplicativo de monitoramento e acesse os canais oficiais da Orion Sat.
+              </p>
+            </div>
+
+            <div className="grid sm:grid-cols-2 gap-4">
+              <a
+                href="https://play.google.com/store/apps/details?id=br.com.rs.agseg&hl=pt_BR"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group flex items-center gap-4 bg-white/5 border border-white/10 rounded-2xl p-5 hover:bg-cyan-400/10 hover:border-cyan-400/50 hover:-translate-y-1 transition-all duration-300"
+                aria-label="Baixar aplicativo para Android no Google Play"
+              >
+                <div className="w-12 h-12 rounded-xl bg-cyan-400/10 text-cyan-400 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
+                  <Smartphone size={25} />
+                </div>
+                <div className="min-w-0">
+                  <span className="block text-xs uppercase tracking-widest text-zinc-500">Disponível no</span>
+                  <strong className="block text-white text-lg">Google Play</strong>
+                </div>
+                <ExternalLink size={17} className="ml-auto text-zinc-500 group-hover:text-cyan-400" />
+              </a>
+
+              <a
+                href="https://apps.apple.com/br/app/agseg-monitoramento/id6477195037"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group flex items-center gap-4 bg-white/5 border border-white/10 rounded-2xl p-5 hover:bg-cyan-400/10 hover:border-cyan-400/50 hover:-translate-y-1 transition-all duration-300"
+                aria-label="Baixar aplicativo para iPhone na App Store"
+              >
+                <div className="w-12 h-12 rounded-xl bg-cyan-400/10 text-cyan-400 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
+                  <Apple size={26} />
+                </div>
+                <div className="min-w-0">
+                  <span className="block text-xs uppercase tracking-widest text-zinc-500">Disponível na</span>
+                  <strong className="block text-white text-lg">App Store</strong>
+                </div>
+                <ExternalLink size={17} className="ml-auto text-zinc-500 group-hover:text-cyan-400" />
+              </a>
+
+              <a
+                href="https://linktr.ee/orionsatgestao"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group flex items-center gap-4 bg-white/5 border border-white/10 rounded-2xl p-5 hover:bg-cyan-400/10 hover:border-cyan-400/50 hover:-translate-y-1 transition-all duration-300"
+                aria-label="Abrir todos os acessos da Orion Sat"
+              >
+                <div className="w-12 h-12 rounded-xl bg-cyan-400/10 text-cyan-400 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
+                  <Link2 size={25} />
+                </div>
+                <div className="min-w-0">
+                  <span className="block text-xs uppercase tracking-widest text-zinc-500">Links oficiais</span>
+                  <strong className="block text-white text-lg">Todos os acessos</strong>
+                </div>
+                <ExternalLink size={17} className="ml-auto text-zinc-500 group-hover:text-cyan-400" />
+              </a>
+
+              <a
+                href="https://www.instagram.com/orion_sat/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group flex items-center gap-4 bg-white/5 border border-white/10 rounded-2xl p-5 hover:bg-cyan-400/10 hover:border-cyan-400/50 hover:-translate-y-1 transition-all duration-300"
+                aria-label="Acessar Instagram da Orion Sat"
+              >
+                <div className="w-12 h-12 rounded-xl bg-cyan-400/10 text-cyan-400 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
+                  <Camera size={25} />
+                </div>
+                <div className="min-w-0">
+                  <span className="block text-xs uppercase tracking-widest text-zinc-500">Siga a Orion Sat</span>
+                  <strong className="block text-white text-lg">@orion_sat</strong>
+                </div>
+                <ExternalLink size={17} className="ml-auto text-zinc-500 group-hover:text-cyan-400" />
+              </a>
+            </div>
+          </div>
         </div>
       </section>
 
