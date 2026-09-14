@@ -78,6 +78,12 @@ export default function App() {
     setCookieAceito(true);
   };
 
+  const registrarEvento = (nome, parametros = {}) => {
+    if (typeof window !== "undefined" && typeof window.gtag === "function") {
+      window.gtag("event", nome, parametros);
+    }
+  };
+
   // EFEITO PARA TROCAR AS ABAS DO DASHBOARD AUTOMATICAMENTE
   useEffect(() => {
     if (docAtivo) return; 
@@ -509,6 +515,10 @@ export default function App() {
                 href="https://wa.me/5511911021692"
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={() => registrarEvento("generate_lead", {
+                  lead_source: "whatsapp",
+                  button_location: "hero"
+                })}
                 className="w-full sm:w-auto bg-cyan-400 text-black px-8 py-4 md:py-5 rounded-2xl font-bold flex items-center justify-center gap-3 transition-all duration-300 hover:scale-105 hover:bg-cyan-300 hover:shadow-[0_0_30px_rgba(34,211,238,0.5)] active:scale-95 group"
               >
                 Solicitar Demonstração
@@ -949,6 +959,10 @@ export default function App() {
                 href="https://play.google.com/store/apps/details?id=br.com.rs.agseg&hl=pt_BR"
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={() => registrarEvento("app_download", {
+                  platform: "android",
+                  link_location: "apps_section"
+                })}
                 className="group flex items-center gap-4 bg-white/5 border border-white/10 rounded-2xl p-5 hover:bg-cyan-400/10 hover:border-cyan-400/50 hover:-translate-y-1 transition-all duration-300"
                 aria-label="Baixar aplicativo para Android no Google Play"
               >
@@ -966,6 +980,10 @@ export default function App() {
                 href="https://apps.apple.com/br/app/agseg-monitoramento/id6477195037"
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={() => registrarEvento("app_download", {
+                  platform: "ios",
+                  link_location: "apps_section"
+                })}
                 className="group flex items-center gap-4 bg-white/5 border border-white/10 rounded-2xl p-5 hover:bg-cyan-400/10 hover:border-cyan-400/50 hover:-translate-y-1 transition-all duration-300"
                 aria-label="Baixar aplicativo para iPhone na App Store"
               >
@@ -983,6 +1001,10 @@ export default function App() {
                 href="https://linktr.ee/orionsatgestao"
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={() => registrarEvento("social_click", {
+                  network: "linktree",
+                  link_location: "apps_section"
+                })}
                 className="group flex items-center gap-4 bg-white/5 border border-white/10 rounded-2xl p-5 hover:bg-cyan-400/10 hover:border-cyan-400/50 hover:-translate-y-1 transition-all duration-300"
                 aria-label="Abrir todos os acessos da Orion Sat"
               >
@@ -1000,6 +1022,10 @@ export default function App() {
                 href="https://www.instagram.com/orion_sat/"
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={() => registrarEvento("social_click", {
+                  network: "instagram",
+                  link_location: "apps_section"
+                })}
                 className="group flex items-center gap-4 bg-white/5 border border-white/10 rounded-2xl p-5 hover:bg-cyan-400/10 hover:border-cyan-400/50 hover:-translate-y-1 transition-all duration-300"
                 aria-label="Acessar Instagram da Orion Sat"
               >
@@ -1033,6 +1059,10 @@ export default function App() {
               href="https://wa.me/5511911021692"
               target="_blank"
               rel="noopener noreferrer"
+              onClick={() => registrarEvento("generate_lead", {
+                lead_source: "whatsapp",
+                button_location: "final_cta"
+              })}
               className="inline-flex items-center justify-center gap-3 w-full sm:w-auto bg-cyan-400 text-black px-8 py-4 md:py-5 rounded-xl md:rounded-2xl font-bold mt-10 transition-all duration-300 hover:scale-105 hover:bg-cyan-300 hover:shadow-[0_0_30px_rgba(34,211,238,0.5)] active:scale-95 text-base md:text-lg"
             >
               Falar com um de nossos consultores
@@ -1078,7 +1108,17 @@ export default function App() {
               <li>CNPJ: 66.620.074/0001-39</li>
               <li>Itaquaquecetuba/SP</li>
               <li className="hover:text-cyan-400 transition-colors">
-                <a href="https://wa.me/5511911021692" target="_blank" rel="noopener noreferrer">(11) 91102-1692</a>
+                <a
+                  href="https://wa.me/5511911021692"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => registrarEvento("generate_lead", {
+                    lead_source: "whatsapp",
+                    button_location: "footer"
+                  })}
+                >
+                  (11) 91102-1692
+                </a>
               </li>
               <li className="hover:text-cyan-400 transition-colors break-words">comercial@orionsatgestao.com.br</li>
             </ul>
@@ -1106,6 +1146,10 @@ export default function App() {
         href="https://wa.me/5511911021692"
         target="_blank"
         rel="noopener noreferrer"
+        onClick={() => registrarEvento("generate_lead", {
+          lead_source: "whatsapp",
+          button_location: "floating_button"
+        })}
         className="fixed bottom-6 right-6 z-50 bg-[#25D366] text-white p-3.5 md:p-4 rounded-full shadow-[0_4px_20px_rgba(37,211,102,0.5)] hover:scale-110 hover:-translate-y-1 transition-all duration-300 flex items-center justify-center group animate-bounce"
         style={{ animationDuration: '3s' }}
         aria-label="Falar no WhatsApp"
