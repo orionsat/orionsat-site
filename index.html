@@ -1,35 +1,43 @@
 <!doctype html>
 <html lang="pt-BR" translate="no">
   <head>
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-TB30X23EW7"></script>
     <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-TB30X23EW7');
-    </script>
+      (() => {
+        const analyticsHosts = new Set(["orionsatgestao.com.br", "www.orionsatgestao.com.br"]);
+        if (!analyticsHosts.has(window.location.hostname)) return;
 
+        window.dataLayer = window.dataLayer || [];
+        window.gtag = function () { window.dataLayer.push(arguments); };
+
+        const analyticsScript = document.createElement("script");
+        analyticsScript.async = true;
+        analyticsScript.src = "https://www.googletagmanager.com/gtag/js?id=G-TB30X23EW7";
+        document.head.appendChild(analyticsScript);
+
+        window.gtag("js", new Date());
+        window.gtag("config", "G-TB30X23EW7");
+      })();
+    </script>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="Content-Language" content="pt-BR" />
     <meta name="google" content="notranslate" />
-    
-    <title>Orion Sat | Gestão de Frotas, Telemetria e Rastreador Veicular</title>
-    <meta name="description" content="Proteja seu veículo ou gerencie toda a sua frota com a Orion Sat. Tecnologia em rastreamento, videotelemetria com IA e gestão logística para CPF e CNPJ." />
-    <meta name="keywords" content="rastreamento veicular, gestão de frotas, telemetria avançada, videotelemetria, câmera veicular com IA, rastreador para carros, controle de jornada, Orion Sat" />
+    <meta name="robots" content="index, follow" />
+
+    <title>Orion Sat | Gestão Veicular, Telemetria e Controle de Frotas</title>
+    <meta name="description" content="Gestão veicular pelo painel web e aplicativo: alertas, históricos, manutenção, despesas e controle operacional para empresas e veículos particulares." />
+    <meta name="keywords" content="gestão veicular, gestão de frotas, painel de veículos, aplicativo de gestão, manutenção veicular, Orion Sat" />
     <meta name="author" content="Orion Sat LTDA" />
 
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="Orion Sat | Tecnologia e Gestão Inteligente" />
-    <meta property="og:description" content="Soluções de rastreamento e videotelemetria que atendem desde motoristas autônomos até grandes transportadoras. Acesse e conheça." />
+    <meta property="og:title" content="Orion Sat | Gestão Inteligente" />
+    <meta property="og:description" content="Mais clareza, controle e autonomia para a gestão dos seus veículos." />
     <meta property="og:url" content="https://www.orionsatgestao.com.br/" />
-    <meta property="og:image" content="https://www.orionsatgestao.com.br/logo.png" />
     <meta property="og:site_name" content="Orion Sat" />
 
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Orion Sat | Gestão de Frotas e Telemetria" />
-    <meta name="twitter:description" content="Soluções de rastreamento e videotelemetria para empresas e autônomos." />
+    <meta name="twitter:title" content="Orion Sat | Gestão Inteligente" />
+    <meta name="twitter:description" content="Painel web e aplicativo para acompanhar e organizar a sua operação veicular." />
 
     <link rel="icon" type="image/png" href="/Favicon.png" />
   </head>

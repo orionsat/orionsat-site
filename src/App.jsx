@@ -39,6 +39,7 @@ import {
 } from "lucide-react";
 
 import "./App.css";
+import SiteHome from "./SiteHome";
 
 // IMPORTAÇÃO DAS LOGOS DOS CLIENTES E DA ORIONSAT
 import logo from "./assets/logo.png";
@@ -61,7 +62,8 @@ export default function App() {
   const [dashTab, setDashTab] = useState("visaoGeral");
   
   // ESTADO PARA A NOVA SEÇÃO DE EXPLICAÇÃO DETALHADA DOS MÓDULOS
-  const [moduloAtivo, setModuloAtivo] = useState("video");
+  const [moduloAtivo, setModuloAtivo] = useState("gestao");
+  const [appSlide, setAppSlide] = useState(0);
 
   // ESTADO DO BANNER DE COOKIES COM MEMÓRIA DE NAVEGADOR
   const [cookieAceito, setCookieAceito] = useState(() => {
@@ -88,7 +90,7 @@ export default function App() {
   useEffect(() => {
     if (docAtivo) return; 
 
-    const abas = ["visaoGeral", "videoIA", "logistica", "telemetria"];
+    const abas = ["visaoGeral", "alertas", "manutencao", "gestao"];
     
     const intervalo = setInterval(() => {
       setDashTab((abaAtual) => {
@@ -100,6 +102,14 @@ export default function App() {
 
     return () => clearInterval(intervalo);
   }, [docAtivo, dashTab]); 
+
+  useEffect(() => {
+    if (docAtivo) return;
+    const intervalo = setInterval(() => {
+      setAppSlide((atual) => (atual + 1) % 3);
+    }, 4200);
+    return () => clearInterval(intervalo);
+  }, [docAtivo]);
 
   const alternarDocumento = (tipo) => {
     setDocAtivo(tipo);
@@ -137,66 +147,74 @@ export default function App() {
   // DADOS DETALHADOS PARA A SEÇÃO EXPLICATIVA E CARDS DE SOLUÇÕES
   const detalhesModulos = [
     {
-      id: "video",
-      icon: <Video size={24} />,
-      title: "Videomonitoramento com IA",
-      subtitle: "Seus olhos dentro e fora da cabine, prevenindo acidentes.",
-      description: "Esqueça as câmeras comuns que apenas gravam. Nosso sistema utiliza Inteligência Artificial embarcada (Edge AI) para ler o rosto do motorista e o ambiente. Ele identifica sinais de sono (bocejos, olhos fechando), uso de celular, cigarro ou ausência de cinto. O motorista recebe um alerta sonoro instantâneo para evitar o acidente, e a central recebe o vídeo do evento salvo na nuvem.",
-      topics: ["Prevenção ativa de acidentes e tombamentos", "Auditoria de sinistros (prova em vídeo irrefutável)", "Melhoria contínua do comportamento da equipe"]
+      id: "gestao",
+      icon: <BarChart3 size={24} />,
+      title: "Gestão veicular",
+      subtitle: "Informações organizadas para você conduzir a operação.",
+      description: "A Orion Sat oferece as ferramentas para que o próprio cliente acompanhe veículos, organize grupos, consulte indicadores e tome decisões com mais agilidade pelo painel web e aplicativo.",
+      topics: ["Visão centralizada dos veículos", "Gestão conduzida pelo próprio cliente", "Recursos adaptados a cada operação"]
     },
     {
-      id: "logistics",
+      id: "alertas",
+      icon: <Bell size={24} />,
+      title: "Alertas e notificações",
+      subtitle: "Escolha quais eventos merecem sua atenção.",
+      description: "Ative notificações por veículo para eventos como ignição ligada ou desligada, bateria baixa, vibração, bloqueio e desbloqueio. Os avisos ficam organizados para facilitar a consulta.",
+      topics: ["Alertas configuráveis por veículo", "Central de notificações", "Registro com data, hora e identificação"]
+    },
+    {
+      id: "historico",
       icon: <RouteIcon size={24} />,
-      title: "Logistics e Roteirização",
-      subtitle: "Do planejamento à entrega final, sem usar papel.",
-      description: "Um módulo focado em acabar com o telefone sem fio entre a base e o motorista. Você importa seus pontos de entrega/coleta, e o sistema traça a rota mais inteligente. O motorista acessa tudo pelo App, dá o 'check-in' no local, coleta assinaturas ou tira fotos do canhoto. Se algo der errado (cliente ausente), ele registra o motivo na hora.",
-      topics: ["Redução drástica de quilometragem rodada em falso", "Comprovação digital de entregas em tempo real", "Controle exato de pontualidade (SLA)"]
-    },
-    {
-      id: "jornada",
-      icon: <Clock size={24} />,
-      title: "Jornada de Trabalho",
-      subtitle: "Sua blindagem contra passivos trabalhistas.",
-      description: "Adequar-se à Lei do Motorista não precisa ser uma dor de cabeça. Nossa plataforma automatiza o apontamento de horas. O motorista inicia o expediente via App ou crachá (RFID). O sistema registra automaticamente o tempo de direção, paradas para descanso, refeição, horas de espera e horas extras, gerando folhas de ponto precisas e auditáveis.",
-      topics: ["Adequação rigorosa à legislação vigente", "Fim das planilhas manuais e erros de apontamento", "Alertas para o motorista realizar suas pausas obrigatórias"]
-    },
-    {
-      id: "telemetria",
-      icon: <Gauge size={24} />,
-      title: "Telemetria e Velocidade na Via",
-      subtitle: "O fim do desperdício de combustível e das multas surpresa.",
-      description: "Nós lemos a 'mente' do veículo. Monitoramos a RPM (conta-giros), acelerações, freadas bruscas e curvas acentuadas. O grande diferencial é o módulo 'Velocidade na Via': o GPS cruza a posição do carro com os limites de velocidade reais de cada rua (placas). Se a via é de 40km/h e o motorista passa a 60km/h, a central fica sabendo na hora.",
-      topics: ["Redução de até 65% em multas de trânsito", "Ranking de motoristas baseado em direção econômica", "Diminuição do desgaste prematuro de freios e pneus"]
+      title: "Histórico e relatórios",
+      subtitle: "Entenda o que aconteceu ao longo da operação.",
+      description: "Consulte trajetos, horários, paradas e eventos anteriores. Relatórios operacionais transformam registros dos veículos em informações práticas para conferências e decisões.",
+      topics: ["Revisão de percursos e paradas", "Relatórios por período", "Mais contexto para decisões"]
     },
     {
       id: "manutencao",
       icon: <Wrench size={24} />,
-      title: "Manutenção e Abastecimento",
-      subtitle: "Gestão inteligente da saúde da sua frota.",
-      description: "Não dependa da memória da equipe para trocar óleo ou pastilhas. Crie planos preventivos baseados no hodômetro ou horímetro real lido pela plataforma. Além disso, o módulo cruza as informações de litragem abastecida com a quilometragem rodada para te dar o custo real de Km/L, identificando imediatamente fraudes ou veículos com defeito.",
-      topics: ["Aumento da disponibilidade operacional dos veículos", "Avisos automáticos de manutenções vencidas e a vencer", "Controle de notas fiscais e custos de oficinas"]
+      title: "Manutenção e despesas",
+      subtitle: "Organize prazos, quilometragem, horas e custos.",
+      description: "Crie planos de manutenção por data, quilometragem ou horas de uso. Registre despesas e abastecimentos para manter o histórico de cada veículo reunido no aplicativo.",
+      topics: ["Planos preventivos configuráveis", "Status de manutenções", "Despesas e abastecimentos por veículo"]
+    },
+    {
+      id: "aplicativos",
+      icon: <Smartphone size={24} />,
+      title: "Aplicativos personalizados",
+      subtitle: "A operação na palma da mão.",
+      description: "O cliente acessa um ambiente com a identidade Orion Sat para acompanhar os veículos e as rotinas contratadas, incluindo notificações, financeiro, contratos e configurações.",
+      topics: ["Identidade Orion Sat", "Acesso móvel às principais rotinas", "Módulos liberados conforme a operação"]
+    },
+    {
+      id: "motorista",
+      icon: <CheckSquare size={24} />,
+      title: "Motorista e checklist",
+      subtitle: "Rotinas de campo conectadas à gestão.",
+      description: "Aplicativos operacionais podem apoiar a identificação do motorista, checklists e inspeções. O conjunto de recursos é definido conforme o módulo habilitado.",
+      topics: ["Rotinas digitais para motoristas", "Checklists configuráveis", "Solução ajustada ao fluxo de trabalho"]
     }
   ];
 
   const beneficios = [
-    "Ecossistema unificado: elimine a necessidade de contratar múltiplos softwares",
-    "Mitigação drástica do passivo de multas (Velocidade na Via) e riscos trabalhistas (Jornada)",
-    "Redução comprovada de custos com combustível e manutenções corretivas",
-    "Controle total e auditoria visual da operação via Videomonitoramento IA",
-    "Tomada de decisão baseada em dados reais (Big Data e Telemetria Avançada)",
-    "Arquitetura escalável: atende com excelência desde 1 até 5.000 veículos",
+    "Acompanhe localização, status, ignição e comunicação dos veículos",
+    "Configure alertas e consulte notificações organizadas no aplicativo",
+    "Revise históricos, trajetos, paradas e relatórios operacionais",
+    "Planeje manutenções por data, quilometragem ou horas de uso",
+    "Registre despesas, abastecimentos e custos associados aos veículos",
+    "Acesse contratos, financeiro e módulos liberados para a sua operação",
   ];
 
   const faq = [
     {
-      pergunta: "A Orion Sat atua como um sistema integrado (ERP Logístico)?",
+      pergunta: "Quem faz a gestão dos veículos?",
       resposta:
-        "Sim. Nosso maior diferencial é entregar um ecossistema completo. Você não precisa de um sistema para câmeras, outro para roteirização de entregas e outro para a Lei do Motorista. A plataforma Orion Sat centraliza Videotelemetria, Logistics, Jornada, Manutenção e Telemetria em um único painel de controle.",
+        "O próprio cliente faz a gestão da sua operação. A Orion Sat fornece painel, aplicativos, conectividade e recursos para acompanhar veículos, organizar informações e tomar decisões.",
     },
     {
       pergunta: "A plataforma é acessível para frotas de menor porte e veículos particulares?",
       resposta:
-        "Sim. Nossa tecnologia Enterprise foi desenhada para ser totalmente escalável. Pequenos frotistas, locadoras menores e até profissionais autônomos têm acesso à mesma inteligência operacional utilizada por grandes transportadoras, pagando apenas pelas licenças ativas na sua rotina.",
+        "Sim. Atendemos empresas, pequenos frotistas, operações com máquinas e equipamentos e também proprietários de veículos particulares.",
     },
     {
       pergunta: "Qual o prazo de implantação da plataforma?",
@@ -417,6 +435,13 @@ export default function App() {
       </div>
     );
   }
+
+  return (
+    <SiteHome
+      onOpenDocument={alternarDocumento}
+      onLead={registrarEvento}
+    />
+  );
 
   // ==========================================
   // RENDERIZAÇÃO DA PÁGINA PRINCIPAL (SITE)
